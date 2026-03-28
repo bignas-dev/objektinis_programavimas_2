@@ -38,7 +38,9 @@ public:
         other.galutinis_ = 0.0f;
     }
     
-    ~Studentas() = default;
+    ~Studentas() {
+        tarp_rez_.clear();
+    }
     
     Studentas& operator=(const Studentas& other) {
         if (this != &other) {
@@ -64,18 +66,18 @@ public:
         return *this;
     }
     
-    std::string getVardas() const { return vardas_; }
-    std::string getPavarde() const { return pavarde_; }
-    const std::vector<int>& getTarpRez() const { return tarp_rez_; }
-    int getEgzRez() const { return egz_rez_; }
-    float getGalutinis() const { return galutinis_; }
+    inline std::string getVardas() const { return vardas_; }
+    inline std::string getPavarde() const { return pavarde_; }
+    inline const std::vector<int>& getTarpRez() const { return tarp_rez_; }
+    inline int getEgzRez() const { return egz_rez_; }
+    inline float getGalutinis() const { return galutinis_; }
     
-    void setVardas(const std::string& vardas) { vardas_ = vardas; }
-    void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
-    void addTarpRez(int rez) { tarp_rez_.push_back(rez); }
-    void setEgzRez(int rez) { egz_rez_ = rez; }
-    void setGalutinis(float gal) { galutinis_ = gal; }
-    void clearTarpRez() { tarp_rez_.clear(); }
+    inline void setVardas(const std::string& vardas) { vardas_ = vardas; }
+    inline void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+    inline void addTarpRez(int rez) { tarp_rez_.push_back(rez); }
+    inline void setEgzRez(int rez) { egz_rez_ = rez; }
+    inline void setGalutinis(float gal) { galutinis_ = gal; }
+    inline void clearTarpRez() { tarp_rez_.clear(); }
 };
 
 inline float calculateAverage(const std::vector<int>& arr) {
