@@ -12,7 +12,7 @@ int main() {
     std::vector<std::string> size_names = {"1k", "10k", "100k", "1M", "10M"};
     std::string gradeType = "1";
     
-    std::cout << "Pradedami v1.0 spartos tyrimai...\n";
+    std::cout << "Pradedami v1.1 spartos tyrimai (su class Studentas)...\n";
     std::cout << "Tiriami konteineriai: vector, list, deque\n";
     std::cout << "Strategijos: 1 (du nauji), 2 (vienas + trynimas), 3 (partition)\n";
     std::cout << "Demesio: Strategy 2 su vector praleidziama didesniems failams (per leta)\n\n";
