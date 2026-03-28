@@ -1,3 +1,6 @@
 exec
 program
+test_struct
+test_class
 *.txt
+*.csv
