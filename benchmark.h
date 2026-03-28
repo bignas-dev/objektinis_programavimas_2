@@ -24,6 +24,14 @@ struct BenchmarkResult {
     
     BenchmarkResult() : strategy(0), recordCount(0), readDuration(0), sortDuration(0), 
                         splitDuration(0), writeDuration(0), totalDuration(0) {}
+    
+    void reset() {
+        readDuration = 0;
+        sortDuration = 0;
+        splitDuration = 0;
+        writeDuration = 0;
+        totalDuration = 0;
+    }
 };
 
 GenerationResult measureFileGeneration(const std::string& filename, int recordCount);
