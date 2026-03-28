@@ -13,14 +13,69 @@
 #include <stdexcept>
 #include <chrono>
 
-struct Mokinys {
-    std::string vardas;
-    std::string pavarde;
-    std::vector<int> tarp_rez;
-    int egz_rez;
-    float galutinis;
+class Studentas {
+private:
+    std::string vardas_;
+    std::string pavarde_;
+    std::vector<int> tarp_rez_;
+    int egz_rez_;
+    float galutinis_;
+
+public:
+    Studentas() : egz_rez_(0), galutinis_(0.0f) {}
     
-    Mokinys() : egz_rez(0), galutinis(0.0f) {}
+    Studentas(std::string vardas, std::string pavarde) 
+        : vardas_(std::move(vardas)), pavarde_(std::move(pavarde)), egz_rez_(0), galutinis_(0.0f) {}
+    
+    Studentas(const Studentas& other) 
+        : vardas_(other.vardas_), pavarde_(other.pavarde_), tarp_rez_(other.tarp_rez_),
+          egz_rez_(other.egz_rez_), galutinis_(other.galutinis_) {}
+    
+    Studentas(Studentas&& other) noexcept 
+        : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
+          tarp_rez_(std::move(other.tarp_rez_)), egz_rez_(other.egz_rez_), galutinis_(other.galutinis_) {
+        other.egz_rez_ = 0;
+        other.galutinis_ = 0.0f;
+    }
+    
+    ~Studentas() = default;
+    
+    Studentas& operator=(const Studentas& other) {
+        if (this != &other) {
+            vardas_ = other.vardas_;
+            pavarde_ = other.pavarde_;
+            tarp_rez_ = other.tarp_rez_;
+            egz_rez_ = other.egz_rez_;
+            galutinis_ = other.galutinis_;
+        }
+        return *this;
+    }
+    
+    Studentas& operator=(Studentas&& other) noexcept {
+        if (this != &other) {
+            vardas_ = std::move(other.vardas_);
+            pavarde_ = std::move(other.pavarde_);
+            tarp_rez_ = std::move(other.tarp_rez_);
+            egz_rez_ = other.egz_rez_;
+            galutinis_ = other.galutinis_;
+            other.egz_rez_ = 0;
+            other.galutinis_ = 0.0f;
+        }
+        return *this;
+    }
+    
+    std::string getVardas() const { return vardas_; }
+    std::string getPavarde() const { return pavarde_; }
+    const std::vector<int>& getTarpRez() const { return tarp_rez_; }
+    int getEgzRez() const { return egz_rez_; }
+    float getGalutinis() const { return galutinis_; }
+    
+    void setVardas(const std::string& vardas) { vardas_ = vardas; }
+    void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+    void addTarpRez(int rez) { tarp_rez_.push_back(rez); }
+    void setEgzRez(int rez) { egz_rez_ = rez; }
+    void setGalutinis(float gal) { galutinis_ = gal; }
+    void clearTarpRez() { tarp_rez_.clear(); }
 };
 
 inline float calculateAverage(const std::vector<int>& arr) {
@@ -43,82 +98,22 @@ inline float calculateMedian(std::vector<int> arr) {
     }
 }
 
-inline void generateRandomGrades(Mokinys& mokinys) {
+inline void generateRandomGrades(Studentas& studentas) {
     int tarp_count = rand() % 10 + 1; 
-    mokinys.tarp_rez.reserve(tarp_count);
     for (int i = 0; i < tarp_count; ++i) {
-        mokinys.tarp_rez.push_back(rand() % 11); 
+        studentas.addTarpRez(rand() % 11);
     }
-    mokinys.egz_rez = rand() % 11;
+    studentas.setEgzRez(rand() % 11);
 }
 
-inline void readStudentData(Mokinys& mokinys) {
-    std::cout << "Įveskite vardą: ";
-    std::cin >> mokinys.vardas;
-    std::cout << "Įveskite pavardę: ";
-    std::cin >> mokinys.pavarde;
-
-    while (true) {
-        std::cout << "Įveskite " << mokinys.tarp_rez.size() + 1
-                  << " tarpinį rezultatą (arba -1, jei baigėte): ";
-        int grade;
-        if (!(std::cin >> grade)) {
-            std::cin.clear();
-            std::cin.ignore(10000, '\n');
-            std::cout << "Neteisinga įvestis. Bandykite dar kartą.\n";
-            continue;
-        }
-
-        if (grade == -1) {
-            break;
-        }
-        if (grade < 0 || grade > 10) {
-            std::cout << "Rezultatas turi būti nuo 0 iki 10. Bandykite dar kartą.\n";
-            continue;
-        }
-        mokinys.tarp_rez.push_back(grade);
-    }
-
-    if (mokinys.tarp_rez.empty()) {
-        std::cout << "Turite įvesti bent vieną tarpinį rezultatą. Generuojami atsitiktiniai.\n";
-        generateRandomGrades(mokinys);
-    }
-
-    std::cout << "Įveskite egzamino rezultatą: ";
-    while (!(std::cin >> mokinys.egz_rez) || mokinys.egz_rez < 0 || mokinys.egz_rez > 10) {
-        std::cin.clear();
-        std::cin.ignore(10000, '\n');
-        std::cout << "Neteisinga įvestis (0-10). Bandykite dar kartą: ";
-    }
-}
-
-inline void calculateFinalGrade(Mokinys& mokinys, const std::string& choice) {
+inline void calculateFinalGrade(Studentas& studentas, const std::string& choice) {
     float tarp_rez;
     if (choice == "1") {
-        tarp_rez = calculateAverage(mokinys.tarp_rez);
+        tarp_rez = calculateAverage(studentas.getTarpRez());
     } else {
-        tarp_rez = calculateMedian(mokinys.tarp_rez);
+        tarp_rez = calculateMedian(studentas.getTarpRez());
     }
-    mokinys.galutinis = 0.6f * mokinys.egz_rez + 0.4f * tarp_rez;
-}
-
-inline void displayResults(const std::vector<Mokinys>& students, const std::string& choice) { 
-    std::ostream& out = std::cout;
-    const int langelio_ilgis = 20;
-    std::string kategorija = (choice == "1") ? "Galutinis (Vid.)" : "Galutinis (Med.)";
-
-    out << std::left;  
-    out << std::setw(langelio_ilgis) << "Pavardė"
-        << std::setw(langelio_ilgis) << "Vardas"
-        << std::setw(langelio_ilgis) << kategorija << '\n';
-    out << std::string(3 * langelio_ilgis, '-') << '\n';
-
-    for (const auto& m : students) {
-        out << std::setw(langelio_ilgis) << m.pavarde
-            << std::setw(langelio_ilgis) << m.vardas
-            << std::setw(langelio_ilgis) << std::fixed << std::setprecision(2) << m.galutinis
-            << '\n';
-    }
+    studentas.setGalutinis(0.6f * studentas.getEgzRez() + 0.4f * tarp_rez);
 }
 
 template<typename Container>
@@ -132,22 +127,23 @@ Container readFromFile(const std::string& filename) {
     std::string line;
     std::getline(file, line);
 
-    Mokinys m;
     while (std::getline(file, line)) {
         if (line.empty()) continue; 
 
         std::istringstream iss(line);
-        if (!(iss >> m.vardas >> m.pavarde)) continue;
+        std::string vardas, pavarde;
+        if (!(iss >> vardas >> pavarde)) continue;
 
-        m.tarp_rez.clear();
+        Studentas s(vardas, pavarde);
         int grade;
         for (int i = 0; i < 5; ++i) {
             if (iss >> grade) {
-                m.tarp_rez.push_back(grade);
+                s.addTarpRez(grade);
             }
         }
-        iss >> m.egz_rez;
-        students.push_back(m);
+        iss >> grade;
+        s.setEgzRez(grade);
+        students.push_back(s);
     }
 
     file.close();
@@ -156,15 +152,15 @@ Container readFromFile(const std::string& filename) {
 
 template<typename Container>
 void sortStudents(Container& students) {
-    std::sort(students.begin(), students.end(), [](const Mokinys& a, const Mokinys& b) {
-        return a.galutinis < b.galutinis;
+    std::sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+        return a.getGalutinis() < b.getGalutinis();
     });
 }
 
 template<>
-inline void sortStudents<std::list<Mokinys>>(std::list<Mokinys>& students) {
-    students.sort([](const Mokinys& a, const Mokinys& b) {
-        return a.galutinis < b.galutinis;
+inline void sortStudents<std::list<Studentas>>(std::list<Studentas>& students) {
+    students.sort([](const Studentas& a, const Studentas& b) {
+        return a.getGalutinis() < b.getGalutinis();
     });
 }
 
@@ -172,7 +168,7 @@ template<typename Container>
 Container strategy1Split(Container& students) {
     Container vargsiukai;
     for (const auto& s : students) {
-        if (s.galutinis < 5.0f) {
+        if (s.getGalutinis() < 5.0f) {
             vargsiukai.push_back(s);
         }
     }
@@ -184,7 +180,7 @@ Container strategy2Split(Container& students) {
     Container vargsiukai;
     auto it = students.begin();
     while (it != students.end()) {
-        if (it->galutinis < 5.0f) {
+        if (it->getGalutinis() < 5.0f) {
             vargsiukai.push_back(*it);
             it = students.erase(it);
         } else {
@@ -198,7 +194,7 @@ template<typename Container>
 Container strategy3Split(Container& students) {
     Container vargsiukai;
     auto partition_point = std::stable_partition(students.begin(), students.end(), 
-        [](const Mokinys& s) { return s.galutinis >= 5.0f; });
+        [](const Studentas& s) { return s.getGalutinis() >= 5.0f; });
     
     vargsiukai.insert(vargsiukai.end(), partition_point, students.end());
     students.erase(partition_point, students.end());
@@ -207,11 +203,11 @@ Container strategy3Split(Container& students) {
 }
 
 template<>
-inline std::list<Mokinys> strategy3Split<std::list<Mokinys>>(std::list<Mokinys>& students) {
-    std::list<Mokinys> vargsiukai;
+inline std::list<Studentas> strategy3Split<std::list<Studentas>>(std::list<Studentas>& students) {
+    std::list<Studentas> vargsiukai;
     auto it = students.begin();
     while (it != students.end()) {
-        if (it->galutinis < 5.0f) {
+        if (it->getGalutinis() < 5.0f) {
             vargsiukai.splice(vargsiukai.end(), students, it++);
         } else {
             ++it;
