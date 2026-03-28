@@ -1,6 +1,6 @@
-# objektinis_programavimas (v1.0)
+# objektinis_programavimas (v1.1)
 
-Objektinio programavimo repozitorija. Ši versija (v1.0) pritaiko tris skirtingus konteinerius (vector, list, deque) ir tris studentų dalijimo strategijas.
+Objektinio programavimo repozitorija. Ši versija (v1.1) konvertuoja `struct Mokinys` į `class Studentas` su pilnais konstruktoriais, destruktoriumi ir operatoriais.
 
 ## Sistemos specifikacijos
 
@@ -11,7 +11,7 @@ Objektinio programavimo repozitorija. Ši versija (v1.0) pritaiko tris skirtingu
 | **Diskas** | NVMe SSD 476.9 GB |
 | **OS** | Linux |
 | **Kompiliatorius** | g++ (C++17) |
-| **Optimizacija** | -O3 |
+| **Optimizacija** | -O3 (numatytoji) |
 
 ## Paleidimo instrukcijos
 
@@ -21,14 +21,114 @@ make
 
 # Paleidimas
 make run
-# arba
-./program
+
+# Struct vs Class spartos testai
+make test
+
+# Skirtingi optimizacijos lygiai
+make O1
+make O2
+make O3
 
 # Valymas
 make clean
 ```
 
-## Konteineriai
+## Studentas klasė
+
+### Konstruktoriai ir destruktorius
+
+```cpp
+class Studentas {
+public:
+    Studentas();                                    // numatytasis
+    Studentas(std::string vardas, std::string pavarde);  // parametrinis
+    Studentas(const Studentas& other);              // kopijavimo
+    Studentas(Studentas&& other) noexcept;          // perkėlimo (move)
+    ~Studentas();                                   // destruktorius
+    
+    Studentas& operator=(const Studentas& other);   // kopijavimo priskyrimas
+    Studentas& operator=(Studentas&& other) noexcept; // move priskyrimas
+    
+    // Getter'ai ir setter'iai
+    std::string getVardas() const;
+    std::string getPavarde() const;
+    float getGalutinis() const;
+    void setVardas(const std::string& vardas);
+    void setGalutinis(float gal);
+    // ...
+};
+```
+
+## Struct vs Class spartos palyginimas
+
+Tyrimas atliktas su:
+- **Konteineris:** std::vector
+- **Strategija:** 3 (stable_partition)
+- **Failų dydžiai:** 100 000, 1 000 000 įrašų
+
+### O1 optimizacija
+
+| Versija | Įrašai | Bendras laikas | Exe dydis |
+|---------|--------|----------------|-----------|
+| struct  | 100 000 | 0.0819 s | 68 KB |
+| class   | 100 000 | 0.0888 s | 68 KB |
+| struct  | 1 000 000 | 0.8712 s | 68 KB |
+| class   | 1 000 000 | 0.9523 s | 68 KB |
+
+### O2 optimizacija
+
+| Versija | Įrašai | Bendras laikas | Exe dydis |
+|---------|--------|----------------|-----------|
+| struct  | 100 000 | 0.0851 s | 60 KB |
+| class   | 100 000 | 0.0929 s | 60 KB |
+| struct  | 1 000 000 | 0.8869 s | 60 KB |
+| class   | 1 000 000 | 0.9663 s | 60 KB |
+
+### O3 optimizacija
+
+| Versija | Įrašai | Bendras laikas | Exe dydis |
+|---------|--------|----------------|-----------|
+| struct  | 100 000 | 0.0812 s | 67 KB |
+| class   | 100 000 | 0.0863 s | 67 KB |
+| struct  | 1 000 000 | 0.8562 s | 67 KB |
+| class   | 1 000 000 | 0.9269 s | 67 KB |
+
+## Optimizacijos flag'ų palyginimas
+
+### Struct versija
+
+| Flag | 100k laikas | 1M laikas | Exe dydis |
+|------|-------------|-----------|-----------|
+| O1   | 0.0819 s | 0.8712 s | 68 KB |
+| O2   | 0.0851 s | 0.8869 s | 60 KB |
+| O3   | 0.0812 s | 0.8562 s | 67 KB |
+
+### Class versija
+
+| Flag | 100k laikas | 1M laikas | Exe dydis |
+|------|-------------|-----------|-----------|
+| O1   | 0.0888 s | 0.9523 s | 68 KB |
+| O2   | 0.0929 s | 0.9663 s | 60 KB |
+| O3   | 0.0863 s | 0.9269 s | 67 KB |
+
+## Išvados
+
+### Struct vs Class
+
+1. **Spartuma:** Struct versija yra ~6-8% greitesnė už Class versiją dėl paprastesnės atminties valdymo struktūros (nereikia kvieti getter/setter metodų).
+
+2. **Exe dydžiai:** Beveik tapatūs abiejose versijose. O2 sukuria mažiausius failus.
+
+3. **Optimizavimas:** O3 yra greičiausias, O2 - mažiausias exe failas.
+
+### Rekomendacija
+
+- Naudokite **O3** optimizaciją, jei svarbiausias greitis
+- Naudokite **O2** optimizaciją, jei svarbiausias failo dydis
+- Class versija rekomenduojama, kai reikalingas geresnis inkapsuliavimas ir duomenų apsauga
+
+## Konteineriai (v1.0 tyrimai)
 
 Programa palaiko tris C++ STL konteinerių tipus:
 
@@ -41,95 +141,32 @@ Programa palaiko tris C++ STL konteinerių tipus:
 ## Strategijos
 
 ### 1 strategija: Du nauji konteineriai
-Bendro studentų konteinerio skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų". Originalus konteineris išlieka nepakitęs.
+Bendro studentų konteinerio skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų".
 
 ### 2 strategija: Vienas naujas + trynimas
-Bendro studentų konteinerio skaidymas panaudojant tik vieną naują konteinerį: "vargšiukai". Vargšiukai perkeliami į naują konteinerį ir trinami iš originalaus naudojant `erase()`.
-
-**Dėmesio:** Su vector ši strategija yra labai neefektyvi dėl O(n) erase() operacijos!
+Bendro studentų konteinerio skaidymas panaudojant tik vieną naują konteinerį: "vargšiukai".
 
 ### 3 strategija: std::stable_partition / splice
-Optimizuotas skaidymas naudojant C++ STL algoritmus:
-- **vector/deque:** `std::stable_partition`
-- **list:** `splice` (efektyviai perkelia elementus be kopijavimo)
-
-## Tyrimų rezultatai
-
-### Strategija 1 (1k, 10k, 100k)
-
-| Konteineris | Įrašai | Nuskaitymas | Rūšiavimas | Dalijimas | Išvedimas | Bendra |
-|:------------|:-------|:------------|:-----------|:----------|:----------|:-------|
-| vector | 1 000 | 0.0005 s | 0.0001 s | 0.0000 s | 0.0004 s | 0.0010 s |
-| list | 1 000 | 0.0004 s | 0.0001 s | 0.0001 s | 0.0005 s | 0.0011 s |
-| deque | 1 000 | 0.0004 s | 0.0001 s | 0.0000 s | 0.0004 s | 0.0010 s |
-| vector | 10 000 | 0.0053 s | 0.0013 s | 0.0007 s | 0.0037 s | 0.0110 s |
-| list | 10 000 | 0.0048 s | 0.0011 s | 0.0006 s | 0.0036 s | 0.0102 s |
-| deque | 10 000 | 0.0047 s | 0.0016 s | 0.0002 s | 0.0036 s | 0.0101 s |
-| vector | 100 000 | 0.0521 s | 0.0172 s | 0.0108 s | 0.0362 s | 0.1164 s |
-| list | 100 000 | 0.0493 s | 0.0233 s | 0.0142 s | 0.0480 s | 0.1348 s |
-| deque | 100 000 | 0.0559 s | 0.0215 s | 0.0045 s | 0.0404 s | 0.1222 s |
-
-### Strategija 2 (1k, 10k) - *vector praleistas didesniams failams*
-
-| Konteineris | Įrašai | Nuskaitymas | Rūšiavimas | Dalijimas | Išvedimas | Bendra |
-|:------------|:-------|:------------|:-----------|:----------|:----------|:-------|
-| vector | 1 000 | 0.0004 s | 0.0001 s | 0.0036 s | 0.0004 s | 0.0045 s |
-| list | 1 000 | 0.0004 s | 0.0001 s | 0.0000 s | 0.0003 s | 0.0008 s |
-| deque | 1 000 | 0.0004 s | 0.0001 s | 0.0000 s | 0.0003 s | 0.0009 s |
-| vector | 10 000 | 0.0044 s | 0.0013 s | 0.3634 s | 0.0025 s | 0.3716 s |
-| list | 10 000 | 0.0051 s | 0.0011 s | 0.0002 s | 0.0024 s | 0.0089 s |
-| deque | 10 000 | 0.0047 s | 0.0015 s | 0.0002 s | 0.0026 s | 0.0090 s |
-
-### Strategija 3 (1k, 10k, 100k)
-
-| Konteineris | Įrašai | Nuskaitymas | Rūšiavimas | Dalijimas | Išvedimas | Bendra |
-|:------------|:-------|:------------|:-----------|:----------|:----------|:-------|
-| vector | 1 000 | 0.0004 s | 0.0001 s | 0.0001 s | 0.0003 s | 0.0010 s |
-| list | 1 000 | 0.0004 s | 0.0001 s | 0.0000 s | 0.0005 s | 0.0010 s |
-| deque | 1 000 | 0.0004 s | 0.0001 s | 0.0000 s | 0.0003 s | 0.0009 s |
-| vector | 10 000 | 0.0050 s | 0.0013 s | 0.0004 s | 0.0025 s | 0.0091 s |
-| list | 10 000 | 0.0051 s | 0.0011 s | 0.0001 s | 0.0025 s | 0.0089 s |
-| deque | 10 000 | 0.0043 s | 0.0015 s | 0.0004 s | 0.0026 s | 0.0088 s |
-| vector | 100 000 | 0.0494 s | 0.0171 s | 0.0159 s | 0.0244 s | 0.1068 s |
-| list | 100 000 | 0.0419 s | 0.0248 s | 0.0087 s | 0.0347 s | 0.1100 s |
-| deque | 100 000 | 0.0560 s | 0.0212 s | 0.0130 s | 0.0283 s | 0.1185 s |
-
-## Išvados
-
-### Geriausia strategija
-
-| Konteineris | Rekomenduojama strategija | Kodėl |
-|-------------|--------------------------|-------|
-| **vector** | 3 (stable_partition) | Greičiausia, efektyvi atmintis |
-| **list** | 3 (splice) | Greičiausia, nereikia kopijuoti |
-| **deque** | 2 arba 3 | Abi veikia panašiai greitai |
-
-### Kodėl strategija 2 su vector yra bloga?
-
-Vector: kiekvienas erase() reikalauja perkelti visus elementus į dešinę. Su 10 000 įrašų: dalijimas užtruko 0.36 s (vietoj 0.0004 s su list). Su 100 000 įrašų: būtų užtrukę ~36 sekundes!
-
-### Rekomendacija
-
-**Naudokite Vector su Strategija 3** - tai greičiausia ir atminties efektyvi pasirinkimo strategija.
+Optimizuotas skaidymas naudojant C++ STL algoritmus (greičiausia).
 
 ## Failų struktūra
 
 ```
 .
 ├── main.cpp           # Pagrindinė programa su tyrimais
-├── benchmark.h        # Benchmark struktūros ir deklaracijos
+├── main_struct.cpp    # Struct versijos spartos testai
+├── main_class.cpp     # Class versijos spartos testai
+├── benchmark.h        # Benchmark struktūros
 ├── benchmark.cpp      # Benchmark implementacija
-├── student.h          # Mokinys struktūra ir šabloninės funkcijos
+├── student.h          # Studentas klasė
+├── student_struct.h   # Mokinys struct (backup)
 ├── Makefile           # Kompiliavimo instrukcija
-├── README.md          # Šis dokumentas
-└── rezultatai.csv     # Tyrimų rezultatai (sugeneruojami)
+└── README.md          # Šis dokumentas
 ```
 
-## Rezultatų failo formatas
+## Versijų istorija
 
-Rezultatai išsaugomi CSV faile `rezultatai.csv`:
-
-```
-Konteineris,Strategija,Irasu_kiekis,Nuskaitymas_s,Rusiavimas_s,Dalijimas_s,Isvedimas_s,Bendra_s
-vector,1,1000,0.0005,0.0001,0.0000,0.0004,0.0010
-```
+| Versija | Aprašymas |
+|---------|-----------|
+| v1.0 | Pradinė versija su struct Mokinys, 3 konteineriais, 3 strategijomis |
+| v1.1 | Konversija į class Studentas su pilnais konstruktoriais/destruktoriumi |
