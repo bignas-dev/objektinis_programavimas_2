@@ -88,8 +88,8 @@ BenchmarkResult runBenchmark(const std::string& filename, int strategy, const st
         std::ofstream out(fname);
         out << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde" << "Galutinis\n";
         for (const auto& s : list) {
-            out << std::left << std::setw(20) << s.vardas << std::setw(20) << s.pavarde 
-                << std::fixed << std::setprecision(2) << s.galutinis << "\n";
+            out << std::left << std::setw(20) << s.getVardas() << std::setw(20) << s.getPavarde() 
+                << std::fixed << std::setprecision(2) << s.getGalutinis() << "\n";
         }
         out.close();
     };
@@ -110,15 +110,15 @@ BenchmarkResult runBenchmark(const std::string& filename, int strategy, const st
 }
 
 BenchmarkResult runBenchmarkVector(const std::string& filename, int strategy, const std::string& gradeType) {
-    return runBenchmark<std::vector<Mokinys>>(filename, strategy, gradeType, "vector");
+    return runBenchmark<std::vector<Studentas>>(filename, strategy, gradeType, "vector");
 }
 
 BenchmarkResult runBenchmarkList(const std::string& filename, int strategy, const std::string& gradeType) {
-    return runBenchmark<std::list<Mokinys>>(filename, strategy, gradeType, "list");
+    return runBenchmark<std::list<Studentas>>(filename, strategy, gradeType, "list");
 }
 
 BenchmarkResult runBenchmarkDeque(const std::string& filename, int strategy, const std::string& gradeType) {
-    return runBenchmark<std::deque<Mokinys>>(filename, strategy, gradeType, "deque");
+    return runBenchmark<std::deque<Studentas>>(filename, strategy, gradeType, "deque");
 }
 
 void writeResultsToCSV(const std::string& filename, const std::vector<BenchmarkResult>& results) {
