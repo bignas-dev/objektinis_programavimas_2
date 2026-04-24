@@ -37,7 +37,13 @@ test_v1.2: test_v1.2.cpp student.h
 run_test_v1.2: test_v1.2
 	./test_v1.2
 
-test_all: test test_v1.2
+test_v1.5: test_v1.5.cpp student.h zmogus.h
+	$(CXX) $(CXXFLAGS) -o test_v1.5 test_v1.5.cpp
+
+run_test_v1.5: test_v1.5
+	./test_v1.5
+
+test_all: test test_v1.2 test_v1.5
 
 O1: CXXFLAGS = -O1 -std=c++17 -Wall
 O1: clean $(TARGET_STRUCT) $(TARGET_CLASS)
