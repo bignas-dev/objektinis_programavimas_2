@@ -5,6 +5,10 @@ test_class
 test_v1.2
 test_v1.5
 tests/unit_tests
-*.txt
+tests/test_vector
+benchmark_vector
+main_vector
 *.csv
 docs/
+!benchmark_results.txt
+!rezultatai_vector.txt
