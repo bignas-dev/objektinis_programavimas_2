@@ -1,6 +1,18 @@
-# objektinis_programavimas (v1.2)
+# objektinis_programavimas (v1.5)
 
-Objektinio programavimo repozitorija. **V1.2** versija realizuoja pilną **"Rule of Five"** implementaciją ir **įvesties/išvesties operatorius** `Studentas` klasei.
+Objektinio programavimo repozitorija. **V1.5** versija įgyvendina **abstrakčią bazinę klasę Žmogus** ir išvestinę **Studentas** klasę su pilna "Rule of Five" implementacija.
+
+## 🎯 V1.5 Naujovės
+
+| Komponentas | Aprašymas | Statusas |
+|-------------|-----------|----------|
+| **Abstrakti klasė Žmogus** | Bazinė klasė su grynaisiais virtualiais metodais | ✅ Realizuota |
+| **Išvestinė klasė Studentas** | Paveldi iš Žmogus, realizuoja virtualius metodus | ✅ Realizuota |
+| **Rule of Five** | Visi 5 pagrindiniai metodai Studentas klasėje | ✅ Realizuota |
+| **I/O Operatoriai** | `operator<<` ir `operator>>` | ✅ Realizuota |
+| **Polimorfizmas** | Bazinės klasės rodyklės į išvestines klases | ✅ Realizuota |
+| **Testavimas** | Pilnas testų rinkinys (69 testai) | ✅ Realizuota |
+| **Dokumentacija** | Išsamus aprašymas su diagramomis | ✅ Realizuota |
 
 ## 🎯 V1.2 Naujovės
 
@@ -41,6 +53,96 @@ make O3
 
 # Valymas
 make clean
+```
+
+## Klasių Hierarchija (v1.5)
+
+### Abstrakti Bazinė Klasė: Žmogus
+
+V1.5 versijoje sukurta **abstrakti klasė `Žmogus`** kuri:
+- Turi grynuosius virtualius metodus (= 0)
+- **Negalima sukurti objekto** tipo `Žmogus`
+- Naudojama kaip bazė išvestinėms klasėms
+
+```cpp
+class Zmogus {
+protected:
+    std::string vardas_;
+    std::string pavarde_;
+
+public:
+    // Grynas virtualus destruktorius
+    virtual ~Zmogus() = 0;
+    
+    // Grynieji virtualūs metodai
+    virtual std::string getVardas() const = 0;
+    virtual std::string getPavarde() const = 0;
+    virtual std::ostream& print(std::ostream& os) const = 0;
+    virtual std::istream& read(std::istream& is) = 0;
+};
+```
+
+**Svarbu:** Šis kodas **NEKOMPILIUOSI**:
+```cpp
+Zmogus z("Vardas", "Pavarde");  // KLAIDA: abstrakti klasė!
+```
+
+### Išvestinė Klasė: Studentas
+
+```
+┌─────────────────────────────────────┐
+│         ABSTRAKTI KLASĖ             │
+│              Žmogus                 │
+├─────────────────────────────────────┤
+│ protected:                          │
+│   - vardas_: string                 │
+│   - pavarde_: string                │
+├─────────────────────────────────────┤
+│ public:                             │
+│   + virtual ~Zmogus() = 0           │
+│   + virtual getVardas() = 0         │
+│   + virtual getPavarde() = 0        │
+│   + virtual print() = 0             │
+│   + virtual read() = 0              │
+└─────────────────────────────────────┘
+                  ↑
+                  │ public paveldėjimas
+                  │
+┌─────────────────────────────────────┐
+│         IŠVESTINĖ KLASĖ             │
+│             Studentas               │
+├─────────────────────────────────────┤
+│ private:                            │
+│   - tarp_rez_: vector<int>          │
+│   - egz_rez_: int                   │
+│   - galutinis_: float               │
+├─────────────────────────────────────┤
+│ public:                             │
+│   + Rule of Five (7 metodai)        │
+│   + override getVardas()            │
+│   + override getPavarde()           │
+│   + override print()                │
+│   + override read()                 │
+└─────────────────────────────────────┘
+```
+
+### Polimorfizmo Pavyzdys
+
+```cpp
+// Galima naudoti bazinės klasės rodyklę
+Zmogus* z = new Studentas("Jonas", "Jonaitis");
+std::cout << z->getVardas();  // "Jonas"
+delete z;
+
+// Vector of base class pointers
+std::vector<Zmogus*> people;
+people.push_back(new Studentas("Studentas1", "Pavarde1"));
+people.push_back(new Studentas("Studentas2", "Pavarde2"));
+
+for (Zmogus* p : people) {
+    std::cout << p->getVardas() << "\n";
+    delete p;
+}
 ```
 
 ## Studentas klasė
@@ -193,7 +295,31 @@ file.close();
 
 ## Testų Rezultatai
 
+### V1.5 Testų Rinkinys
+
+Testų failas: `test_v1.5.cpp`
+
+| Testų Kategorija | Testų Skaičius | Tikrinami Metodai |
+|------------------|----------------|-------------------|
+| Abstrakti klasė Žmogus | 4 | Negalima sukurti objekto |
+| Numatytasis konstruktorius | 5 | `Studentas()` |
+| Parametrinis konstruktorius | 4 | `Studentas(v, p)` |
+| Kopijavimo konstruktorius | 9 | `Studentas(const Studentas&)` |
+| Move konstruktorius | 5 | `Studentas(Studentas&&)` |
+| Kopijavimo priskyrimas | 6 | `operator=(const Studentas&)` |
+| Move priskyrimas | 5 | `operator=(Studentas&&)` |
+| Išvesties operatorius | 4 | `operator<<` |
+| Įvesties operatorius | 6 | `operator>>` |
+| Failo I/O | 4 | `operator<<` + `operator>>` |
+| Destruktorius | 2 | `~Studentas()` |
+| Polimorfizmas | 7 | `Zmogus*` → `Studentas` |
+| Keliu studentų I/O | 4 | Vector<Studentas> |
+| Integracijos testas | 4 | Visi metodai kartu |
+| **IŠ VISO** | **69** | **100% sėkmė** |
+
 ### V1.2 Testų Rinkinys
+
+Testų failas: `test_v1.2.cpp`
 
 Testų failas: `test_v1.2.cpp`
 
@@ -326,7 +452,13 @@ make test_v1.2
 # V1.2 testų paleidimas
 make run_test_v1.2
 
-# Visi testai (struct + class + v1.2)
+# V1.5 testų kompiliavimas
+make test_v1.5
+
+# V1.5 testų paleidimas
+make run_test_v1.5
+
+# Visi testai (struct + class + v1.2 + v1.5)
 make test_all
 
 # Paleidimas
@@ -442,8 +574,11 @@ Optimizuotas skaidymas naudojant C++ STL algoritmus (greičiausia).
 ├── main_class.cpp     # Class versijos spartos testai
 ├── benchmark.h        # Benchmark struktūros
 ├── benchmark.cpp      # Benchmark implementacija
-├── student.h          # Studentas klasė
+├── zmogus.h           # Abstrakti bazinė klasė Žmogus (v1.5)
+├── student.h          # Studentas klasė (paveldi iš Zmogus)
 ├── student_struct.h   # Mokinys struct (backup)
+├── test_v1.2.cpp      # V1.2 testai (Rule of Five + I/O)
+├── test_v1.5.cpp      # V1.5 testai (Abstrakti klasė + polimorfizmas)
 ├── Makefile           # Kompiliavimo instrukcija
 └── README.md          # Šis dokumentas
 ```
@@ -455,6 +590,32 @@ Optimizuotas skaidymas naudojant C++ STL algoritmus (greičiausia).
 | v1.0 | 2026-04 | Pradinė versija su struct Mokinys, 3 konteineriais, 3 strategijomis |
 | v1.1 | 2026-04 | Konversija į class Studentas su pilnais konstruktoriais/destruktoriumi |
 | v1.2 | 2026-04-24 | **Rule of Five** + **I/O Operatoriai** + pilnas testavimas |
+| v1.5 | 2026-04-24 | **Abstrakti klasė Žmogus** + **Studentas išvestinė** + polimorfizmas |
+
+### V1.5 Detali Informacija
+
+**Šaka:** `v1.5`  
+**Release:** `v1.5 - Abstrakti klasė Žmogus ir Studentas išvestinė`
+
+**Realizuoti metodai:**
+- ✅ Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
+- ✅ Išvestinė klasė `Studentas : public Zmogus`
+- ✅ 7 Rule of Five metodai (išlaikyti iš v1.2)
+- ✅ Virtualių metodų override (`getVardas`, `getPavarde`, `print`, `read`)
+- ✅ 69 testai visiems metodams
+- ✅ Polimorfizmo demonstracija
+
+**Failai:**
+| Failas | Paskirtis |
+|--------|-----------|
+| `zmogus.h` | Abstrakti bazinė klasė Žmogus |
+| `student.h` | Studentas klasė paveldinti iš Zmogus |
+| `test_v1.5.cpp` | Pilnas testų rinkinys (69 testai) |
+| `Makefile` | Atnaujintas su test_v1.5 target'ais |
+| `README.md` | Išsami dokumentacija su diagramomis |
+
+### V1.2 Detali Informacija
+| v1.5 | 2026-04-24 | **Abstrakti klasė Žmogus** + **Studentas išvestinė** + polimorfizmas |
 
 ### V1.2 Detali Informacija
 
