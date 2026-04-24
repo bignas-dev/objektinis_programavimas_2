@@ -1,0 +1,191 @@
+\doxysection{benchmark.\+cpp}
+\hypertarget{benchmark_8cpp_source}{}\label{benchmark_8cpp_source}\doxymbox{\hyperlink{benchmark_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{benchmark_8h}{benchmark.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00013}\doxymbox{\hyperlink{benchmark_8cpp_aae53248cab876a8f964aa6586c10aaa9}{00013}}\ \doxymbox{\hyperlink{structGenerationResult}{GenerationResult}}\ \doxymbox{\hyperlink{benchmark_8cpp_aae53248cab876a8f964aa6586c10aaa9}{measureFileGeneration}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ recordCount)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00016}00016\ \ \ \ \ std::ofstream\ out(filename);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (!out.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Nepavyko\ atidaryti\ failo\ rašymui:\ "{}}\ +\ filename);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00021}00021\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00022}00022\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00023}00023\ \ \ \ \ std::uniform\_int\_distribution<>\ dist(0,\ 10);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00025}00025\ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Pavarde"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ 5;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}ND"{}}\ +\ std::to\_string(i);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00030}00030\ \ \ \ \ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Egz."{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ recordCount;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}VardasNR"{}}\ +\ std::to\_string(i))}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}PavardeNR"{}}\ +\ std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 5;\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ std::setw(10)\ <<\ dist(gen);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ out\ <<\ std::setw(10)\ <<\ dist(gen)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00042}00042\ \ \ \ \ out.close();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00046}00046\ \ \ \ \ \doxymbox{\hyperlink{structGenerationResult}{GenerationResult}}\ res;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00047}00047\ \ \ \ \ res.\doxymbox{\hyperlink{structGenerationResult_a587bc3837c2ee3969cb9b48d961998b5}{count}}\ =\ recordCount;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00048}00048\ \ \ \ \ res.\doxymbox{\hyperlink{structGenerationResult_aa6150f0d63ec8ef77748d83b4aa7ba05}{duration}}\ =\ std::chrono::duration<double>(end\ -\/\ start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00052}00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00053}\doxymbox{\hyperlink{benchmark_8cpp_a94fc5405fcdda62768353275cf23885c}{00053}}\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8cpp_a94fc5405fcdda62768353275cf23885c}{runBenchmark}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType,\ \textcolor{keyword}{const}\ std::string\&\ containerName)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00054}00054\ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ res;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00055}00055\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce}{containerType}}\ =\ containerName;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00056}00056\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{strategy}}\ =\ strategy;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keyword}{auto}\ total\_start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keyword}{auto}\ read\_start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00061}00061\ \ \ \ \ Container\ students\ =\ \doxymbox{\hyperlink{main__class_8cpp_aa7aa395b81e67e82edce3013ccf29e98}{readFromFile<Container>}}(filename);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{auto}\ read\_end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00063}00063\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{auto}\ sort\_start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ s\ :\ students)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0}{calculateFinalGrade}}(s,\ gradeType);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00068}00068\ \ \ \ \ \doxymbox{\hyperlink{student_8h_a7a94685af98f2d60667f261e6c636ac9}{sortStudents}}(students);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keyword}{auto}\ sort\_end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00070}00070\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{auto}\ split\_start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00072}00072\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{switch}\ (strategy)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai\ =\ \doxymbox{\hyperlink{student_8h_a1c4c2471a698f14193f89f59e90b1eb5}{strategy1Split}}(students);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai\ =\ \doxymbox{\hyperlink{student_8h_afe6295754406a2bd34b327a1a3cb8209}{strategy2Split}}(students);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai\ =\ \doxymbox{\hyperlink{student_8h_aaad777ee4e6675092b649e27dedbdf97}{strategy3Split}}(students);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keyword}{auto}\ split\_end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00085}00085\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{auto}\ write\_start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keyword}{auto}\ write\_to\_file\ =\ [\&](\textcolor{keyword}{const}\ std::string\&\ fname,\ \textcolor{keyword}{const}\ Container\&\ list)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ std::ofstream\ out(fname);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Pavarde"{}}\ <<\ \textcolor{stringliteral}{"{}Galutinis\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ s\ :\ list)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ s.getVardas()\ <<\ std::setw(20)\ <<\ s.getPavarde()\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ s.getGalutinis()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00095}00095\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00096}00096\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00097}00097\ \ \ \ \ write\_to\_file(\textcolor{stringliteral}{"{}vargsiukai.txt"{}},\ vargsiukai);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00098}00098\ \ \ \ \ write\_to\_file(\textcolor{stringliteral}{"{}kietiakiai.txt"{}},\ students);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keyword}{auto}\ write\_end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00100}00100\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{auto}\ total\_end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00102}00102\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00103}00103\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}}\ =\ std::chrono::duration<double>(read\_end\ -\/\ read\_start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00104}00104\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}}\ =\ std::chrono::duration<double>(sort\_end\ -\/\ sort\_start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00105}00105\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}}\ =\ std::chrono::duration<double>(split\_end\ -\/\ split\_start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00106}00106\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}}\ =\ std::chrono::duration<double>(write\_end\ -\/\ write\_start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00107}00107\ \ \ \ \ res.\doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}}\ =\ std::chrono::duration<double>(total\_end\ -\/\ total\_start).count();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00108}00108\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00110}00110\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00112}\doxymbox{\hyperlink{benchmark_8cpp_a30d9914b1b13489b7e4d854d5eedc9e3}{00112}}\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8cpp_a30d9914b1b13489b7e4d854d5eedc9e3}{runBenchmarkVector}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{benchmark_8cpp_a94fc5405fcdda62768353275cf23885c}{runBenchmark<std::vector<Studentas>}}>(filename,\ strategy,\ gradeType,\ \textcolor{stringliteral}{"{}vector"{}});}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00116}\doxymbox{\hyperlink{benchmark_8cpp_aa10516090e03a1f39bb42ee02144b3e8}{00116}}\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8cpp_aa10516090e03a1f39bb42ee02144b3e8}{runBenchmarkList}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{benchmark_8cpp_a94fc5405fcdda62768353275cf23885c}{runBenchmark<std::list<Studentas>}}>(filename,\ strategy,\ gradeType,\ \textcolor{stringliteral}{"{}list"{}});}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00118}00118\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00120}\doxymbox{\hyperlink{benchmark_8cpp_a9a78bc60f111e2b26269731cd9c85afd}{00120}}\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8cpp_a9a78bc60f111e2b26269731cd9c85afd}{runBenchmarkDeque}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{benchmark_8cpp_a94fc5405fcdda62768353275cf23885c}{runBenchmark<std::deque<Studentas>}}>(filename,\ strategy,\ gradeType,\ \textcolor{stringliteral}{"{}deque"{}});}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00122}00122\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00124}\doxymbox{\hyperlink{benchmark_8cpp_a06fe2b22eb0f7be013852035d0c77420}{00124}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8cpp_a06fe2b22eb0f7be013852035d0c77420}{writeResultsToCSV}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00125}00125\ \ \ \ \ std::ofstream\ out(filename);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!out.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Klaida:\ nepavyko\ atidaryti\ failo\ "{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}\ rašymui\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00130}00130\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}Konteineris,Strategija,Irasu\_kiekis,Nuskaitymas\_s,Rusiavimas\_s,Dalijimas\_s,Isvedimas\_s,Bendra\_s\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ out\ <<\ r.containerType\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.strategy\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.recordCount\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(6)\ <<\ r.readDuration\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.sortDuration\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.splitDuration\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.writeDuration\ <<\ \textcolor{stringliteral}{"{},"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ r.totalDuration\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00141}00141\ \ \ \ \ out.close();}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00142}00142\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00144}\doxymbox{\hyperlink{benchmark_8cpp_a517397a74b73c78aeeb1f342e36195d6}{00144}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8cpp_a517397a74b73c78aeeb1f342e36195d6}{printResultsTable}}(\textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00145}00145\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ std::string(100,\ \textcolor{charliteral}{'='})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00146}00146\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(15)\ <<\ \textcolor{stringliteral}{"{}Konteineris"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}Strategija"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Nuskaitymas"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Rūšiavimas"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Dalijimas"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Išvedimas"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Bendra"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00153}00153\ \ \ \ \ std::cout\ <<\ std::string(100,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00154}00154\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(15)\ <<\ r.containerType\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ r.strategy\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ r.readDuration\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ r.sortDuration\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ r.splitDuration\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ r.writeDuration\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ r.totalDuration\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00164}00164\ \ \ \ \ std::cout\ <<\ std::string(100,\ \textcolor{charliteral}{'='})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00165}00165\ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00167}\doxymbox{\hyperlink{benchmark_8cpp_a2bdbb76aeef7100a8336c1973ea55eea}{00167}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8cpp_a2bdbb76aeef7100a8336c1973ea55eea}{printContainerComparison}}(\textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00168}00168\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n===\ KONTEINERIŲ\ PALYGINIMAS\ (vidurkis)\ ===\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00169}00169\ \ \ \ \ std::map<std::string,\ double>\ containerTotals;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00170}00170\ \ \ \ \ std::map<std::string,\ int>\ containerCounts;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00171}00171\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ containerTotals[r.containerType]\ +=\ r.totalDuration;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ containerCounts[r.containerType]++;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00176}00176\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00177}00177\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(15)\ <<\ \textcolor{stringliteral}{"{}Konteineris"{}}\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(15)\ <<\ \textcolor{stringliteral}{"{}Vid.\ laikas\ (s)"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00179}00179\ \ \ \ \ std::cout\ <<\ std::string(30,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00180}00180\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ containerTotals)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ avg\ =\ p.second\ /\ containerCounts[p.first];}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(15)\ <<\ p.first\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(15)\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ avg\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00186}00186\ \}}
+
+\end{DoxyCode}

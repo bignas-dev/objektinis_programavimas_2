@@ -1,0 +1,420 @@
+\doxysection{student\+\_\+struct.\+h File Reference}
+\hypertarget{student__struct_8h}{}\label{student__struct_8h}\index{student\_struct.h@{student\_struct.h}}
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$list$>$}\newline
+{\ttfamily \+\#include $<$deque$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$sstream$>$}\newline
+{\ttfamily \+\#include $<$stdexcept$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structMokinys}{Mokinys}}
+\item 
+struct \doxymbox{\hyperlink{structProcessingResult}{Processing\+Result}}
+\begin{DoxyCompactList}\small\item\em Apdorojimo rezultatu struktura. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{student__struct_8h_a994578dc6ddde205dd2700127d015f6f}{calculate\+Average}} (const std::\+vector$<$ int $>$ \&arr)
+\item 
+float \doxymbox{\hyperlink{student__struct_8h_a3a3ef22ba2de557405b4432b13c2be20}{calculate\+Median}} (std::\+vector$<$ int $>$ arr)
+\item 
+void \doxymbox{\hyperlink{student__struct_8h_aa4417c64afadcc0a319bd8d69ad264b8}{generate\+Random\+Grades}} (\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&mokinys)
+\item 
+void \doxymbox{\hyperlink{student__struct_8h_a442d8462635feb2e216d688fa624fdaa}{read\+Student\+Data}} (\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&mokinys)
+\item 
+void \doxymbox{\hyperlink{student__struct_8h_aaff44891190a5b092139fd9bd7ac96cd}{calculate\+Final\+Grade}} (\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&mokinys, const std::\+string \&choice)
+\item 
+void \doxymbox{\hyperlink{student__struct_8h_aa1af0d6628f8b40d1c8146f1facc5be6}{display\+Results}} (const std::\+vector$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&students, const std::\+string \&choice)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\Container \doxymbox{\hyperlink{student__struct_8h_a81ab3812c01f458c50d7cf925b8a1d33}{read\+From\+File}} (const std::\+string \&filename)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\void \doxymbox{\hyperlink{student__struct_8h_a7a94685af98f2d60667f261e6c636ac9}{sort\+Students}} (Container \&students)
+\item 
+template$<$$>$ void \doxymbox{\hyperlink{student__struct_8h_a3eb7b9e87235b8e87432ed42964d43cc}{sort\+Students$<$ std::\+list$<$ Mokinys $>$ $>$}} (std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&students)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\Container \doxymbox{\hyperlink{student__struct_8h_a1c4c2471a698f14193f89f59e90b1eb5}{strategy1\+Split}} (Container \&students)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\Container \doxymbox{\hyperlink{student__struct_8h_afe6295754406a2bd34b327a1a3cb8209}{strategy2\+Split}} (Container \&students)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\Container \doxymbox{\hyperlink{student__struct_8h_aaad777ee4e6675092b649e27dedbdf97}{strategy3\+Split}} (Container \&students)
+\item 
+template$<$$>$ std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \doxymbox{\hyperlink{student__struct_8h_a2d347a3bd0d66113b1461dc06fb146be}{strategy3\+Split$<$ std::\+list$<$ Mokinys $>$ $>$}} (std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&students)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{student__struct_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{student__struct_8h_a994578dc6ddde205dd2700127d015f6f}\index{student\_struct.h@{student\_struct.h}!calculateAverage@{calculateAverage}}
+\index{calculateAverage@{calculateAverage}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{calculateAverage()}{calculateAverage()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a994578dc6ddde205dd2700127d015f6f} 
+float calculate\+Average (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{arr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00026}{26}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (arr.empty())\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ val\ :\ arr)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ sum\ +=\ val;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(sum)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(arr.size());}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_aaff44891190a5b092139fd9bd7ac96cd}\index{student\_struct.h@{student\_struct.h}!calculateFinalGrade@{calculateFinalGrade}}
+\index{calculateFinalGrade@{calculateFinalGrade}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{calculateFinalGrade()}{calculateFinalGrade()}}
+{\footnotesize\ttfamily \label{student__struct_8h_aaff44891190a5b092139fd9bd7ac96cd} 
+void calculate\+Final\+Grade (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&}]{mokinys}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00095}{95}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{float}\ tarp\_rez;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (choice\ ==\ \textcolor{stringliteral}{"{}1"{}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ tarp\_rez\ =\ \doxymbox{\hyperlink{student__struct_8h_a994578dc6ddde205dd2700127d015f6f}{calculateAverage}}(mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}});}
+\DoxyCodeLine{00099\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ tarp\_rez\ =\ \doxymbox{\hyperlink{student__struct_8h_a3a3ef22ba2de557405b4432b13c2be20}{calculateMedian}}(mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}});}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ mokinys.\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}}\ =\ 0.6f\ *\ mokinys.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ +\ 0.4f\ *\ tarp\_rez;}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a3a3ef22ba2de557405b4432b13c2be20}\index{student\_struct.h@{student\_struct.h}!calculateMedian@{calculateMedian}}
+\index{calculateMedian@{calculateMedian}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{calculateMedian()}{calculateMedian()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a3a3ef22ba2de557405b4432b13c2be20} 
+float calculate\+Median (\begin{DoxyParamCaption}\item[{std::\+vector$<$ int $>$}]{arr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (arr.empty())\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{00037\ \ \ \ \ std::sort(arr.begin(),\ arr.end());}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ arr.size();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ \%\ 2\ ==\ 0)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (arr[size/2\ -\/\ 1]\ +\ arr[size/2])\ /\ 2.0f;}
+\DoxyCodeLine{00041\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(arr[size/2]);}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_aa1af0d6628f8b40d1c8146f1facc5be6}\index{student\_struct.h@{student\_struct.h}!displayResults@{displayResults}}
+\index{displayResults@{displayResults}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{displayResults()}{displayResults()}}
+{\footnotesize\ttfamily \label{student__struct_8h_aa1af0d6628f8b40d1c8146f1facc5be6} 
+void display\+Results (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&}]{students}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00105}{105}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00106\ \ \ \ \ std::ostream\&\ out\ =\ std::cout;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ langelio\_ilgis\ =\ 20;}
+\DoxyCodeLine{00108\ \ \ \ \ std::string\ kategorija\ =\ (choice\ ==\ \textcolor{stringliteral}{"{}1"{}})\ ?\ \textcolor{stringliteral}{"{}Galutinis\ (Vid.)"{}}\ :\ \textcolor{stringliteral}{"{}Galutinis\ (Med.)"{}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ out\ <<\ std::left;\ \ }
+\DoxyCodeLine{00111\ \ \ \ \ out\ <<\ std::setw(langelio\_ilgis)\ <<\ \textcolor{stringliteral}{"{}Pavardė"{}}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ <<\ std::setw(langelio\_ilgis)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ <<\ std::setw(langelio\_ilgis)\ <<\ kategorija\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00114\ \ \ \ \ out\ <<\ std::string(3\ *\ langelio\_ilgis,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ students)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ out\ <<\ std::setw(langelio\_ilgis)\ <<\ m.pavarde}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(langelio\_ilgis)\ <<\ m.vardas}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(langelio\_ilgis)\ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ m.galutinis}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_aa4417c64afadcc0a319bd8d69ad264b8}\index{student\_struct.h@{student\_struct.h}!generateRandomGrades@{generateRandomGrades}}
+\index{generateRandomGrades@{generateRandomGrades}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{generateRandomGrades()}{generateRandomGrades()}}
+{\footnotesize\ttfamily \label{student__struct_8h_aa4417c64afadcc0a319bd8d69ad264b8} 
+void generate\+Random\+Grades (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&}]{mokinys}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ tarp\_count\ =\ rand()\ \%\ 10\ +\ 1;\ }
+\DoxyCodeLine{00048\ \ \ \ \ mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.reserve(tarp\_count);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ tarp\_count;\ ++i)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.push\_back(rand()\ \%\ 11);\ }
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ mokinys.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ =\ rand()\ \%\ 11;}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a81ab3812c01f458c50d7cf925b8a1d33}\index{student\_struct.h@{student\_struct.h}!readFromFile@{readFromFile}}
+\index{readFromFile@{readFromFile}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{readFromFile()}{readFromFile()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a81ab3812c01f458c50d7cf925b8a1d33} 
+template$<$typename Container$>$ \\
+Container read\+From\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00125}{125}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ Container\ students;}
+\DoxyCodeLine{00127\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Klaida:\ nepavyko\ atidaryti\ failo\ "{}}\ +\ filename);}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00133\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\ m;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{vardas}}\ >>\ m.\doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{pavarde}}))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.clear();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ grade;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iss\ >>\ grade)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.push\_back(grade);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ students.push\_back(m);}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ file.close();}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ students;}
+\DoxyCodeLine{00155\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a442d8462635feb2e216d688fa624fdaa}\index{student\_struct.h@{student\_struct.h}!readStudentData@{readStudentData}}
+\index{readStudentData@{readStudentData}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{readStudentData()}{readStudentData()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a442d8462635feb2e216d688fa624fdaa} 
+void read\+Student\+Data (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&}]{mokinys}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Įveskite\ vardą:\ "{}};}
+\DoxyCodeLine{00057\ \ \ \ \ std::cin\ >>\ mokinys.\doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{vardas}};}
+\DoxyCodeLine{00058\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Įveskite\ pavardę:\ "{}};}
+\DoxyCodeLine{00059\ \ \ \ \ std::cin\ >>\ mokinys.\doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{pavarde}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Įveskite\ "{}}\ <<\ mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.size()\ +\ 1}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ tarpinį\ rezultatą\ (arba\ -\/1,\ jei\ baigėte):\ "{}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ grade;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(std::cin\ >>\ grade))\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ std::cin.clear();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ std::cin.ignore(10000,\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Neteisinga\ įvestis.\ Bandykite\ dar\ kartą.\(\backslash\)n"{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (grade\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (grade\ <\ 0\ ||\ grade\ >\ 10)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Rezultatas\ turi\ būti\ nuo\ 0\ iki\ 10.\ Bandykite\ dar\ kartą.\(\backslash\)n"{}};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.push\_back(grade);}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (mokinys.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.empty())\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Turite\ įvesti\ bent\ vieną\ tarpinį\ rezultatą.\ Generuojami\ atsitiktiniai.\(\backslash\)n"{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{student__struct_8h_aa4417c64afadcc0a319bd8d69ad264b8}{generateRandomGrades}}(mokinys);}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Įveskite\ egzamino\ rezultatą:\ "{}};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{while}\ (!(std::cin\ >>\ mokinys.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}})\ ||\ mokinys.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ <\ 0\ ||\ mokinys.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ >\ 10)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ std::cin.clear();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ std::cin.ignore(10000,\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Neteisinga\ įvestis\ (0-\/10).\ Bandykite\ dar\ kartą:\ "{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a7a94685af98f2d60667f261e6c636ac9}\index{student\_struct.h@{student\_struct.h}!sortStudents@{sortStudents}}
+\index{sortStudents@{sortStudents}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{sortStudents()}{sortStudents()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a7a94685af98f2d60667f261e6c636ac9} 
+template$<$typename Container$>$ \\
+void sort\+Students (\begin{DoxyParamCaption}\item[{Container \&}]{students}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00158}{158}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ std::sort(students.begin(),\ students.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ b)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ return\ a.galutinis\ <\ b.galutinis;}
+\DoxyCodeLine{00161\ \ \ \ \ \});}
+\DoxyCodeLine{00162\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a3eb7b9e87235b8e87432ed42964d43cc}\index{student\_struct.h@{student\_struct.h}!sortStudents$<$ std::list$<$ Mokinys $>$ $>$@{sortStudents$<$ std::list$<$ Mokinys $>$ $>$}}
+\index{sortStudents$<$ std::list$<$ Mokinys $>$ $>$@{sortStudents$<$ std::list$<$ Mokinys $>$ $>$}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{sortStudents$<$ std::list$<$ Mokinys $>$ $>$()}{sortStudents< std::list< Mokinys > >()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a3eb7b9e87235b8e87432ed42964d43cc} 
+template$<$$>$ \\
+void \doxymbox{\hyperlink{student__struct_8h_a7a94685af98f2d60667f261e6c636ac9}{sort\+Students}}$<$ std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ $>$ (\begin{DoxyParamCaption}\item[{std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&}]{students}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00165}{165}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ students.sort([](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ b)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}}\ <\ b.\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}};}
+\DoxyCodeLine{00168\ \ \ \ \ \});}
+\DoxyCodeLine{00169\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a1c4c2471a698f14193f89f59e90b1eb5}\index{student\_struct.h@{student\_struct.h}!strategy1Split@{strategy1Split}}
+\index{strategy1Split@{strategy1Split}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{strategy1Split()}{strategy1Split()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a1c4c2471a698f14193f89f59e90b1eb5} 
+template$<$typename Container$>$ \\
+Container strategy1\+Split (\begin{DoxyParamCaption}\item[{Container \&}]{students}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00172}{172}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ s\ :\ students)\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.galutinis\ <\ 5.0f)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai.push\_back(s);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ vargsiukai;}
+\DoxyCodeLine{00180\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_afe6295754406a2bd34b327a1a3cb8209}\index{student\_struct.h@{student\_struct.h}!strategy2Split@{strategy2Split}}
+\index{strategy2Split@{strategy2Split}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{strategy2Split()}{strategy2Split()}}
+{\footnotesize\ttfamily \label{student__struct_8h_afe6295754406a2bd34b327a1a3cb8209} 
+template$<$typename Container$>$ \\
+Container strategy2\+Split (\begin{DoxyParamCaption}\item[{Container \&}]{students}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00183}{183}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ students.begin();}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ students.end())\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>galutinis\ <\ 5.0f)\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai.push\_back(*it);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ students.erase(it);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ vargsiukai;}
+\DoxyCodeLine{00195\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_aaad777ee4e6675092b649e27dedbdf97}\index{student\_struct.h@{student\_struct.h}!strategy3Split@{strategy3Split}}
+\index{strategy3Split@{strategy3Split}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{strategy3Split()}{strategy3Split()}}
+{\footnotesize\ttfamily \label{student__struct_8h_aaad777ee4e6675092b649e27dedbdf97} 
+template$<$typename Container$>$ \\
+Container strategy3\+Split (\begin{DoxyParamCaption}\item[{Container \&}]{students}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00198}{198}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{auto}\ partition\_point\ =\ std::stable\_partition(students.begin(),\ students.end(),\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ s)\ \{\ return\ s.galutinis\ >=\ 5.0f;\ \});}
+\DoxyCodeLine{00202\ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ vargsiukai.insert(vargsiukai.end(),\ partition\_point,\ students.end());}
+\DoxyCodeLine{00204\ \ \ \ \ students.erase(partition\_point,\ students.end());}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ vargsiukai;}
+\DoxyCodeLine{00207\ \}}
+
+\end{DoxyCode}
+\Hypertarget{student__struct_8h_a2d347a3bd0d66113b1461dc06fb146be}\index{student\_struct.h@{student\_struct.h}!strategy3Split$<$ std::list$<$ Mokinys $>$ $>$@{strategy3Split$<$ std::list$<$ Mokinys $>$ $>$}}
+\index{strategy3Split$<$ std::list$<$ Mokinys $>$ $>$@{strategy3Split$<$ std::list$<$ Mokinys $>$ $>$}!student\_struct.h@{student\_struct.h}}
+\doxysubsubsection{\texorpdfstring{strategy3Split$<$ std::list$<$ Mokinys $>$ $>$()}{strategy3Split< std::list< Mokinys > >()}}
+{\footnotesize\ttfamily \label{student__struct_8h_a2d347a3bd0d66113b1461dc06fb146be} 
+template$<$$>$ \\
+std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \doxymbox{\hyperlink{student__struct_8h_aaad777ee4e6675092b649e27dedbdf97}{strategy3\+Split}}$<$ std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ $>$ (\begin{DoxyParamCaption}\item[{std::\+list$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \&}]{students}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student__struct_8h_source_l00198}{198}} of file \doxymbox{\hyperlink{student__struct_8h_source}{student\+\_\+struct.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ std::list<Mokinys>\ vargsiukai;}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ students.begin();}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ students.end())\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>galutinis\ <\ 5.0f)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ vargsiukai.splice(vargsiukai.end(),\ students,\ it++);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ vargsiukai;}
+\DoxyCodeLine{00221\ \}}
+
+\end{DoxyCode}

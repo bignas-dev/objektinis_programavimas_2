@@ -1,0 +1,52 @@
+\doxysection{benchmark.\+h}
+\hypertarget{benchmark_8h_source}{}\label{benchmark_8h_source}\doxymbox{\hyperlink{benchmark_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ BENCHMARK\_H}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ BENCHMARK\_H}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{student_8h}{student.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00008}\doxymbox{\hyperlink{structGenerationResult}{00008}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structGenerationResult_a91dc3d192074ed8b943bcae2c265b4fb}{GenerationResult}}\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00009}\doxymbox{\hyperlink{structGenerationResult_a587bc3837c2ee3969cb9b48d961998b5}{00009}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structGenerationResult_a587bc3837c2ee3969cb9b48d961998b5}{count}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00010}\doxymbox{\hyperlink{structGenerationResult_aa6150f0d63ec8ef77748d83b4aa7ba05}{00010}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structGenerationResult_aa6150f0d63ec8ef77748d83b4aa7ba05}{duration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00011}00011\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00012}\doxymbox{\hyperlink{structGenerationResult_a91dc3d192074ed8b943bcae2c265b4fb}{00012}}\ \ \ \ \ \doxymbox{\hyperlink{structGenerationResult_a91dc3d192074ed8b943bcae2c265b4fb}{GenerationResult}}()\ :\ \doxymbox{\hyperlink{structGenerationResult_a587bc3837c2ee3969cb9b48d961998b5}{count}}(0),\ \doxymbox{\hyperlink{structGenerationResult_aa6150f0d63ec8ef77748d83b4aa7ba05}{duration}}(0.0)\ \{\}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00013}00013\ \};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00015}\doxymbox{\hyperlink{structBenchmarkResult}{00015}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6}{BenchmarkResult}}\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00016}\doxymbox{\hyperlink{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce}{00016}}\ \ \ \ \ std::string\ \doxymbox{\hyperlink{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce}{containerType}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00017}\doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{00017}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{strategy}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00018}\doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{00018}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00019}\doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{00019}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00020}\doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{00020}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00021}\doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{00021}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00022}\doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{00022}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00023}\doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{00023}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00024}00024\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00025}\doxymbox{\hyperlink{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6}{00025}}\ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6}{BenchmarkResult}}()\ :\ \doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{strategy}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}}(0),\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}}(0)\ \{\}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00028}\doxymbox{\hyperlink{structBenchmarkResult_a82fd9965016f46921d1208fde6430a11}{00028}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{structBenchmarkResult_a82fd9965016f46921d1208fde6430a11}{reset}}()\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00035}00035\ \};}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00037}00037\ \doxymbox{\hyperlink{structGenerationResult}{GenerationResult}}\ \doxymbox{\hyperlink{benchmark_8h_aae53248cab876a8f964aa6586c10aaa9}{measureFileGeneration}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ recordCount);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00039}00039\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8h_a30d9914b1b13489b7e4d854d5eedc9e3}{runBenchmarkVector}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00040}00040\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8h_aa10516090e03a1f39bb42ee02144b3e8}{runBenchmarkList}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00041}00041\ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ \doxymbox{\hyperlink{benchmark_8h_a9a78bc60f111e2b26269731cd9c85afd}{runBenchmarkDeque}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ strategy,\ \textcolor{keyword}{const}\ std::string\&\ gradeType);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00043}00043\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8h_a06fe2b22eb0f7be013852035d0c77420}{writeResultsToCSV}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00044}00044\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8h_a517397a74b73c78aeeb1f342e36195d6}{printResultsTable}}(\textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00045}00045\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{benchmark_8h_a2bdbb76aeef7100a8336c1973ea55eea}{printContainerComparison}}(\textcolor{keyword}{const}\ std::vector<BenchmarkResult>\&\ results);}
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8h_source_l00047}00047\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,679 @@
+\doxysection{V15\+Test Class Reference}
+\hypertarget{classV15Test}{}\label{classV15Test}\index{V15Test@{V15Test}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classV15Test_a08a6fd34b182ec3e063e4db502b32e3d}{test\+Abstract\+Class}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a3239770b2fc4eed4f2287a80067aa56f}{test\+Default\+Constructor}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_aecad854970b0526da61c30fc80fb22b9}{test\+Parameterized\+Constructor}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_aae663ab2cf70c205c32e79e080768de2}{test\+Copy\+Constructor}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_ac12d41fcd5369a4d7efed8310dd46078}{test\+Move\+Constructor}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_aaaea5a7147037c4d875cab1983e816ab}{test\+Copy\+Assignment}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_adc180378cc918c92cb0695e98c752a4a}{test\+Move\+Assignment}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a0487af25c5a6d1e544358770732a730d}{test\+Output\+Stream\+Operator}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a18d94d37a51a7f226d57fbe89111881e}{test\+Input\+Stream\+Operator}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_aef2aa0b900cf9e4295de414d340ee1d6}{test\+File\+IO}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a1bac2141f805d39c0ab215a58a3c9228}{test\+Destructor}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_aa1f49fe13869ad744bc446f953ccbf70}{test\+Polymorphism}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a73addacb843d290032681cda483b3eec}{test\+Full\+Integration}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_ad3d7a3d2a19dff75d62f48ccd2e7fc0e}{test\+Multiple\+Students\+IO}} ()
+\item 
+void \doxymbox{\hyperlink{classV15Test_a8d68888eb68f72248f91d0a2d401b0c2}{run\+All\+Tests}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{test\+Result}} (bool condition, const std::\+string \&test\+Name)
+\item 
+bool \doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{float\+Equals}} (float a, float b, float epsilon=0.\+01f)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passed\+Tests}} = 0
+\item 
+int \doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{total\+Tests}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00008}{8}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classV15Test_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classV15Test_a2ddb328243522c3549467a34b09d4fa0}\index{V15Test@{V15Test}!floatEquals@{floatEquals}}
+\index{floatEquals@{floatEquals}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{floatEquals()}{floatEquals()}}
+{\footnotesize\ttfamily \label{classV15Test_a2ddb328243522c3549467a34b09d4fa0} 
+bool V15\+Test::\+float\+Equals (\begin{DoxyParamCaption}\item[{float}]{a}{, }\item[{float}]{b}{, }\item[{float}]{epsilon}{ = {\ttfamily 0.01f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00023}{23}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::abs(a\ -\/\ b)\ <\ epsilon;}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a8d68888eb68f72248f91d0a2d401b0c2}\index{V15Test@{V15Test}!runAllTests@{runAllTests}}
+\index{runAllTests@{runAllTests}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{runAllTests()}{runAllTests()}}
+{\footnotesize\ttfamily \label{classV15Test_a8d68888eb68f72248f91d0a2d401b0c2} 
+void V15\+Test::\+run\+All\+Tests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00340}{340}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╔══════════════════════════════════════════════════════════╗\(\backslash\)n"{}};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ \ \ V1.5\ TESTAI\ (Abstrakti\ klasė\ +\ Rule\ of\ Five\ +\ I/O)\ \ \ \ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╚══════════════════════════════════════════════════════════╝\(\backslash\)n"{}};}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a08a6fd34b182ec3e063e4db502b32e3d}{testAbstractClass}}();}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a3239770b2fc4eed4f2287a80067aa56f}{testDefaultConstructor}}();}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aecad854970b0526da61c30fc80fb22b9}{testParameterizedConstructor}}();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aae663ab2cf70c205c32e79e080768de2}{testCopyConstructor}}();}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_ac12d41fcd5369a4d7efed8310dd46078}{testMoveConstructor}}();}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aaaea5a7147037c4d875cab1983e816ab}{testCopyAssignment}}();}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_adc180378cc918c92cb0695e98c752a4a}{testMoveAssignment}}();}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a0487af25c5a6d1e544358770732a730d}{testOutputStreamOperator}}();}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a18d94d37a51a7f226d57fbe89111881e}{testInputStreamOperator}}();}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aef2aa0b900cf9e4295de414d340ee1d6}{testFileIO}}();}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a1bac2141f805d39c0ab215a58a3c9228}{testDestructor}}();}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aa1f49fe13869ad744bc446f953ccbf70}{testPolymorphism}}();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_ad3d7a3d2a19dff75d62f48ccd2e7fc0e}{testMultipleStudentsIO}}();}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a73addacb843d290032681cda483b3eec}{testFullIntegration}}();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╔══════════════════════════════════════════════════════════╗\(\backslash\)n"{}};}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REZULTATAI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╠══════════════════════════════════════════════════════════╣\(\backslash\)n"{}};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ Iš\ viso\ testų:\ \ \ \ "{}}\ <<\ std::setw(34)\ <<\ \doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}}\ <<\ \textcolor{stringliteral}{"{}\ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ Sėkmingai:\ \ \ \ \ \ \ \ "{}}\ <<\ std::setw(34)\ <<\ \doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passedTests}}\ <<\ \textcolor{stringliteral}{"{}\ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ Nesėkmingai:\ \ \ \ \ \ "{}}\ <<\ std::setw(34)\ <<\ (\doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}}\ -\/\ \doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passedTests}})\ <<\ \textcolor{stringliteral}{"{}\ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ percentage\ =\ (\doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}}\ >\ 0)\ ?\ (100.0f\ *\ \doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passedTests}}\ /\ \doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}})\ :\ 0.0f;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ Sėkmės\ rodiklis:\ \ "{}}\ <<\ std::fixed\ <<\ std::setprecision(1)\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(30)\ <<\ percentage\ <<\ \textcolor{stringliteral}{"{}\%\ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╚══════════════════════════════════════════════════════════╝\(\backslash\)n"{}};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passedTests}}\ ==\ \doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}})\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n🎉\ VISI\ TESTAI\ SĖKMINGI!\ V1.5\ paruošta\ release'ui.\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n⚠️\ \ KAI\ KURIE\ TESTAI\ NEPRAEJO.\ Reikia\ patikrinti\ klaidas.\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a08a6fd34b182ec3e063e4db502b32e3d}\index{V15Test@{V15Test}!testAbstractClass@{testAbstractClass}}
+\index{testAbstractClass@{testAbstractClass}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testAbstractClass()}{testAbstractClass()}}
+{\footnotesize\ttfamily \label{classV15Test_a08a6fd34b182ec3e063e4db502b32e3d} 
+void V15\+Test::\+test\+Abstract\+Class (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00028}{28}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n===\ Abstrakčios\ klasės\ Žmogus\ testas\ ===\(\backslash\)n"{}};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Šis\ kodas\ NETURI\ kompiliuotis\ (komentuotas):}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zmogus\ z;\ \ //\ KLAIDA:\ negalima\ sukurti\ abstrakčios\ klasės\ objekto}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zmogus\ z("{}Vardas"{},\ "{}Pavarde"{});\ \ //\ KLAIDA}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Galima\ sukurti\ rodyklę\ į\ bazinę\ klasę}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Zmogus*\ z\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(z\ ==\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Galima\ sukurti\ nullptr\ rodyklę\ į\ Zmogus"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Galima\ sukurti\ Studentas\ objektą\ per\ bazinės\ klasės\ rodyklę}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ z\ =\ \textcolor{keyword}{new}\ Studentas(\textcolor{stringliteral}{"{}Testas"{}},\ \textcolor{stringliteral}{"{}Testauskas"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(z\ !=\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Galima\ nukreipti\ rodyklę\ į\ Studentas\ objektą"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(z-\/>\doxymbox{\hyperlink{classZmogus_a34858b36a8082c3ce73c3230b3f3530d}{getVardas}}()\ ==\ \textcolor{stringliteral}{"{}Testas"{}},\ \textcolor{stringliteral}{"{}Bazinė\ rodyklė\ pasiekia\ getVardas()"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ z;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Zmogus\ yra\ abstrakti\ klasė\ -\/\ negalima\ sukurti\ objekto"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aaaea5a7147037c4d875cab1983e816ab}\index{V15Test@{V15Test}!testCopyAssignment@{testCopyAssignment}}
+\index{testCopyAssignment@{testCopyAssignment}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testCopyAssignment()}{testCopyAssignment()}}
+{\footnotesize\ttfamily \label{classV15Test_aaaea5a7147037c4d875cab1983e816ab} 
+void V15\+Test::\+test\+Copy\+Assignment (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00107}{107}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Kopijavimo\ priskyrimo\ operatorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Studentas\ s1(\textcolor{stringliteral}{"{}Vardas1"{}},\ \textcolor{stringliteral}{"{}Pavarde1"{}});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ s1.addTarpRez(6);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ s1.addTarpRez(7);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ s1.setEgzRez(8);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ s1.setGalutinis(7.2f);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ Studentas\ s2(\textcolor{stringliteral}{"{}Vardas2"{}},\ \textcolor{stringliteral}{"{}Pavarde2"{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ s2\ =\ s1;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getVardas()\ ==\ \textcolor{stringliteral}{"{}Vardas1"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ =:\ vardas"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getPavarde()\ ==\ \textcolor{stringliteral}{"{}Pavarde1"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ =:\ pavarde"{}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getTarpRez().size()\ ==\ 2,\ \textcolor{stringliteral}{"{}Kopijavimo\ =:\ tarp\_rez\ dydis"{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getTarpRez()[0]\ ==\ 6,\ \textcolor{stringliteral}{"{}Kopijavimo\ =:\ pirmas\ rez"{}});}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(s2.getGalutinis(),\ 7.2f),\ \textcolor{stringliteral}{"{}Kopijavimo\ =:\ galutinis"{}});}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ s1\ =\ s1;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s1.getVardas()\ ==\ \textcolor{stringliteral}{"{}Vardas1"{}},\ \textcolor{stringliteral}{"{}Self-\/assignment:\ apsauga"{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aae663ab2cf70c205c32e79e080768de2}\index{V15Test@{V15Test}!testCopyConstructor@{testCopyConstructor}}
+\index{testCopyConstructor@{testCopyConstructor}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testCopyConstructor()}{testCopyConstructor()}}
+{\footnotesize\ttfamily \label{classV15Test_aae663ab2cf70c205c32e79e080768de2} 
+void V15\+Test::\+test\+Copy\+Constructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00067}{67}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Kopijavimo\ konstruktorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ Studentas\ original(\textcolor{stringliteral}{"{}Petras"{}},\ \textcolor{stringliteral}{"{}Petraitis"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ original.addTarpRez(8);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ original.addTarpRez(9);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ original.setEgzRez(10);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ original.setGalutinis(9.5f);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ Studentas\ kopija(original);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getVardas()\ ==\ \textcolor{stringliteral}{"{}Petras"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ vardas"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getPavarde()\ ==\ \textcolor{stringliteral}{"{}Petraitis"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ pavarde"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getTarpRez().size()\ ==\ 2,\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ tarp\_rez\ dydis"{}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getTarpRez()[0]\ ==\ 8,\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ pirmas\ rez"{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getTarpRez()[1]\ ==\ 9,\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ antras\ rez"{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getEgzRez()\ ==\ 10,\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ egz\_rez"{}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(kopija.getGalutinis(),\ 9.5f),\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ galutinis"{}});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(kopija.getVardas()\ ==\ \textcolor{stringliteral}{"{}Petras"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ kopijos\ vardas"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ kopija.setVardas(\textcolor{stringliteral}{"{}Antanas"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(original.getVardas()\ ==\ \textcolor{stringliteral}{"{}Petras"{}},\ \textcolor{stringliteral}{"{}Kopijavimo\ konstr.:\ nepriklausomumas"{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a3239770b2fc4eed4f2287a80067aa56f}\index{V15Test@{V15Test}!testDefaultConstructor@{testDefaultConstructor}}
+\index{testDefaultConstructor@{testDefaultConstructor}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testDefaultConstructor()}{testDefaultConstructor()}}
+{\footnotesize\ttfamily \label{classV15Test_a3239770b2fc4eed4f2287a80067aa56f} 
+void V15\+Test::\+test\+Default\+Constructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00048}{48}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Numatytasis\ konstruktorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Studentas\ s;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a4471c08cbf44faf5fe5f4c192922bf1b}{getVardas}}()\ ==\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}Numatytasis\ konstruktorius:\ vardas"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_afc1c025f58544eed43273afa98445853}{getPavarde}}()\ ==\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}Numatytasis\ konstruktorius:\ pavarde"{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}().empty(),\ \textcolor{stringliteral}{"{}Numatytasis\ konstruktorius:\ tarp\_rez"{}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_aaa44216cca350e56fd222fe81dd8d659}{getEgzRez}}()\ ==\ 0,\ \textcolor{stringliteral}{"{}Numatytasis\ konstruktorius:\ egz\_rez"{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(s.\doxymbox{\hyperlink{classStudentas_a434c720883bfcc4c6e4608ddf0e2c1a3}{getGalutinis}}(),\ 0.0f),\ \textcolor{stringliteral}{"{}Numatytasis\ konstruktorius:\ galutinis"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a1bac2141f805d39c0ab215a58a3c9228}\index{V15Test@{V15Test}!testDestructor@{testDestructor}}
+\index{testDestructor@{testDestructor}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testDestructor()}{testDestructor()}}
+{\footnotesize\ttfamily \label{classV15Test_a1bac2141f805d39c0ab215a58a3c9228} 
+void V15\+Test::\+test\+Destructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00213}{213}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Destruktorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ Studentas\ s(\textcolor{stringliteral}{"{}Temp"{}},\ \textcolor{stringliteral}{"{}Tempauskas"{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ s.addTarpRez(1);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ s.addTarpRez(2);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ s.addTarpRez(3);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ s.addTarpRez(4);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ s.addTarpRez(5);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Destructorius:\ nekrenta\ sunaikinant\ objektą"{}});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ Studentas*\ dynamicStudent\ =\ \textcolor{keyword}{new}\ Studentas(\textcolor{stringliteral}{"{}Dynamic"{}},\ \textcolor{stringliteral}{"{}Dynamicauskas"{}});}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ dynamicStudent-\/>\doxymbox{\hyperlink{classStudentas_a6b7e5147ea1bfa26c933797f0058b506}{addTarpRez}}(10);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ dynamicStudent;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Destructorius:\ nekrenta\ sunaikinant\ dinamini\ objektą"{}});}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aef2aa0b900cf9e4295de414d340ee1d6}\index{V15Test@{V15Test}!testFileIO@{testFileIO}}
+\index{testFileIO@{testFileIO}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testFileIO()}{testFileIO()}}
+{\footnotesize\ttfamily \label{classV15Test_aef2aa0b900cf9e4295de414d340ee1d6} 
+void V15\+Test::\+test\+File\+IO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00181}{181}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Failo\ įvestis/išvestis\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ Studentas\ s(\textcolor{stringliteral}{"{}Failas"{}},\ \textcolor{stringliteral}{"{}Failauskas"{}});}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ s.addTarpRez(5);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ s.addTarpRez(6);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ s.addTarpRez(7);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ s.addTarpRez(8);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ s.addTarpRez(9);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ s.setEgzRez(10);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ s.setGalutinis(8.8f);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ std::ofstream\ out(\textcolor{stringliteral}{"{}test\_io\_temp.txt"{}});}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (out.is\_open())\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ s\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ in(\textcolor{stringliteral}{"{}test\_io\_temp.txt"{}});}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ Studentas\ s2;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ in\ >>\ s2;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ in.close();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.\doxymbox{\hyperlink{classStudentas_a4471c08cbf44faf5fe5f4c192922bf1b}{getVardas}}()\ ==\ \textcolor{stringliteral}{"{}Failas"{}},\ \textcolor{stringliteral}{"{}Failo\ IO:\ vardas"{}});}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.\doxymbox{\hyperlink{classStudentas_afc1c025f58544eed43273afa98445853}{getPavarde}}()\ ==\ \textcolor{stringliteral}{"{}Failauskas"{}},\ \textcolor{stringliteral}{"{}Failo\ IO:\ pavarde"{}});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}().size()\ ==\ 5,\ \textcolor{stringliteral}{"{}Failo\ IO:\ tarp\_rez\ dydis"{}});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.\doxymbox{\hyperlink{classStudentas_aaa44216cca350e56fd222fe81dd8d659}{getEgzRez}}()\ ==\ 10,\ \textcolor{stringliteral}{"{}Failo\ IO:\ egz\_rez"{}});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ std::remove(\textcolor{stringliteral}{"{}test\_io\_temp.txt"{}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Failo\ IO:\ nepavyko\ atidaryti\ failo"{}});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a73addacb843d290032681cda483b3eec}\index{V15Test@{V15Test}!testFullIntegration@{testFullIntegration}}
+\index{testFullIntegration@{testFullIntegration}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testFullIntegration()}{testFullIntegration()}}
+{\footnotesize\ttfamily \label{classV15Test_a73addacb843d290032681cda483b3eec} 
+void V15\+Test::\+test\+Full\+Integration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00262}{262}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Pilnas\ integracijos\ testas\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ Studentas\ s1(\textcolor{stringliteral}{"{}Integracija"{}},\ \textcolor{stringliteral}{"{}Testas"{}});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ s1.addTarpRez(7);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ s1.addTarpRez(8);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ s1.addTarpRez(9);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ s1.setEgzRez(10);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0}{calculateFinalGrade}}(s1,\ \textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ Studentas\ s2(s1);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ Studentas\ s3(std::move(s2));}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ Studentas\ s4;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ s4\ =\ s3;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ oss\ <<\ s4;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ std::string\ output\ =\ oss.str();}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}Integracija"{}})\ !=\ std::string::npos,\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Integracijos\ testas:\ vardas\ išvestas"{}});}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}Testas"{}})\ !=\ std::string::npos,\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Integracijos\ testas:\ pavarde\ išvesta"{}});}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(!output.empty(),\ \textcolor{stringliteral}{"{}Integracijos\ testas:\ pilnas\ ciklas"{}});}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(s4.\doxymbox{\hyperlink{classStudentas_a434c720883bfcc4c6e4608ddf0e2c1a3}{getGalutinis}}(),\ 9.2f),\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Integracijos\ testas:\ galutinis\ apskaiciuotas"{}});}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ Galutinė\ išvestis:\ "{}}\ <<\ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a18d94d37a51a7f226d57fbe89111881e}\index{V15Test@{V15Test}!testInputStreamOperator@{testInputStreamOperator}}
+\index{testInputStreamOperator@{testInputStreamOperator}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testInputStreamOperator()}{testInputStreamOperator()}}
+{\footnotesize\ttfamily \label{classV15Test_a18d94d37a51a7f226d57fbe89111881e} 
+void V15\+Test::\+test\+Input\+Stream\+Operator (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00167}{167}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Įvesties\ operatorius\ (operator>>)\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ std::istringstream\ iss(\textcolor{stringliteral}{"{}Jonas\ Jonaitis\ 7\ 8\ 9\ 6\ 5\ 10"{}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ Studentas\ s;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ iss\ >>\ s;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a4471c08cbf44faf5fe5f4c192922bf1b}{getVardas}}()\ ==\ \textcolor{stringliteral}{"{}Jonas"{}},\ \textcolor{stringliteral}{"{}operator>>:\ vardas\ nuskaitytas"{}});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_afc1c025f58544eed43273afa98445853}{getPavarde}}()\ ==\ \textcolor{stringliteral}{"{}Jonaitis"{}},\ \textcolor{stringliteral}{"{}operator>>:\ pavarde\ nuskaityta"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}().size()\ ==\ 5,\ \textcolor{stringliteral}{"{}operator>>:\ tarp\_rez\ dydis\ (5)"{}});}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}()[0]\ ==\ 7,\ \textcolor{stringliteral}{"{}operator>>:\ pirmas\ rez"{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}()[4]\ ==\ 5,\ \textcolor{stringliteral}{"{}operator>>:\ penktas\ tarp\_rez"{}});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.\doxymbox{\hyperlink{classStudentas_aaa44216cca350e56fd222fe81dd8d659}{getEgzRez}}()\ ==\ 10,\ \textcolor{stringliteral}{"{}operator>>:\ egz\_rez\ nuskaitytas"{}});}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_adc180378cc918c92cb0695e98c752a4a}\index{V15Test@{V15Test}!testMoveAssignment@{testMoveAssignment}}
+\index{testMoveAssignment@{testMoveAssignment}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testMoveAssignment()}{testMoveAssignment()}}
+{\footnotesize\ttfamily \label{classV15Test_adc180378cc918c92cb0695e98c752a4a} 
+void V15\+Test::\+test\+Move\+Assignment (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00128}{128}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Move\ priskyrimo\ operatorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ Studentas\ s1(\textcolor{stringliteral}{"{}MoveVardas"{}},\ \textcolor{stringliteral}{"{}MovePavarde"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ s1.addTarpRez(9);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ s1.addTarpRez(10);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ s1.setEgzRez(10);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ s1.setGalutinis(9.8f);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ Studentas\ s2(\textcolor{stringliteral}{"{}Target"{}},\ \textcolor{stringliteral}{"{}Target"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ s2\ =\ std::move(s1);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getVardas()\ ==\ \textcolor{stringliteral}{"{}MoveVardas"{}},\ \textcolor{stringliteral}{"{}Move\ =:\ vardas\ perkeltas"{}});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getPavarde()\ ==\ \textcolor{stringliteral}{"{}MovePavarde"{}},\ \textcolor{stringliteral}{"{}Move\ =:\ pavarde\ perkelta"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getTarpRez().size()\ ==\ 2,\ \textcolor{stringliteral}{"{}Move\ =:\ tarp\_rez\ perkeltas"{}});}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s2.getEgzRez()\ ==\ 10,\ \textcolor{stringliteral}{"{}Move\ =:\ egz\_rez\ perkeltas"{}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(s2.getGalutinis(),\ 9.8f),\ \textcolor{stringliteral}{"{}Move\ =:\ galutinis\ perkeltas"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_ac12d41fcd5369a4d7efed8310dd46078}\index{V15Test@{V15Test}!testMoveConstructor@{testMoveConstructor}}
+\index{testMoveConstructor@{testMoveConstructor}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testMoveConstructor()}{testMoveConstructor()}}
+{\footnotesize\ttfamily \label{classV15Test_ac12d41fcd5369a4d7efed8310dd46078} 
+void V15\+Test::\+test\+Move\+Constructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00089}{89}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Move\ (perkėlimo)\ konstruktorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Studentas\ original(\textcolor{stringliteral}{"{}Ona"{}},\ \textcolor{stringliteral}{"{}Onutė"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ original.addTarpRez(7);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ original.addTarpRez(8);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ original.setEgzRez(9);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ original.setGalutinis(8.2f);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std::string\ originalVardas\ =\ original.getVardas();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ Studentas\ perkeltas(std::move(original));}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(perkeltas.getVardas()\ ==\ originalVardas,\ \textcolor{stringliteral}{"{}Move\ konstr.:\ vardas\ perkeltas"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(perkeltas.getPavarde()\ ==\ \textcolor{stringliteral}{"{}Onutė"{}},\ \textcolor{stringliteral}{"{}Move\ konstr.:\ pavarde\ perkelta"{}});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(perkeltas.getTarpRez().size()\ ==\ 2,\ \textcolor{stringliteral}{"{}Move\ konstr.:\ tarp\_rez\ perkeltas"{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(perkeltas.getEgzRez()\ ==\ 9,\ \textcolor{stringliteral}{"{}Move\ konstr.:\ egz\_rez\ perkeltas"{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(\doxymbox{\hyperlink{classV15Test_a2ddb328243522c3549467a34b09d4fa0}{floatEquals}}(perkeltas.getGalutinis(),\ 8.2f),\ \textcolor{stringliteral}{"{}Move\ konstr.:\ galutinis\ perkeltas"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_ad3d7a3d2a19dff75d62f48ccd2e7fc0e}\index{V15Test@{V15Test}!testMultipleStudentsIO@{testMultipleStudentsIO}}
+\index{testMultipleStudentsIO@{testMultipleStudentsIO}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testMultipleStudentsIO()}{testMultipleStudentsIO()}}
+{\footnotesize\ttfamily \label{classV15Test_ad3d7a3d2a19dff75d62f48ccd2e7fc0e} 
+void V15\+Test::\+test\+Multiple\+Students\+IO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00292}{292}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Keliu\ studentu\ įvestis/išvestis\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ std::vector<Studentas>\ students;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ students.emplace\_back(\textcolor{stringliteral}{"{}Studentas1"{}},\ \textcolor{stringliteral}{"{}Pavarde1"{}});}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ students.emplace\_back(\textcolor{stringliteral}{"{}Studentas2"{}},\ \textcolor{stringliteral}{"{}Pavarde2"{}});}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ students.emplace\_back(\textcolor{stringliteral}{"{}Studentas3"{}},\ \textcolor{stringliteral}{"{}Pavarde3"{}});}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ students[0].addTarpRez(5);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ students[0].setEgzRez(6);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ students[0].setGalutinis(5.5f);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ students[1].addTarpRez(7);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ students[1].addTarpRez(8);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ students[1].setEgzRez(9);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ students[1].setGalutinis(8.2f);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ students[2].addTarpRez(10);}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ students[2].setEgzRez(10);}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ students[2].setGalutinis(10.0f);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ std::ofstream\ out(\textcolor{stringliteral}{"{}test\_multiple.txt"{}});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ s\ :\ students)\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ s\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ std::ifstream\ in(\textcolor{stringliteral}{"{}test\_multiple.txt"{}});}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ std::vector<Studentas>\ loadedStudents;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(in,\ line))\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line.empty())\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Studentas\ s;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iss\ >>\ s;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadedStudents.push\_back(s);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ in.close();}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(loadedStudents.size()\ ==\ 3,\ \textcolor{stringliteral}{"{}Keliu\ studentu\ IO:\ kiekis"{}});}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(loadedStudents[0].getVardas()\ ==\ \textcolor{stringliteral}{"{}Studentas1"{}},\ \textcolor{stringliteral}{"{}Keliu\ studentu\ IO:\ pirmas\ vardas"{}});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(loadedStudents[1].getVardas()\ ==\ \textcolor{stringliteral}{"{}Studentas2"{}},\ \textcolor{stringliteral}{"{}Keliu\ studentu\ IO:\ antras\ vardas"{}});}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(loadedStudents[2].getVardas()\ ==\ \textcolor{stringliteral}{"{}Studentas3"{}},\ \textcolor{stringliteral}{"{}Keliu\ studentu\ IO:\ trecias\ vardas"{}});}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ std::remove(\textcolor{stringliteral}{"{}test\_multiple.txt"{}});}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_a0487af25c5a6d1e544358770732a730d}\index{V15Test@{V15Test}!testOutputStreamOperator@{testOutputStreamOperator}}
+\index{testOutputStreamOperator@{testOutputStreamOperator}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testOutputStreamOperator()}{testOutputStreamOperator()}}
+{\footnotesize\ttfamily \label{classV15Test_a0487af25c5a6d1e544358770732a730d} 
+void V15\+Test::\+test\+Output\+Stream\+Operator (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00146}{146}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Išvesties\ operatorius\ (operator<<)\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ Studentas\ s(\textcolor{stringliteral}{"{}Testas"{}},\ \textcolor{stringliteral}{"{}Testauskas"{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ s.addTarpRez(8);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ s.addTarpRez(9);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ s.addTarpRez(7);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ s.setEgzRez(10);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ s.setGalutinis(9.2f);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ oss\ <<\ s;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ std::string\ output\ =\ oss.str();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}Testas"{}})\ !=\ std::string::npos,\ \textcolor{stringliteral}{"{}operator<<:\ vardas\ išvestas"{}});}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}Testauskas"{}})\ !=\ std::string::npos,\ \textcolor{stringliteral}{"{}operator<<:\ pavarde\ išvesta"{}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}10"{}})\ !=\ std::string::npos,\ \textcolor{stringliteral}{"{}operator<<:\ egz\_rez\ išvestas"{}});}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(output.find(\textcolor{stringliteral}{"{}8"{}})\ !=\ std::string::npos,\ \textcolor{stringliteral}{"{}operator<<:\ tarp\_rez\ išvesti"{}});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ Išvestis:\ "{}}\ <<\ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aecad854970b0526da61c30fc80fb22b9}\index{V15Test@{V15Test}!testParameterizedConstructor@{testParameterizedConstructor}}
+\index{testParameterizedConstructor@{testParameterizedConstructor}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testParameterizedConstructor()}{testParameterizedConstructor()}}
+{\footnotesize\ttfamily \label{classV15Test_aecad854970b0526da61c30fc80fb22b9} 
+void V15\+Test::\+test\+Parameterized\+Constructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00058}{58}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Parametrinis\ konstruktorius\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ Studentas\ s(\textcolor{stringliteral}{"{}Jonas"{}},\ \textcolor{stringliteral}{"{}Jonaitis"{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.getVardas()\ ==\ \textcolor{stringliteral}{"{}Jonas"{}},\ \textcolor{stringliteral}{"{}Parametrinis\ konstruktorius:\ vardas"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.getPavarde()\ ==\ \textcolor{stringliteral}{"{}Jonaitis"{}},\ \textcolor{stringliteral}{"{}Parametrinis\ konstruktorius:\ pavarde"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.getTarpRez().empty(),\ \textcolor{stringliteral}{"{}Parametrinis\ konstruktorius:\ tarp\_rez"{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s.getEgzRez()\ ==\ 0,\ \textcolor{stringliteral}{"{}Parametrinis\ konstruktorius:\ egz\_rez"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aa1f49fe13869ad744bc446f953ccbf70}\index{V15Test@{V15Test}!testPolymorphism@{testPolymorphism}}
+\index{testPolymorphism@{testPolymorphism}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testPolymorphism()}{testPolymorphism()}}
+{\footnotesize\ttfamily \label{classV15Test_aa1f49fe13869ad744bc446f953ccbf70} 
+void V15\+Test::\+test\+Polymorphism (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00231}{231}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Polimorfizmo\ testas\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ Zmogus*\ z\ =\ \textcolor{keyword}{new}\ Studentas(\textcolor{stringliteral}{"{}Polis"{}},\ \textcolor{stringliteral}{"{}Poliauskas"{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(z-\/>\doxymbox{\hyperlink{classZmogus_a34858b36a8082c3ce73c3230b3f3530d}{getVardas}}()\ ==\ \textcolor{stringliteral}{"{}Polis"{}},\ \textcolor{stringliteral}{"{}Polimorfizmas:\ getVardas\ per\ bazinę"{}});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(z-\/>\doxymbox{\hyperlink{classZmogus_ab7a875d196b6224edf8280829193e410}{getPavarde}}()\ ==\ \textcolor{stringliteral}{"{}Poliauskas"{}},\ \textcolor{stringliteral}{"{}Polimorfizmas:\ getPavarde\ per\ bazinę"{}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cast'iname\ atgal\ į\ Studentas*\ kad\ naudoti\ operator<<}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ Studentas*\ s\_ptr\ =\ \textcolor{keyword}{dynamic\_cast<}Studentas*\textcolor{keyword}{>}(z);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(s\_ptr\ !=\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}Polimorfizmas:\ dynamic\_cast\ veikia"{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ oss\ <<\ *s\_ptr;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(oss.str().find(\textcolor{stringliteral}{"{}Polis"{}})\ !=\ std::string::npos,\ \textcolor{stringliteral}{"{}Polimorfizmas:\ operator<<\ per\ cast"{}});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ z;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vector\ of\ base\ class\ pointers}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ std::vector<Zmogus*>\ people;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ people.push\_back(\textcolor{keyword}{new}\ Studentas(\textcolor{stringliteral}{"{}Studentas1"{}},\ \textcolor{stringliteral}{"{}Pavarde1"{}}));}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ people.push\_back(\textcolor{keyword}{new}\ Studentas(\textcolor{stringliteral}{"{}Studentas2"{}},\ \textcolor{stringliteral}{"{}Pavarde2"{}}));}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(people.size()\ ==\ 2,\ \textcolor{stringliteral}{"{}Polimorfizmas:\ vector<Zmogus*>\ dydis"{}});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(people[0]-\/>getVardas()\ ==\ \textcolor{stringliteral}{"{}Studentas1"{}},\ \textcolor{stringliteral}{"{}Polimorfizmas:\ pirmas\ vardas"{}});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}{testResult}}(people[1]-\/>getVardas()\ ==\ \textcolor{stringliteral}{"{}Studentas2"{}},\ \textcolor{stringliteral}{"{}Polimorfizmas:\ antras\ vardas"{}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ p\ :\ people)\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ p;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18}\index{V15Test@{V15Test}!testResult@{testResult}}
+\index{testResult@{testResult}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{testResult()}{testResult()}}
+{\footnotesize\ttfamily \label{classV15Test_aff4dd4a01d4dee1f70f0c78ed31d1c18} 
+void V15\+Test::\+test\+Result (\begin{DoxyParamCaption}\item[{bool}]{condition}{, }\item[{const std::\+string \&}]{test\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00013}{13}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}{totalTests}}++;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (condition)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classV15Test_a189575505ca212538b13802a6fa6be7f}{passedTests}}++;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}✅\ [PASS]\ "{}}\ <<\ testName\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}❌\ [FAIL]\ "{}}\ <<\ testName\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{classV15Test_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classV15Test_a189575505ca212538b13802a6fa6be7f}\index{V15Test@{V15Test}!passedTests@{passedTests}}
+\index{passedTests@{passedTests}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{passedTests}{passedTests}}
+{\footnotesize\ttfamily \label{classV15Test_a189575505ca212538b13802a6fa6be7f} 
+int V15\+Test::\+passed\+Tests = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00010}{10}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+\Hypertarget{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb}\index{V15Test@{V15Test}!totalTests@{totalTests}}
+\index{totalTests@{totalTests}!V15Test@{V15Test}}
+\doxysubsubsection{\texorpdfstring{totalTests}{totalTests}}
+{\footnotesize\ttfamily \label{classV15Test_ad6c9aff880b395a0ec25121b74ddbdfb} 
+int V15\+Test::\+total\+Tests = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{test__v1_85_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{test__v1_85_8cpp_source}{test\+\_\+v1.\+5.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{test__v1_85_8cpp}{test\+\_\+v1.\+5.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,124 @@
+\doxysection{main\+\_\+struct.\+cpp}
+\hypertarget{main__struct_8cpp_source}{}\label{main__struct_8cpp_source}\doxymbox{\hyperlink{main__struct_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00010}\doxymbox{\hyperlink{structMokinys}{00010}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structMokinys_a998a54872d79b4a0733b9668130e56ea}{Mokinys}}\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00011}\doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{00011}}\ \ \ \ \ std::string\ \doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{vardas}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00012}\doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{00012}}\ \ \ \ \ std::string\ \doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{pavarde}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00013}\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{00013}}\ \ \ \ \ std::vector<int>\ \doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00014}\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{00014}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00015}\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{00015}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00016}00016\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00017}\doxymbox{\hyperlink{structMokinys_a998a54872d79b4a0733b9668130e56ea}{00017}}\ \ \ \ \ \doxymbox{\hyperlink{structMokinys_a998a54872d79b4a0733b9668130e56ea}{Mokinys}}()\ :\ \doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}(0),\ \doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}}(0.0f)\ \{\}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00018}00018\ \};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00020}\doxymbox{\hyperlink{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}{00020}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculateAverage}}(\textcolor{keyword}{const}\ std::vector<int>\&\ arr)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (arr.empty())\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ val\ :\ arr)\ sum\ +=\ val;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(sum)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(arr.size());}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00027}\doxymbox{\hyperlink{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}{00027}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}{calculateFinalGrade}}(\doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ m,\ \textcolor{keyword}{const}\ std::string\&\ choice)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{float}\ tarp\ =\ \doxymbox{\hyperlink{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculateAverage}}(m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}});}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00029}00029\ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}}\ =\ 0.6f\ *\ m.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ +\ 0.4f\ *\ tarp;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00032}\doxymbox{\hyperlink{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}{00032}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generateFile}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{int}\ count)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00033}00033\ \ \ \ \ std::ofstream\ out(filename);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00034}00034\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00035}00035\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00036}00036\ \ \ \ \ std::uniform\_int\_distribution<>\ dist(0,\ 10);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00038}00038\ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Pavarde"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ 5;\ ++i)\ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}ND"{}}\ +\ std::to\_string(i);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00040}00040\ \ \ \ \ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Egz.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ count;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}VardasNR"{}}\ +\ std::to\_string(i))}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}PavardeNR"{}}\ +\ std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 6;\ ++j)\ out\ <<\ std::setw(10)\ <<\ dist(gen);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00048}00048\ \ \ \ \ out.close();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00051}\doxymbox{\hyperlink{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}{00051}}\ std::vector<Mokinys>\ \doxymbox{\hyperlink{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}{readFromFile}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00052}00052\ \ \ \ \ std::vector<Mokinys>\ students;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00053}00053\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00054}00054\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00055}00055\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00057}00057\ \ \ \ \ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\ m;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{vardas}}\ >>\ m.\doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{pavarde}}))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.clear();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ grade;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iss\ >>\ grade)\ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.push\_back(grade);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ students.push\_back(m);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00070}00070\ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{return}\ students;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00072}00072\ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00074}\doxymbox{\hyperlink{main__struct_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00074}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00075}00075\ \ \ \ \ std::vector<int>\ sizes\ =\ \{100000,\ 1000000\};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00076}00076\ \ \ \ \ std::vector<std::string>\ names\ =\ \{\textcolor{stringliteral}{"{}100k"{}},\ \textcolor{stringliteral}{"{}1M"{}}\};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00077}00077\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00078}00078\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===\ STRUCT\ VERSIJOS\ SPARTOS\ TESTAI\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00079}00079\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ std::string\ filename\ =\ \textcolor{stringliteral}{"{}test\_"{}}\ +\ names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Generuojamas\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}\ failas...\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generateFile}}(filename,\ sizes[i]);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t1\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ std::vector<Mokinys>\ students\ =\ \doxymbox{\hyperlink{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}{readFromFile}}(filename);}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t2\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ s\ :\ students)\ \doxymbox{\hyperlink{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}{calculateFinalGrade}}(s,\ \textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t3\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ std::sort(students.begin(),\ students.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.galutinis\ <\ b.galutinis;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t4\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ std::vector<Mokinys>\ vargsiukai;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ partition\_point\ =\ std::stable\_partition(students.begin(),\ students.end(),\ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ s)\ \{\ return\ s.galutinis\ >=\ 5.0f;\ \});}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ vargsiukai.insert(vargsiukai.end(),\ partition\_point,\ students.end());}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ students.erase(partition\_point,\ students.end());}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t5\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ read\_t\ =\ std::chrono::duration<double>(t2\ -\/\ t1).count();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ calc\_t\ =\ std::chrono::duration<double>(t3\ -\/\ t2).count();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sort\_t\ =\ std::chrono::duration<double>(t4\ -\/\ t3).count();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ split\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t4).count();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t1).count();}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}STRUCT\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}:\ "{}}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}read="{}}\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ read\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}calc="{}}\ <<\ calc\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}sort="{}}\ <<\ sort\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}split="{}}\ <<\ split\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}TOTAL="{}}\ <<\ total\_t\ <<\ \textcolor{stringliteral}{"{}s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00117}00117\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main__struct_8cpp_source_l00119}00119\ \}}
+
+\end{DoxyCode}

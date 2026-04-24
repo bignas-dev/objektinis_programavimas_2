@@ -1,0 +1,367 @@
+\doxysection{Zmogus Class Reference}
+\hypertarget{classZmogus}{}\label{classZmogus}\index{Zmogus@{Zmogus}}
+
+
+Abstrakti klase, reprezentuojanti zmogu.  
+
+
+
+
+{\ttfamily \+\#include $<$zmogus.\+h$>$}
+
+Inheritance diagram for Zmogus:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classZmogus}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classZmogus_aa7a8ba4d3c4778f9b35d59eef3e72574}{Zmogus}} ()
+\begin{DoxyCompactList}\small\item\em Numatytasis konstruktorius. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classZmogus_adadfe5845f62fbce03263b7787610d69}{Zmogus}} (std::\+string vardas, std::\+string pavarde)
+\begin{DoxyCompactList}\small\item\em Parametrinis konstruktorius. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classZmogus_a9d2bbeaf83ead87dbb686ee04999885f}{Zmogus}} (const \doxymbox{\hyperlink{classZmogus}{Zmogus}} \&other)
+\begin{DoxyCompactList}\small\item\em Kopijavimo konstruktorius. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classZmogus_a97c679fdf47100b8d6a9a7e17d4953c2}{Zmogus}} (\doxymbox{\hyperlink{classZmogus}{Zmogus}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move konstruktorius. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{classZmogus_a64c712eed93f3dc770bb00df890292d7}{\texorpdfstring{$\sim$}{\string~}\+Zmogus}} ()=0
+\begin{DoxyCompactList}\small\item\em Grynas virtualus destruktorius. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classZmogus}{Zmogus}} \& \doxymbox{\hyperlink{classZmogus_a8bc6d11547d75c71a38567f750f02612}{operator=}} (const \doxymbox{\hyperlink{classZmogus}{Zmogus}} \&other)
+\begin{DoxyCompactList}\small\item\em Kopijavimo priskyrimo operatorius. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classZmogus}{Zmogus}} \& \doxymbox{\hyperlink{classZmogus_af6745536a52d1e85a49c2680199f9a80}{operator=}} (\doxymbox{\hyperlink{classZmogus}{Zmogus}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move priskyrimo operatorius. \end{DoxyCompactList}\item 
+virtual std::\+string \doxymbox{\hyperlink{classZmogus_a34858b36a8082c3ce73c3230b3f3530d}{get\+Vardas}} () const =0
+\begin{DoxyCompactList}\small\item\em Grynas virtualus metodas vardui gauti. \end{DoxyCompactList}\item 
+virtual std::\+string \doxymbox{\hyperlink{classZmogus_ab7a875d196b6224edf8280829193e410}{get\+Pavarde}} () const =0
+\begin{DoxyCompactList}\small\item\em Grynas virtualus metodas pavardei gauti. \end{DoxyCompactList}\item 
+virtual std::\+ostream \& \doxymbox{\hyperlink{classZmogus_a8106c0728ee1e7177b97bc117fdc5119}{print}} (std::\+ostream \&os) const =0
+\begin{DoxyCompactList}\small\item\em Grynas virtualus metodas išvesciai i srauta. \end{DoxyCompactList}\item 
+virtual std::\+istream \& \doxymbox{\hyperlink{classZmogus_a3558f9cf4ac2e4a725a3aefbf45d4323}{read}} (std::\+istream \&is)=0
+\begin{DoxyCompactList}\small\item\em Grynas virtualus metodas įvesciai is srauto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Zmogaus vardas. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Zmogaus pavarde. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstrakti klase, reprezentuojanti zmogu. 
+
+Klase turi grynuosius virtualius metodus, todėl negalima sukurti \doxylink{classZmogus}{Zmogus} tipo objekto. Tik išvestines klases gali buti instancijuojamos.
+
+\begin{DoxyNote}{Note}
+Šis kodas NEKOMPILIUOSI:\+ \doxylink{classZmogus}{Zmogus} z("{}\+Vardas"{}, "{}\+Pavarde"{}); 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00025}{25}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZmogus_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZmogus_aa7a8ba4d3c4778f9b35d59eef3e72574}\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{Zmogus()}{Zmogus()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classZmogus_aa7a8ba4d3c4778f9b35d59eef3e72574} 
+Zmogus::\+\+Zmogus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Numatytasis konstruktorius. 
+
+Sukuria zmogu su tusciais vardu ir pavarde. 
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00036}{36}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ :\ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}(\textcolor{stringliteral}{"{}"{}}),\ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}(\textcolor{stringliteral}{"{}"{}})\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_adadfe5845f62fbce03263b7787610d69}\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{Zmogus()}{Zmogus()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classZmogus_adadfe5845f62fbce03263b7787610d69} 
+Zmogus::\+\+Zmogus (\begin{DoxyParamCaption}\item[{std::\+string}]{vardas}{, }\item[{std::\+string}]{pavarde}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parametrinis konstruktorius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vardas} & Zmogaus vardas \\
+\hline
+{\em pavarde} & Zmogaus pavarde \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}(std::move(vardas)),\ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}(std::move(pavarde))\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_a9d2bbeaf83ead87dbb686ee04999885f}\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{Zmogus()}{Zmogus()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classZmogus_a9d2bbeaf83ead87dbb686ee04999885f} 
+Zmogus::\+\+Zmogus (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{classZmogus}{Zmogus}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Kopijavimo konstruktorius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Kopijuojamas \doxylink{classZmogus}{Zmogus} objektas \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00050}{50}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}(other.\doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}),\ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}(other.\doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}})\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_a97c679fdf47100b8d6a9a7e17d4953c2}\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\index{Zmogus@{Zmogus}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{Zmogus()}{Zmogus()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classZmogus_a97c679fdf47100b8d6a9a7e17d4953c2} 
+Zmogus::\+\+Zmogus (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classZmogus}{Zmogus}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move konstruktorius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Perkeliamas \doxylink{classZmogus}{Zmogus} objektas \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00057}{57}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}(std::move(other.\doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}})),\ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}(std::move(other.\doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}))\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_a64c712eed93f3dc770bb00df890292d7}\index{Zmogus@{Zmogus}!````~Zmogus@{\texorpdfstring{$\sim$}{\string~}Zmogus}}
+\index{````~Zmogus@{\texorpdfstring{$\sim$}{\string~}Zmogus}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Zmogus()}{\string~Zmogus()}}
+{\footnotesize\ttfamily \label{classZmogus_a64c712eed93f3dc770bb00df890292d7} 
+Zmogus::\+\texorpdfstring{$\sim$}{\string~}\+Zmogus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [pure virtual]}}
+
+
+
+Grynas virtualus destruktorius. 
+
+Dar klase abstrakcia. Privalo buti implementuotas išvestinese klasese. 
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00121}{121}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121\ \{\}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{classZmogus_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZmogus_ab7a875d196b6224edf8280829193e410}\index{Zmogus@{Zmogus}!getPavarde@{getPavarde}}
+\index{getPavarde@{getPavarde}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{getPavarde()}{getPavarde()}}
+{\footnotesize\ttfamily \label{classZmogus_ab7a875d196b6224edf8280829193e410} 
+virtual std::\+string Zmogus::\+get\+Pavarde (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Grynas virtualus metodas pavardei gauti. 
+
+\begin{DoxyReturn}{Returns}
+Zmogaus pavarde 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{classStudentas_afc1c025f58544eed43273afa98445853}{Studentas}}, and \doxymbox{\hyperlink{classStudentas_ac525bcbd0e6ed2cd346e4152b7e1ba3e}{Studentas}}.
+
+\Hypertarget{classZmogus_a34858b36a8082c3ce73c3230b3f3530d}\index{Zmogus@{Zmogus}!getVardas@{getVardas}}
+\index{getVardas@{getVardas}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{getVardas()}{getVardas()}}
+{\footnotesize\ttfamily \label{classZmogus_a34858b36a8082c3ce73c3230b3f3530d} 
+virtual std::\+string Zmogus::\+get\+Vardas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Grynas virtualus metodas vardui gauti. 
+
+\begin{DoxyReturn}{Returns}
+Zmogaus vardas 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{classStudentas_a4471c08cbf44faf5fe5f4c192922bf1b}{Studentas}}, and \doxymbox{\hyperlink{classStudentas_afe3b201c91fadef0e6a57876da303f38}{Studentas}}.
+
+\Hypertarget{classZmogus_a8bc6d11547d75c71a38567f750f02612}\index{Zmogus@{Zmogus}!operator=@{operator=}}
+\index{operator=@{operator=}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classZmogus_a8bc6d11547d75c71a38567f750f02612} 
+\doxymbox{\hyperlink{classZmogus}{Zmogus}} \& Zmogus::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{classZmogus}{Zmogus}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Kopijavimo priskyrimo operatorius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Kopijuojamas \doxylink{classZmogus}{Zmogus} objektas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nuoroda i save 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00072}{72}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}\ =\ other.\doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}\ =\ other.\doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_af6745536a52d1e85a49c2680199f9a80}\index{Zmogus@{Zmogus}!operator=@{operator=}}
+\index{operator=@{operator=}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classZmogus_af6745536a52d1e85a49c2680199f9a80} 
+\doxymbox{\hyperlink{classZmogus}{Zmogus}} \& Zmogus::\+operator= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classZmogus}{Zmogus}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move priskyrimo operatorius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Perkeliamas \doxylink{classZmogus}{Zmogus} objektas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nuoroda i save 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}\ =\ std::move(other.\doxymbox{\hyperlink{classZmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}\ =\ std::move(other.\doxymbox{\hyperlink{classZmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classZmogus_a8106c0728ee1e7177b97bc117fdc5119}\index{Zmogus@{Zmogus}!print@{print}}
+\index{print@{print}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{classZmogus_a8106c0728ee1e7177b97bc117fdc5119} 
+virtual std::\+ostream \& Zmogus::\+print (\begin{DoxyParamCaption}\item[{std::\+ostream \&}]{os}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Grynas virtualus metodas išvesciai i srauta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Išvesties srautas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nuoroda i išvesties srauta 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{classStudentas_ac0333c0510b93f8a69862ad159042307}{Studentas}}.
+
+\Hypertarget{classZmogus_a3558f9cf4ac2e4a725a3aefbf45d4323}\index{Zmogus@{Zmogus}!read@{read}}
+\index{read@{read}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classZmogus_a3558f9cf4ac2e4a725a3aefbf45d4323} 
+virtual std::\+istream \& Zmogus::\+read (\begin{DoxyParamCaption}\item[{std::\+istream \&}]{is}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Grynas virtualus metodas įvesciai is srauto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & Įvesties srautas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nuoroda i įvesties srauta 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{classStudentas_afaba597be7a5ea586d675e9ae54638dd}{Studentas}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classZmogus_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classZmogus_a85cd6103a5f887059263d15413a3f081}\index{Zmogus@{Zmogus}!pavarde\_@{pavarde\_}}
+\index{pavarde\_@{pavarde\_}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{pavarde\_}{pavarde\_}}
+{\footnotesize\ttfamily \label{classZmogus_a85cd6103a5f887059263d15413a3f081} 
+std::\+string Zmogus::\+pavarde\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Zmogaus pavarde. 
+
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+\Hypertarget{classZmogus_a80e72cd553492344884a264a72ce33d2}\index{Zmogus@{Zmogus}!vardas\_@{vardas\_}}
+\index{vardas\_@{vardas\_}!Zmogus@{Zmogus}}
+\doxysubsubsection{\texorpdfstring{vardas\_}{vardas\_}}
+{\footnotesize\ttfamily \label{classZmogus_a80e72cd553492344884a264a72ce33d2} 
+std::\+string Zmogus::\+vardas\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Zmogaus vardas. 
+
+
+
+Definition at line \doxymbox{\hyperlink{zmogus_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{zmogus_8h_source}{zmogus.\+h}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{zmogus_8h}{zmogus.\+h}}\end{DoxyCompactItemize}

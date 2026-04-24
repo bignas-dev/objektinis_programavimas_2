@@ -1,0 +1,201 @@
+\doxysection{main\+\_\+class.\+cpp File Reference}
+\hypertarget{main__class_8cpp}{}\label{main__class_8cpp}\index{main\_class.cpp@{main\_class.cpp}}
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$random$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classStudentas}{Studentas}}
+\begin{DoxyCompactList}\small\item\em Išvestine klase is \doxylink{classZmogus}{Zmogus}, reprezentuojanti studenta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{main__class_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculate\+Average}} (const std::\+vector$<$ int $>$ \&arr)
+\item 
+void \doxymbox{\hyperlink{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0}{calculate\+Final\+Grade}} (\doxymbox{\hyperlink{classStudentas}{Studentas}} \&s, const std::\+string \&choice)
+\item 
+void \doxymbox{\hyperlink{main__class_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generate\+File}} (const std::\+string \&filename, int count)
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \doxymbox{\hyperlink{main__class_8cpp_aa7aa395b81e67e82edce3013ccf29e98}{read\+From\+File}} (const std::\+string \&filename)
+\item 
+int \doxymbox{\hyperlink{main__class_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main__class_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main__class_8cpp_a994578dc6ddde205dd2700127d015f6f}\index{main\_class.cpp@{main\_class.cpp}!calculateAverage@{calculateAverage}}
+\index{calculateAverage@{calculateAverage}!main\_class.cpp@{main\_class.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateAverage()}{calculateAverage()}}
+{\footnotesize\ttfamily \label{main__class_8cpp_a994578dc6ddde205dd2700127d015f6f} 
+float calculate\+Average (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{arr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__class_8cpp_source_l00070}{70}} of file \doxymbox{\hyperlink{main__class_8cpp_source}{main\+\_\+class.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (arr.empty())\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ val\ :\ arr)\ sum\ +=\ val;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(sum)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(arr.size());}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0}\index{main\_class.cpp@{main\_class.cpp}!calculateFinalGrade@{calculateFinalGrade}}
+\index{calculateFinalGrade@{calculateFinalGrade}!main\_class.cpp@{main\_class.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateFinalGrade()}{calculateFinalGrade()}}
+{\footnotesize\ttfamily \label{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0} 
+void calculate\+Final\+Grade (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{s}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__class_8cpp_source_l00077}{77}} of file \doxymbox{\hyperlink{main__class_8cpp_source}{main\+\_\+class.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ tarp\ =\ \doxymbox{\hyperlink{main__class_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculateAverage}}(s.\doxymbox{\hyperlink{classStudentas_a78579bc279bbb1ea503a3d56b85bb3c3}{getTarpRez}}());}
+\DoxyCodeLine{00079\ \ \ \ \ s.\doxymbox{\hyperlink{classStudentas_ab01d5e57e1ebce1cc372a341f745931e}{setGalutinis}}(0.6f\ *\ s.\doxymbox{\hyperlink{classStudentas_aaa44216cca350e56fd222fe81dd8d659}{getEgzRez}}()\ +\ 0.4f\ *\ tarp);}
+\DoxyCodeLine{00080\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__class_8cpp_aeec828ef1798824e2fb5e95b1360534f}\index{main\_class.cpp@{main\_class.cpp}!generateFile@{generateFile}}
+\index{generateFile@{generateFile}!main\_class.cpp@{main\_class.cpp}}
+\doxysubsubsection{\texorpdfstring{generateFile()}{generateFile()}}
+{\footnotesize\ttfamily \label{main__class_8cpp_aeec828ef1798824e2fb5e95b1360534f} 
+void generate\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__class_8cpp_source_l00082}{82}} of file \doxymbox{\hyperlink{main__class_8cpp_source}{main\+\_\+class.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ std::ofstream\ out(filename);}
+\DoxyCodeLine{00084\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{00085\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{00086\ \ \ \ \ std::uniform\_int\_distribution<>\ dist(0,\ 10);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Pavarde"{}};}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ 5;\ ++i)\ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}ND"{}}\ +\ std::to\_string(i);}
+\DoxyCodeLine{00090\ \ \ \ \ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Egz.\(\backslash\)n"{}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ count;\ ++i)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}VardasNR"{}}\ +\ std::to\_string(i))}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}PavardeNR"{}}\ +\ std::to\_string(i));}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 6;\ ++j)\ out\ <<\ std::setw(10)\ <<\ dist(gen);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ out.close();}
+\DoxyCodeLine{00099\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__class_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main\_class.cpp@{main\_class.cpp}!main@{main}}
+\index{main@{main}!main\_class.cpp@{main\_class.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main__class_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__class_8cpp_source_l00126}{126}} of file \doxymbox{\hyperlink{main__class_8cpp_source}{main\+\_\+class.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ std::vector<int>\ sizes\ =\ \{100000,\ 1000000\};}
+\DoxyCodeLine{00128\ \ \ \ \ std::vector<std::string>\ names\ =\ \{\textcolor{stringliteral}{"{}100k"{}},\ \textcolor{stringliteral}{"{}1M"{}}\};}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===\ CLASS\ VERSIJOS\ SPARTOS\ TESTAI\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00131\ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ std::string\ filename\ =\ \textcolor{stringliteral}{"{}test\_"{}}\ +\ names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Generuojamas\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}\ failas...\(\backslash\)n"{}};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main__class_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generateFile}}(filename,\ sizes[i]);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t1\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ std::vector<Studentas>\ students\ =\ \doxymbox{\hyperlink{main__class_8cpp_aa7aa395b81e67e82edce3013ccf29e98}{readFromFile}}(filename);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t2\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ s\ :\ students)\ \doxymbox{\hyperlink{main__class_8cpp_aaea9b047cf0ff262c6235a6c886500c0}{calculateFinalGrade}}(s,\ \textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t3\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ std::sort(students.begin(),\ students.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classStudentas}{Studentas}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classStudentas}{Studentas}}\&\ b)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.getGalutinis()\ <\ b.getGalutinis();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t4\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ std::vector<Studentas>\ vargsiukai;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ partition\_point\ =\ std::stable\_partition(students.begin(),\ students.end(),\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classStudentas}{Studentas}}\&\ s)\ \{\ return\ s.getGalutinis()\ >=\ 5.0f;\ \});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ vargsiukai.insert(vargsiukai.end(),\ partition\_point,\ students.end());}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ students.erase(partition\_point,\ students.end());}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t5\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ read\_t\ =\ std::chrono::duration<double>(t2\ -\/\ t1).count();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ calc\_t\ =\ std::chrono::duration<double>(t3\ -\/\ t2).count();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sort\_t\ =\ std::chrono::duration<double>(t4\ -\/\ t3).count();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ split\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t4).count();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t1).count();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}CLASS\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}:\ "{}}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}read="{}}\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ read\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}calc="{}}\ <<\ calc\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}sort="{}}\ <<\ sort\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}split="{}}\ <<\ split\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}TOTAL="{}}\ <<\ total\_t\ <<\ \textcolor{stringliteral}{"{}s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00171\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__class_8cpp_aa7aa395b81e67e82edce3013ccf29e98}\index{main\_class.cpp@{main\_class.cpp}!readFromFile@{readFromFile}}
+\index{readFromFile@{readFromFile}!main\_class.cpp@{main\_class.cpp}}
+\doxysubsubsection{\texorpdfstring{readFromFile()}{readFromFile()}}
+{\footnotesize\ttfamily \label{main__class_8cpp_aa7aa395b81e67e82edce3013ccf29e98} 
+std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ read\+From\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__class_8cpp_source_l00101}{101}} of file \doxymbox{\hyperlink{main__class_8cpp_source}{main\+\_\+class.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ std::vector<Studentas>\ students;}
+\DoxyCodeLine{00103\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{00104\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00105\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ std::string\ vardas,\ pavarde;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ vardas\ >>\ pavarde))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classStudentas}{Studentas}}\ s(vardas,\ pavarde);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ grade;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iss\ >>\ grade)\ s.addTarpRez(grade);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ iss\ >>\ grade;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ s.setEgzRez(grade);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ students.push\_back(s);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ file.close();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ students;}
+\DoxyCodeLine{00124\ \}}
+
+\end{DoxyCode}

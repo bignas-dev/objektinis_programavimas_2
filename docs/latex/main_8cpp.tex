@@ -1,0 +1,106 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \+\#include "{}benchmark.\+h"{}}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a9f37db3df159681ad4f273c1783e25e0}{should\+Skip\+Vector\+Strategy2}} (int size)
+\item 
+int \doxymbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main_8cpp_source_l00010}{10}} of file \doxymbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ std::vector<int>\ sizes\ =\ \{1000,\ 10000,\ 100000,\ 1000000,\ 10000000\};}
+\DoxyCodeLine{00012\ \ \ \ \ std::vector<std::string>\ size\_names\ =\ \{\textcolor{stringliteral}{"{}1k"{}},\ \textcolor{stringliteral}{"{}10k"{}},\ \textcolor{stringliteral}{"{}100k"{}},\ \textcolor{stringliteral}{"{}1M"{}},\ \textcolor{stringliteral}{"{}10M"{}}\};}
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ gradeType\ =\ \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Pradedami\ v1.1\ spartos\ tyrimai\ (su\ class\ Studentas)...\(\backslash\)n"{}};}
+\DoxyCodeLine{00016\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Tiriami\ konteineriai:\ vector,\ list,\ deque\(\backslash\)n"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Strategijos:\ 1\ (du\ nauji),\ 2\ (vienas\ +\ trynimas),\ 3\ (partition)\(\backslash\)n"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Demesio:\ Strategy\ 2\ su\ vector\ praleidziama\ didesniems\ failams\ (per\ leta)\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ std::vector<BenchmarkResult>\ allResults;}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ std::string\ filename\ =\ \textcolor{stringliteral}{"{}studentai\_"{}}\ +\ size\_names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===\ "{}}\ <<\ size\_names[i]\ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ sizes[i]\ <<\ \textcolor{stringliteral}{"{}\ irasu)\ ===\(\backslash\)n"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Generuojamas\ failas...\(\backslash\)n"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structGenerationResult}{GenerationResult}}\ gen\ =\ \doxymbox{\hyperlink{benchmark_8cpp_aae53248cab876a8f964aa6586c10aaa9}{measureFileGeneration}}(filename,\ sizes[i]);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Failo\ generavimo\ laikas:\ "{}}\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ gen.\doxymbox{\hyperlink{structGenerationResult_aa6150f0d63ec8ef77748d83b4aa7ba05}{duration}}\ <<\ \textcolor{stringliteral}{"{}\ s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ strategy\ =\ 1;\ strategy\ <=\ 3;\ ++strategy)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ skipVector\ =\ (strategy\ ==\ 2\ \&\&\ \doxymbox{\hyperlink{main_8cpp_a9f37db3df159681ad4f273c1783e25e0}{shouldSkipVectorStrategy2}}(sizes[i]));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Strategija\ "{}}\ <<\ strategy\ <<\ \textcolor{stringliteral}{"{}\ (vector):\ "{}}\ <<\ std::flush;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (skipVector)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}PRALEISTA\(\backslash\)n"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ resVec\ =\ \doxymbox{\hyperlink{benchmark_8cpp_a30d9914b1b13489b7e4d854d5eedc9e3}{runBenchmarkVector}}(filename,\ strategy,\ gradeType);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resVec.\doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}}\ =\ sizes[i];}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allResults.push\_back(resVec);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}baigta\(\backslash\)n"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Strategija\ "{}}\ <<\ strategy\ <<\ \textcolor{stringliteral}{"{}\ (list):\ "{}}\ <<\ std::flush;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ resList\ =\ \doxymbox{\hyperlink{benchmark_8cpp_aa10516090e03a1f39bb42ee02144b3e8}{runBenchmarkList}}(filename,\ strategy,\ gradeType);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ resList.\doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}}\ =\ sizes[i];}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ allResults.push\_back(resList);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}baigta\(\backslash\)n"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Strategija\ "{}}\ <<\ strategy\ <<\ \textcolor{stringliteral}{"{}\ (deque):\ "{}}\ <<\ std::flush;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ resDeque\ =\ \doxymbox{\hyperlink{benchmark_8cpp_a9a78bc60f111e2b26269731cd9c85afd}{runBenchmarkDeque}}(filename,\ strategy,\ gradeType);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ resDeque.\doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}}\ =\ sizes[i];}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ allResults.push\_back(resDeque);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}baigta\(\backslash\)n"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n===\ VISI\ REZULTATAI\ ===\(\backslash\)n"{}};}
+\DoxyCodeLine{00058\ \ \ \ \ \doxymbox{\hyperlink{benchmark_8cpp_a517397a74b73c78aeeb1f342e36195d6}{printResultsTable}}(allResults);}
+\DoxyCodeLine{00059\ \ \ \ \ \doxymbox{\hyperlink{benchmark_8cpp_a2bdbb76aeef7100a8336c1973ea55eea}{printContainerComparison}}(allResults);}
+\DoxyCodeLine{00060\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \doxymbox{\hyperlink{benchmark_8cpp_a06fe2b22eb0f7be013852035d0c77420}{writeResultsToCSV}}(\textcolor{stringliteral}{"{}rezultatai.csv"{}},\ allResults);}
+\DoxyCodeLine{00062\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nRezultatai\ issaugoti\ i\ 'rezultatai.csv'\(\backslash\)n"{}};}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nTyrimai\ baigti.\(\backslash\)n"{}};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00066\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main_8cpp_a9f37db3df159681ad4f273c1783e25e0}\index{main.cpp@{main.cpp}!shouldSkipVectorStrategy2@{shouldSkipVectorStrategy2}}
+\index{shouldSkipVectorStrategy2@{shouldSkipVectorStrategy2}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{shouldSkipVectorStrategy2()}{shouldSkipVectorStrategy2()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9f37db3df159681ad4f273c1783e25e0} 
+bool should\+Skip\+Vector\+Strategy2 (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main_8cpp_source_l00006}{6}} of file \doxymbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{return}\ size\ >=\ 1000000;}
+\DoxyCodeLine{00008\ \}}
+
+\end{DoxyCode}

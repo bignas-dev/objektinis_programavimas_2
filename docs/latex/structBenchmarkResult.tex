@@ -1,0 +1,176 @@
+\doxysection{Benchmark\+Result Struct Reference}
+\hypertarget{structBenchmarkResult}{}\label{structBenchmarkResult}\index{BenchmarkResult@{BenchmarkResult}}
+
+
+{\ttfamily \+\#include $<$benchmark.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6}{Benchmark\+Result}} ()
+\item 
+void \doxymbox{\hyperlink{structBenchmarkResult_a82fd9965016f46921d1208fde6430a11}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string \doxymbox{\hyperlink{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce}{container\+Type}}
+\item 
+int \doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{strategy}}
+\item 
+int \doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{record\+Count}}
+\item 
+double \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{read\+Duration}}
+\item 
+double \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sort\+Duration}}
+\item 
+double \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{split\+Duration}}
+\item 
+double \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{write\+Duration}}
+\item 
+double \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{total\+Duration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00015}{15}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{structBenchmarkResult_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6}\index{BenchmarkResult@{BenchmarkResult}!BenchmarkResult@{BenchmarkResult}}
+\index{BenchmarkResult@{BenchmarkResult}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{BenchmarkResult()}{BenchmarkResult()}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a20e54be3dd75792be1cbf781fa12acc6} 
+Benchmark\+Result::\+\+Benchmark\+Result (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00025}{25}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}{strategy}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}{recordCount}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}}(0),\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}}(0),\ \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}}(0)\ \{\}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{structBenchmarkResult_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structBenchmarkResult_a82fd9965016f46921d1208fde6430a11}\index{BenchmarkResult@{BenchmarkResult}!reset@{reset}}
+\index{reset@{reset}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a82fd9965016f46921d1208fde6430a11} 
+void Benchmark\+Result::\+reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}{readDuration}}\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}{sortDuration}}\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}{splitDuration}}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}{writeDuration}}\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}{totalDuration}}\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{structBenchmarkResult_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce}\index{BenchmarkResult@{BenchmarkResult}!containerType@{containerType}}
+\index{containerType@{containerType}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{containerType}{containerType}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a66f9542f6dd1f34442be0328d9c187ce} 
+std::\+string Benchmark\+Result::\+container\+Type}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6}\index{BenchmarkResult@{BenchmarkResult}!readDuration@{readDuration}}
+\index{readDuration@{readDuration}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{readDuration}{readDuration}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a6e3428355a52d78abd4d9aee9d0317d6} 
+double Benchmark\+Result::\+read\+Duration}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00019}{19}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c}\index{BenchmarkResult@{BenchmarkResult}!recordCount@{recordCount}}
+\index{recordCount@{recordCount}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{recordCount}{recordCount}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a0112ab08e7dc9ddbdd7932c5a3ebef8c} 
+int Benchmark\+Result::\+record\+Count}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00018}{18}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f}\index{BenchmarkResult@{BenchmarkResult}!sortDuration@{sortDuration}}
+\index{sortDuration@{sortDuration}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{sortDuration}{sortDuration}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a1b2d561ceb80f40e7ca9a6ec09ff760f} 
+double Benchmark\+Result::\+sort\+Duration}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00020}{20}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604}\index{BenchmarkResult@{BenchmarkResult}!splitDuration@{splitDuration}}
+\index{splitDuration@{splitDuration}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{splitDuration}{splitDuration}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_ab57f69cb3d047ce5a39a06aa713d5604} 
+double Benchmark\+Result::\+split\+Duration}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00021}{21}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933}\index{BenchmarkResult@{BenchmarkResult}!strategy@{strategy}}
+\index{strategy@{strategy}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{strategy}{strategy}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_aaac09ade200632d45a7c1e7fdf147933} 
+int Benchmark\+Result::\+strategy}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00017}{17}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789}\index{BenchmarkResult@{BenchmarkResult}!totalDuration@{totalDuration}}
+\index{totalDuration@{totalDuration}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{totalDuration}{totalDuration}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a96cab461408454f6bcce54353e2a4789} 
+double Benchmark\+Result::\+total\+Duration}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00023}{23}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+\Hypertarget{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5}\index{BenchmarkResult@{BenchmarkResult}!writeDuration@{writeDuration}}
+\index{writeDuration@{writeDuration}!BenchmarkResult@{BenchmarkResult}}
+\doxysubsubsection{\texorpdfstring{writeDuration}{writeDuration}}
+{\footnotesize\ttfamily \label{structBenchmarkResult_a4f57412f6f90cac39bc341cae467fff5} 
+double Benchmark\+Result::\+write\+Duration}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark_8h_source_l00022}{22}} of file \doxymbox{\hyperlink{benchmark_8h_source}{benchmark.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{benchmark_8h}{benchmark.\+h}}\end{DoxyCompactItemize}

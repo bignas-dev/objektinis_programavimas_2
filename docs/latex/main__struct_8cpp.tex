@@ -1,0 +1,199 @@
+\doxysection{main\+\_\+struct.\+cpp File Reference}
+\hypertarget{main__struct_8cpp}{}\label{main__struct_8cpp}\index{main\_struct.cpp@{main\_struct.cpp}}
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$random$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structMokinys}{Mokinys}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculate\+Average}} (const std::\+vector$<$ int $>$ \&arr)
+\item 
+void \doxymbox{\hyperlink{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}{calculate\+Final\+Grade}} (\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&m, const std::\+string \&choice)
+\item 
+void \doxymbox{\hyperlink{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generate\+File}} (const std::\+string \&filename, int count)
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ \doxymbox{\hyperlink{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}{read\+From\+File}} (const std::\+string \&filename)
+\item 
+int \doxymbox{\hyperlink{main__struct_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main__struct_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}\index{main\_struct.cpp@{main\_struct.cpp}!calculateAverage@{calculateAverage}}
+\index{calculateAverage@{calculateAverage}!main\_struct.cpp@{main\_struct.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateAverage()}{calculateAverage()}}
+{\footnotesize\ttfamily \label{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f} 
+float calculate\+Average (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{arr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__struct_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{main__struct_8cpp_source}{main\+\_\+struct.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (arr.empty())\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ val\ :\ arr)\ sum\ +=\ val;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(sum)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(arr.size());}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}\index{main\_struct.cpp@{main\_struct.cpp}!calculateFinalGrade@{calculateFinalGrade}}
+\index{calculateFinalGrade@{calculateFinalGrade}!main\_struct.cpp@{main\_struct.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateFinalGrade()}{calculateFinalGrade()}}
+{\footnotesize\ttfamily \label{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03} 
+void calculate\+Final\+Grade (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structMokinys}{Mokinys}} \&}]{m}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__struct_8cpp_source_l00027}{27}} of file \doxymbox{\hyperlink{main__struct_8cpp_source}{main\+\_\+struct.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ tarp\ =\ \doxymbox{\hyperlink{main__struct_8cpp_a994578dc6ddde205dd2700127d015f6f}{calculateAverage}}(m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}});}
+\DoxyCodeLine{00029\ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_ac202bb003afc40cc1b8d8d18a7332aa6}{galutinis}}\ =\ 0.6f\ *\ m.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}}\ +\ 0.4f\ *\ tarp;}
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}\index{main\_struct.cpp@{main\_struct.cpp}!generateFile@{generateFile}}
+\index{generateFile@{generateFile}!main\_struct.cpp@{main\_struct.cpp}}
+\doxysubsubsection{\texorpdfstring{generateFile()}{generateFile()}}
+{\footnotesize\ttfamily \label{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f} 
+void generate\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__struct_8cpp_source_l00032}{32}} of file \doxymbox{\hyperlink{main__struct_8cpp_source}{main\+\_\+struct.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ std::ofstream\ out(filename);}
+\DoxyCodeLine{00034\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{00035\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{00036\ \ \ \ \ std::uniform\_int\_distribution<>\ dist(0,\ 10);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Vardas"{}}\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Pavarde"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ 5;\ ++i)\ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}ND"{}}\ +\ std::to\_string(i);}
+\DoxyCodeLine{00040\ \ \ \ \ out\ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Egz.\(\backslash\)n"{}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ count;\ ++i)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ out\ <<\ std::left\ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}VardasNR"{}}\ +\ std::to\_string(i))}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(20)\ <<\ (\textcolor{stringliteral}{"{}PavardeNR"{}}\ +\ std::to\_string(i));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 6;\ ++j)\ out\ <<\ std::setw(10)\ <<\ dist(gen);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ out.close();}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__struct_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main\_struct.cpp@{main\_struct.cpp}!main@{main}}
+\index{main@{main}!main\_struct.cpp@{main\_struct.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main__struct_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__struct_8cpp_source_l00074}{74}} of file \doxymbox{\hyperlink{main__struct_8cpp_source}{main\+\_\+struct.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ std::vector<int>\ sizes\ =\ \{100000,\ 1000000\};}
+\DoxyCodeLine{00076\ \ \ \ \ std::vector<std::string>\ names\ =\ \{\textcolor{stringliteral}{"{}100k"{}},\ \textcolor{stringliteral}{"{}1M"{}}\};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===\ STRUCT\ VERSIJOS\ SPARTOS\ TESTAI\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ std::string\ filename\ =\ \textcolor{stringliteral}{"{}test\_"{}}\ +\ names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Generuojamas\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}\ failas...\(\backslash\)n"{}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main__struct_8cpp_aeec828ef1798824e2fb5e95b1360534f}{generateFile}}(filename,\ sizes[i]);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t1\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::vector<Mokinys>\ students\ =\ \doxymbox{\hyperlink{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}{readFromFile}}(filename);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t2\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ s\ :\ students)\ \doxymbox{\hyperlink{main__struct_8cpp_a88cd84396f05713bfaa63d57f3f68e03}{calculateFinalGrade}}(s,\ \textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t3\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::sort(students.begin(),\ students.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ b)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.galutinis\ <\ b.galutinis;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t4\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std::vector<Mokinys>\ vargsiukai;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ partition\_point\ =\ std::stable\_partition(students.begin(),\ students.end(),\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\&\ s)\ \{\ return\ s.galutinis\ >=\ 5.0f;\ \});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ vargsiukai.insert(vargsiukai.end(),\ partition\_point,\ students.end());}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ students.erase(partition\_point,\ students.end());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t5\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ read\_t\ =\ std::chrono::duration<double>(t2\ -\/\ t1).count();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ calc\_t\ =\ std::chrono::duration<double>(t3\ -\/\ t2).count();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sort\_t\ =\ std::chrono::duration<double>(t4\ -\/\ t3).count();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ split\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t4).count();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_t\ =\ std::chrono::duration<double>(t5\ -\/\ t1).count();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}STRUCT\ "{}}\ <<\ names[i]\ <<\ \textcolor{stringliteral}{"{}:\ "{}}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}read="{}}\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ read\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}calc="{}}\ <<\ calc\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}sort="{}}\ <<\ sort\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}split="{}}\ <<\ split\_t\ <<\ \textcolor{stringliteral}{"{}s,\ "{}}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}TOTAL="{}}\ <<\ total\_t\ <<\ \textcolor{stringliteral}{"{}s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00119\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e}\index{main\_struct.cpp@{main\_struct.cpp}!readFromFile@{readFromFile}}
+\index{readFromFile@{readFromFile}!main\_struct.cpp@{main\_struct.cpp}}
+\doxysubsubsection{\texorpdfstring{readFromFile()}{readFromFile()}}
+{\footnotesize\ttfamily \label{main__struct_8cpp_a8987859e76e2927d0e9a04d82434aa3e} 
+std::\+vector$<$ \doxymbox{\hyperlink{structMokinys}{Mokinys}} $>$ read\+From\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main__struct_8cpp_source_l00051}{51}} of file \doxymbox{\hyperlink{main__struct_8cpp_source}{main\+\_\+struct.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ std::vector<Mokinys>\ students;}
+\DoxyCodeLine{00053\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{00054\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00055\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \doxymbox{\hyperlink{structMokinys}{Mokinys}}\ m;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_a38c25dffe45ead7fefed601a02c0a0d2}{vardas}}\ >>\ m.\doxymbox{\hyperlink{structMokinys_a08d104a9b838570296b70518d7a32406}{pavarde}}))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.clear();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ grade;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iss\ >>\ grade)\ m.\doxymbox{\hyperlink{structMokinys_aedcacf51a3e651854719c8d9e6985b8a}{tarp\_rez}}.push\_back(grade);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ iss\ >>\ m.\doxymbox{\hyperlink{structMokinys_aa6ccdb86d1dce0dc6348d207747028f0}{egz\_rez}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ students.push\_back(m);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ file.close();}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ students;}
+\DoxyCodeLine{00072\ \}}
+
+\end{DoxyCode}
