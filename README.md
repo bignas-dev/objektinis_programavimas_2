@@ -1,63 +1,51 @@
-# Objektinis Programavimas (v1.5)
+# Objektinis Programavimas v2.0
 
-Šiame projekte realizuota studentų duomenų apdorojimo sistema su abstrakčia bazine klase.
+Studentų duomenų apdorojimo sistema su abstrakčia bazine klase, unit testais ir Doxygen dokumentacija.
 
-## V1.5 Naujovės
+## V2.0 Naujovės
 
-- Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
-- Išvestinė klasė `Studentas` paveldinti iš `Žmogus`
-- Pilna "Rule of Five" implementacija
-- Įvesties/išvesties operatoriai
-- Polimorfizmo demonstracija
-- 69 testai (100% sėkmė)
+- **Unit Testai** su Catch2 framework (81 testas, 100% sėkmė)
+- **Doxygen dokumentacija** (HTML + LaTeX)
+- **Abstrakti bazinė klasė** Žmogus
+- **Išvestinė klasė** Studentas
+- **Rule of Five** implementacija
+- **Polimorfizmo** demonstracija
 
-## Sistemos specifikacijos
+## Reikalavimai
 
-| Parametras | Reikšmė |
-|------------|---------|
-| CPU | AMD Ryzen 5 5600H |
-| RAM | 13 GB DDR4 |
-| OS | Linux |
-| Kompiliatorius | g++ (C++17) |
-| Optimizacija | -O3 |
+- g++ (C++17)
+- Make
+- Doxygen (dokumentacijai)
+- Catch2 (unit testams) - atsisiunčiamas automatiškai
+
+## Diegimas
+
+```bash
+# Pagrindinė programa
+make
+
+# Unit testai
+make tests
+
+# Doxygen dokumentacija
+make doxygen
+```
 
 ## Paleidimas
 
 ```bash
-make              # Kompiliuoti
-make run          # Paleisti programą
-make test         # Struct vs Class testai
-make test_v1.5    # V1.5 testai
-make run_test_v1.5 # Paleisti V1.5 testus
-make test_all     # Visi testai
-make clean        # Išvalyti
+# Programa
+make run
+
+# Unit testai
+make run_tests
+
+# Atidaryti dokumentaciją
+xdg-open docs/html/index.html  # Linux
+open docs/html/index.html      # macOS
 ```
 
 ## Klasių Struktūra
-
-### Abstrakti klasė Žmogus
-
-```cpp
-class Zmogus {
-protected:
-    std::string vardas_;
-    std::string pavarde_;
-
-public:
-    virtual ~Zmogus() = 0;  // Grynas virtualus destruktorius
-    virtual std::string getVardas() const = 0;
-    virtual std::string getPavarde() const = 0;
-    virtual std::ostream& print(std::ostream& os) const = 0;
-    virtual std::istream& read(std::istream& is) = 0;
-};
-```
-
-**Svarbu:** Negalima sukurti `Zmogus` objekto:
-```cpp
-Zmogus z("Vardas", "Pavarde");  // KLAIDA: abstrakti klasė
-```
-
-### Išvestinė klasė Studentas
 
 ```
 Zmogus (abstrakti)
@@ -65,37 +53,66 @@ Zmogus (abstrakti)
     | public paveldėjimas
     |
 Studentas
-    - tarp_rez_: vector<int>
-    - egz_rez_: int
-    - galutinis_: float
 ```
 
-Studentas klasė realizuoja visus virtualius metodus ir turi Rule of Five metodus:
-- Numatytasis konstruktorius
-- Parametrinis konstruktorius
-- Kopijavimo konstruktorius
-- Move konstruktorius
-- Destruktorius
-- Kopijavimo priskyrimo operatorius
-- Move priskyrimo operatorius
+### Zmogus (abstrakti bazinė klasė)
 
-### Polimorfizmo pavyzdys
+- Grynas virtualus destruktorius
+- 4 grynieji virtualūs metodai
+- Negalima sukurti objekto
 
-```cpp
-// Bazinės klasės rodyklė į Studentas
-Zmogus* z = new Studentas("Jonas", "Jonaitis");
-std::cout << z->getVardas();  // "Jonas"
-delete z;
+### Studentas (išvestinė klasė)
 
-// Vector of base class pointers
-std::vector<Zmogus*> people;
-people.push_back(new Studentas("Studentas1", "Pavarde1"));
-people.push_back(new Studentas("Studentas2", "Pavarde2"));
+- Paveldi vardas_, pavarde_ iš Zmogus
+- Turi tarp_rez_, egz_rez_, galutinis_
+- Implementuoja Rule of Five
+- Override virtualūs metodai
 
-for (Zmogus* p : people) {
-    std::cout << p->getVardas() << "\n";
-    delete p;
-}
+## Unit Testai
+
+Testų failas: `tests/unit_tests.cpp`
+
+| Kategorija | Testai |
+|------------|--------|
+| Rule of Five | 7 |
+| I/O Operatoriai | 3 |
+| Polimorfizmas | 3 |
+| Abstrakti klasė | 2 |
+| Helper funkcijos | 3 |
+| Integracija | 2 |
+| **Iš viso** | **6 test cases, 81 assertions** |
+
+### Testų vykdymas
+
+```bash
+make run_tests
+```
+
+Rezultatas:
+```
+===============================================================================
+All tests passed (81 assertions in 6 test cases)
+```
+
+## Dokumentacija
+
+### HTML
+
+```bash
+make doxygen
+xdg-open docs/html/index.html
+```
+
+### LaTeX (PDF generavimui)
+
+```bash
+make doxygen
+cd docs/latex
+# Jei turite TeXLive:
+make
+# Arba naudokite Overleaf:
+# 1. Upload docs/latex folderį į Overleaf
+# 2. Compile PDF
 ```
 
 ## Įvestis/Išvestis
@@ -105,108 +122,70 @@ for (Zmogus* p : people) {
 ```cpp
 Studentas s("Jonas", "Jonaitis");
 s.addTarpRez(8);
-s.addTarpRez(9);
 s.setEgzRez(10);
-
-std::cout << s;  // Arba: failas << s;
-```
-
-Formatas:
-```
-Vardas              Pavarde           8     9     10
-Jonas               Jonaitis          8     9     10
+std::cout << s;
 ```
 
 ### operator>>
 
 ```cpp
 Studentas s;
-std::cin >> s;  // Arba: failas >> s;
+std::cin >> s;  // Formatas: Vardas Pavarde ND1 ND2 ... NDn Egz
 ```
 
-Įvesties formatas: `Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egz`
+## Polimorfizmo Pavyzdys
 
-## Testai
+```cpp
+std::vector<Zmogus*> people;
+people.push_back(new Studentas("S1", "P1"));
+people.push_back(new Studentas("S2", "P2"));
 
-### V1.5 Testų rezultatai
+for (const auto* p : people) {
+    std::cout << p->getVardas() << "\n";
+    delete p;
+}
+```
 
-Testų failas: `test_v1.5.cpp`
+## Versijų Istorija
 
-| Kategorija | Testai |
-|------------|--------|
-| Abstrakti klasė Žmogus | 4 |
-| Konstruktoriai | 14 |
-| Priskyrimo operatoriai | 11 |
-| I/O operatoriai | 10 |
-| Failo I/O | 4 |
-| Destruktorius | 2 |
-| Polimorfizmas | 7 |
-| Keliu studentų I/O | 4 |
-| Integracija | 4 |
-| **Iš viso** | **69** |
+| Versija | Data | Aprašymas |
+|---------|------|-----------|
+| v2.0 | 2026-04-24 | Unit Testai (Catch2) + Doxygen dokumentacija |
+| v1.5 | 2026-04-24 | Abstrakti klasė Žmogus + Studentas išvestinė |
+| v1.2 | 2026-04-24 | Rule of Five + I/O Operatoriai |
+| v1.1 | 2026-04 | Konversija į class Studentas |
+| v1.0 | 2026-04 | Pradinė versija su struct Mokinys |
 
-Visi 69 testai praeina (100% sėkmė).
-
-## Strukt vs Class spartos testai (v1.1)
-
-Tyrimas su 100k ir 1M įrašų, O3 optimizacija:
-
-| Versija | 100k | 1M | Exe dydis |
-|---------|------|-----|-----------|
-| struct | 0.0812 s | 0.8562 s | 67 KB |
-| class | 0.0863 s | 0.9269 s | 67 KB |
-
-Struct versija ~6% greitesnė.
-
-## Konteineriai
-
-Programa naudoja tris STL konteinerius:
-- `std::vector` - greita prieiga, lėtas trynimas
-- `std::list` - lėta prieiga, greitas trynimas
-- `std::deque` - balansas tarp vector ir list
-
-## Strategijos
-
-1. **Du nauji konteineriai** - skaidymas į "vargšiukus" ir "kietiakus"
-2. **Vienas naujas + trynimas** - sukurti vargšiukus, trinti iš originalo
-3. **stable_partition** - optimizuotas skaidymas (greičiausia)
-
-## Failų struktūra
+## Failų Struktūra
 
 ```
 .
-├── main.cpp           # Pagrindinė programa
-├── benchmark.h        # Benchmark struktūros
-├── benchmark.cpp      # Benchmark implementacija
-├── zmogus.h           # Abstrakti bazinė klasė (v1.5)
-├── student.h          # Studentas klasė
-├── test_v1.5.cpp      # V1.5 testai
-├── test_v1.2.cpp      # V1.2 testai
-├── Makefile
-└── README.md
+├── tests/
+│   ├── unit_tests.cpp    # Catch2 unit testai
+│   └── catch.hpp         # Catch2 header
+├── docs/
+│   ├── html/             # HTML dokumentacija
+│   └── latex/            # LaTeX dokumentacija (PDF)
+├── zmogus.h              # Abstrakti bazinė klasė
+├── student.h             # Studentas klasė
+├── benchmark.h           # Benchmark struktūros
+├── benchmark.cpp         # Benchmark implementacija
+├── main.cpp              # Pagrindinė programa
+├── Makefile              # Kompiliavimo instrukcija
+├── Doxyfile              # Doxygen konfigūracija
+└── README.md             # Šis dokumentas
 ```
 
-## Versijų istorija
+## V2.0 Detaliau
 
-| Versija | Aprašymas |
-|---------|-----------|
-| v1.0 | Pradinė versija su struct Mokinys |
-| v1.1 | Konversija į class Studentas |
-| v1.2 | Rule of Five + I/O operatoriai |
-| v1.5 | Abstrakti klasė Žmogus + Studentas išvestinė |
-
-## V1.5 Detaliau
-
-**Šaka:** `v1.5`
+**Šaka:** `v2.0`
 
 **Realizuota:**
-- Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
-- Išvestinė klasė `Studentas : public Zmogus`
-- 7 Rule of Five metodai
-- Virtualių metodų override
-- 69 testai visiems metodams
+- ✅ Catch2 unit testai (81 assertion)
+- ✅ Doxygen HTML + LaTeX dokumentacija
+- ✅ Rule of Five testai (būtina)
+- ✅ Polimorfizmo testai
+- ✅ Abstrakčios klasės testai
+- ✅ Švari repozitorija (be build artifact'ų)
 
-**Pagrindiniai failai:**
-- `zmogus.h` - abstrakti bazinė klasė
-- `student.h` - Studentas klasė
-- `test_v1.5.cpp` - testai
+**Release:** v2.0 - Unit Testai ir Doxygen Dokumentacija
