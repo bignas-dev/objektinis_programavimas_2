@@ -50,13 +50,14 @@ CATCH_INCLUDE = -Itests
 UNIT_TEST_SRC = tests/unit_tests.cpp
 UNIT_TEST_BIN = tests/unit_tests
 
-tests: $(UNIT_TEST_BIN)
+tests: $(UNIT_TEST_BIN) test_vector
 
-$(UNIT_TEST_BIN): $(UNIT_TEST_SRC) tests/catch.hpp student.h zmogus.h
-	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o $(UNIT_TEST_BIN) $(UNIT_TEST_SRC)
+test_vector: tests/test_vector.cpp Vector.h tests/catch.hpp
+	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o tests/test_vector tests/test_vector.cpp
 
 run_tests: tests
 	./$(UNIT_TEST_BIN)
+	./tests/test_vector
 
 # Doxygen dokumentacija
 doxygen:
