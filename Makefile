@@ -81,6 +81,13 @@ main_vector: main_vector.cpp Vector.h student.h
 run_vector: main_vector
 	./main_vector
 
+# Test data generator
+generate_test_data: generate_test_data.cpp Vector.h student.h
+	$(CXX) $(CXXFLAGS) -o generate_test_data generate_test_data.cpp
+
+gen_data: generate_test_data
+	./generate_test_data
+
 # Doxygen dokumentacija
 doxygen:
 	doxygen Doxyfile
