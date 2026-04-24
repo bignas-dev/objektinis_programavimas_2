@@ -1,6 +1,35 @@
-# Objektinis Programavimas v2.0
+# Objektinis Programavimas v3.0
 
-Studentų duomenų apdorojimo sistema su abstrakčia bazine klase, unit testais ir Doxygen dokumentacija.
+Studentų duomenų apdorojimo sistema su **Vector** konteineriu, unit testais ir Doxygen dokumentacija.
+
+## V3.0 Naujovės
+
+- **Vector konteineris** - pilnas std::vector analogas (30+ funkcijų)
+- **Efektyvumo analizė** - Vector vs std::vector palyginimas
+- **Unit Testai** - 80+ assertions Vector konteineriui
+- **Integracija** - Studentų programa su Vector vietoje std::vector
+- **Doxygen dokumentacija** - pilnas Vector API aprašymas
+
+### Vector Efektyvumas
+
+| Testas | std::vector | Vector | Speedup |
+|--------|-------------|--------|---------|
+| 10K elements | 0.0189 ms | 0.0171 ms | 1.11x |
+| 100K elements | 0.2369 ms | 0.1920 ms | 1.23x |
+| 1M elements | 2.3343 ms | 1.9234 ms | 1.21x |
+| 10M elements | 23.8322 ms | 20.2992 ms | 1.17x |
+
+**Vidutinis speedup:** ~1.2x greitesnis už std::vector
+
+### Atminties Perskirstymai
+
+| Elementai | Perskirstymai |
+|-----------|---------------|
+| 10K | 15 |
+| 100K | 18 |
+| 1M | 21 |
+| 10M | 25 |
+| 100M | 28 |
 
 ## V2.0 Naujovės
 
@@ -24,8 +53,16 @@ Studentų duomenų apdorojimo sistema su abstrakčia bazine klase, unit testais 
 # Pagrindinė programa
 make
 
-# Unit testai
+# Unit testai (v2.0 + v3.0)
 make tests
+
+# Vector benchmark
+make benchmark_vector
+make run_benchmark
+
+# Studentų programa su Vector
+make main_vector
+make run_vector
 
 # Doxygen dokumentacija
 make doxygen
@@ -43,6 +80,37 @@ make run_tests
 # Atidaryti dokumentaciją
 xdg-open docs/html/index.html  # Linux
 open docs/html/index.html      # macOS
+```
+
+## Vector API
+
+### Pagrindinės funkcijos
+
+| Kategorija | Funkcijos |
+|------------|-----------|
+| **Constructors** | default, fill, copy, move, initializer_list |
+| **Capacity** | size, capacity, empty, reserve, shrink_to_fit |
+| **Access** | operator[], at, front, back, data |
+| **Modifiers** | push_back, pop_back, clear, insert, erase |
+| **Iterators** | begin, end |
+| **Operators** | =, ==, !=, [] |
+
+### Naudojimo pavyzdys
+
+```cpp
+#include "Vector.h"
+
+Vector<int> v;              // default constructor
+Vector<int> v2(5, 42);      // fill constructor
+Vector<int> v3{1, 2, 3};    // initializer list
+
+v.push_back(10);            // add element
+v.pop_back();               // remove last
+v.size();                   // get size
+v.capacity();               // get capacity
+v[0];                       // access element
+v.at(0);                    // access with bounds check
+v.reserve(100);             // reserve memory
 ```
 
 ## Klasių Struktūra
@@ -150,6 +218,7 @@ for (const auto* p : people) {
 
 | Versija | Data | Aprašymas |
 |---------|------|-----------|
+| v3.0 | 2026-04-24 | Vector konteineris + efektyvumo analizė |
 | v2.0 | 2026-04-24 | Unit Testai (Catch2) + Doxygen dokumentacija |
 | v1.5 | 2026-04-24 | Abstrakti klasė Žmogus + Studentas išvestinė |
 | v1.2 | 2026-04-24 | Rule of Five + I/O Operatoriai |
