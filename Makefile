@@ -66,6 +66,13 @@ benchmark_vector: benchmark_vector.cpp Vector.h
 run_benchmark: benchmark_vector
 	./benchmark_vector
 
+# Vector version of student program
+main_vector: main_vector.cpp Vector.h student.h
+	$(CXX) $(CXXFLAGS) -o main_vector main_vector.cpp
+
+run_vector: main_vector
+	./main_vector
+
 # Doxygen dokumentacija
 doxygen:
 	doxygen Doxyfile
