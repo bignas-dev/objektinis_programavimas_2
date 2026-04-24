@@ -1,0 +1,20 @@
+Vector vs std::vector Benchmark Results
+========================================
+
+PUSH_BACK (su reserve):
+10K elements: std::vector=0.018915ms, Vector=0.017083ms, speedup=1.10724x
+100K elements: std::vector=0.236949ms, Vector=0.191994ms, speedup=1.23415x
+1M elements: std::vector=2.33429ms, Vector=1.92342ms, speedup=1.21361x
+10M elements: std::vector=23.8322ms, Vector=20.2992ms, speedup=1.17405x
+
+PUSH_BACK (be reserve):
+10K elements: std::vector=0.029105ms, Vector=0.028234ms, speedup=1.03085x
+100K elements: std::vector=0.357989ms, Vector=0.187385ms, speedup=1.91045x
+1M elements: std::vector=3.43797ms, Vector=2.05406ms, speedup=1.67374x
+
+Memory Reallocations:
+10000 elements: 15 reallocations
+100000 elements: 18 reallocations
+1000000 elements: 21 reallocations
+10000000 elements: 25 reallocations
+100000000 elements: 28 reallocations

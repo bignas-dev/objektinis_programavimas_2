@@ -59,6 +59,13 @@ run_tests: tests
 	./$(UNIT_TEST_BIN)
 	./tests/test_vector
 
+# Vector benchmark
+benchmark_vector: benchmark_vector.cpp Vector.h
+	$(CXX) $(CXXFLAGS) -o benchmark_vector benchmark_vector.cpp
+
+run_benchmark: benchmark_vector
+	./benchmark_vector
+
 # Doxygen dokumentacija
 doxygen:
 	doxygen Doxyfile
