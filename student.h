@@ -66,6 +66,41 @@ public:
         return *this;
     }
     
+    inline friend std::ostream& operator<<(std::ostream& os, const Studentas& studentas) {
+        os << std::left << std::setw(20) << studentas.vardas_
+           << std::setw(20) << studentas.pavarde_;
+        
+        const auto& tarp_rez = studentas.tarp_rez_;
+        for (int rez : tarp_rez) {
+            os << std::setw(6) << rez;
+        }
+        
+        os << std::setw(6) << studentas.egz_rez_;
+        return os;
+    }
+    
+    inline friend std::istream& operator>>(std::istream& is, Studentas& studentas) {
+        std::string vardas, pavarde;
+        if (is >> vardas >> pavarde) {
+            studentas.vardas_ = std::move(vardas);
+            studentas.pavarde_ = std::move(pavarde);
+            
+            studentas.tarp_rez_.clear();
+            std::vector<int> grades;
+            int grade;
+            while (is >> grade) {
+                grades.push_back(grade);
+            }
+            
+            if (!grades.empty()) {
+                studentas.egz_rez_ = grades.back();
+                grades.pop_back();
+                studentas.tarp_rez_ = std::move(grades);
+            }
+        }
+        return is;
+    }
+    
     inline std::string getVardas() const { return vardas_; }
     inline std::string getPavarde() const { return pavarde_; }
     inline const std::vector<int>& getTarpRez() const { return tarp_rez_; }
