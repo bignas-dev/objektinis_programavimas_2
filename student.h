@@ -1,51 +1,57 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include <string>
+#include "zmogus.h"
 #include <vector>
 #include <list>
 #include <deque>
-#include <iostream>
-#include <iomanip>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-#include <chrono>
 
-class Studentas {
+class Studentas : public Zmogus {
 private:
-    std::string vardas_;
-    std::string pavarde_;
     std::vector<int> tarp_rez_;
     int egz_rez_;
     float galutinis_;
 
 public:
-    Studentas() : egz_rez_(0), galutinis_(0.0f) {}
+    // === RULE OF FIVE ===
     
-    Studentas(std::string vardas, std::string pavarde) 
-        : vardas_(std::move(vardas)), pavarde_(std::move(pavarde)), egz_rez_(0), galutinis_(0.0f) {}
+    // 1. Numatytasis konstruktorius
+    Studentas() : Zmogus(), egz_rez_(0), galutinis_(0.0f) {}
     
-    Studentas(const Studentas& other) 
-        : vardas_(other.vardas_), pavarde_(other.pavarde_), tarp_rez_(other.tarp_rez_),
-          egz_rez_(other.egz_rez_), galutinis_(other.galutinis_) {}
+    // 2. Parametrinis konstruktorius
+    Studentas(std::string vardas, std::string pavarde)
+        : Zmogus(std::move(vardas), std::move(pavarde)), egz_rez_(0), galutinis_(0.0f) {}
     
-    Studentas(Studentas&& other) noexcept 
-        : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
-          tarp_rez_(std::move(other.tarp_rez_)), egz_rez_(other.egz_rez_), galutinis_(other.galutinis_) {
+    // 3. Kopijavimo konstruktorius
+    Studentas(const Studentas& other)
+        : Zmogus(other.vardas_, other.pavarde_),
+          tarp_rez_(other.tarp_rez_),
+          egz_rez_(other.egz_rez_),
+          galutinis_(other.galutinis_) {}
+    
+    // 4. Move konstruktorius
+    Studentas(Studentas&& other) noexcept
+        : Zmogus(std::move(other.vardas_), std::move(other.pavarde_)),
+          tarp_rez_(std::move(other.tarp_rez_)),
+          egz_rez_(other.egz_rez_),
+          galutinis_(other.galutinis_) {
         other.egz_rez_ = 0;
         other.galutinis_ = 0.0f;
     }
     
+    // 5. Destruktorius
     ~Studentas() {
         tarp_rez_.clear();
     }
     
+    // 6. Kopijavimo priskyrimas
     Studentas& operator=(const Studentas& other) {
         if (this != &other) {
-            vardas_ = other.vardas_;
-            pavarde_ = other.pavarde_;
+            Zmogus::operator=(other);
             tarp_rez_ = other.tarp_rez_;
             egz_rez_ = other.egz_rez_;
             galutinis_ = other.galutinis_;
@@ -53,10 +59,10 @@ public:
         return *this;
     }
     
+    // 7. Move priskyrimas
     Studentas& operator=(Studentas&& other) noexcept {
         if (this != &other) {
-            vardas_ = std::move(other.vardas_);
-            pavarde_ = std::move(other.pavarde_);
+            Zmogus::operator=(std::move(other));
             tarp_rez_ = std::move(other.tarp_rez_);
             egz_rez_ = other.egz_rez_;
             galutinis_ = other.galutinis_;
@@ -66,26 +72,31 @@ public:
         return *this;
     }
     
-    inline friend std::ostream& operator<<(std::ostream& os, const Studentas& studentas) {
-        os << std::left << std::setw(20) << studentas.vardas_
-           << std::setw(20) << studentas.pavarde_;
+    // === OVERRIDE VIRTUALŪS METODAI ===
+    
+    std::string getVardas() const override {
+        return vardas_;
+    }
+    
+    std::string getPavarde() const override {
+        return pavarde_;
+    }
+    
+    std::ostream& print(std::ostream& os) const override {
+        os << std::left << std::setw(20) << vardas_
+           << std::setw(20) << pavarde_;
         
-        const auto& tarp_rez = studentas.tarp_rez_;
-        for (int rez : tarp_rez) {
+        for (int rez : tarp_rez_) {
             os << std::setw(6) << rez;
         }
         
-        os << std::setw(6) << studentas.egz_rez_;
+        os << std::setw(6) << egz_rez_;
         return os;
     }
     
-    inline friend std::istream& operator>>(std::istream& is, Studentas& studentas) {
-        std::string vardas, pavarde;
-        if (is >> vardas >> pavarde) {
-            studentas.vardas_ = std::move(vardas);
-            studentas.pavarde_ = std::move(pavarde);
-            
-            studentas.tarp_rez_.clear();
+    std::istream& read(std::istream& is) override {
+        if (is >> vardas_ >> pavarde_) {
+            tarp_rez_.clear();
             std::vector<int> grades;
             int grade;
             while (is >> grade) {
@@ -93,16 +104,26 @@ public:
             }
             
             if (!grades.empty()) {
-                studentas.egz_rez_ = grades.back();
+                egz_rez_ = grades.back();
                 grades.pop_back();
-                studentas.tarp_rez_ = std::move(grades);
+                tarp_rez_ = std::move(grades);
             }
         }
         return is;
     }
     
-    inline std::string getVardas() const { return vardas_; }
-    inline std::string getPavarde() const { return pavarde_; }
+    // === I/O OPERATORIAI (friend) ===
+    
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& s) {
+        return s.print(os);
+    }
+    
+    friend std::istream& operator>>(std::istream& is, Studentas& s) {
+        return s.read(is);
+    }
+    
+    // === GETTER/SETTER ===
+    
     inline const std::vector<int>& getTarpRez() const { return tarp_rez_; }
     inline int getEgzRez() const { return egz_rez_; }
     inline float getGalutinis() const { return galutinis_; }
