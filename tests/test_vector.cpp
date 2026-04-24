@@ -285,3 +285,46 @@ TEST_CASE("Vector Memory Reallocation Counting", "[Vector][performance]") {
         REQUIRE(reallocations > 20);
     }
 }
+
+TEST_CASE("Vector Edge Cases", "[Vector][edge]") {
+    
+    SECTION("Empty vector operations") {
+        Vector<int> v;
+        REQUIRE(v.empty() == true);
+        REQUIRE(v.size() == 0);
+        REQUIRE(v.capacity() == 0);
+        
+        v.pop_back();  // Should not crash on empty
+        REQUIRE(v.size() == 0);
+    }
+    
+    SECTION("Large vector") {
+        Vector<int> v;
+        const size_t LARGE_SIZE = 1000000;
+        for (size_t i = 0; i < LARGE_SIZE; ++i) {
+            v.push_back(i);
+        }
+        REQUIRE(v.size() == LARGE_SIZE);
+        REQUIRE(v[0] == 0);
+        REQUIRE(v[LARGE_SIZE - 1] == LARGE_SIZE - 1);
+    }
+    
+    SECTION("Vector of strings") {
+        Vector<std::string> v;
+        v.push_back("hello");
+        v.push_back("world");
+        REQUIRE(v.size() == 2);
+        REQUIRE(v[0] == "hello");
+        REQUIRE(v[1] == "world");
+    }
+    
+    SECTION("Vector copy and modify") {
+        Vector<int> v1{1, 2, 3};
+        Vector<int> v2 = v1;
+        v2.push_back(4);
+        
+        REQUIRE(v1.size() == 3);
+        REQUIRE(v2.size() == 4);
+        REQUIRE(v1 != v2);
+    }
+}
