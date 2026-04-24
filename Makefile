@@ -58,10 +58,14 @@ test_vector: tests/test_vector.cpp Vector.h tests/catch.hpp
 test_vector_std: tests/test_vector_std.cpp Vector.h tests/catch.hpp
 	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o tests/test_vector_std tests/test_vector_std.cpp
 
+test_vector_iterators: tests/test_vector_iterators.cpp Vector.h tests/catch.hpp
+	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o tests/test_vector_iterators tests/test_vector_iterators.cpp
+
 run_tests: tests
 	./$(UNIT_TEST_BIN)
 	./tests/test_vector
 	./tests/test_vector_std
+	./tests/test_vector_iterators
 
 # Vector benchmark
 benchmark_vector: benchmark_vector.cpp Vector.h
