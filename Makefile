@@ -55,9 +55,13 @@ tests: $(UNIT_TEST_BIN) test_vector
 test_vector: tests/test_vector.cpp Vector.h tests/catch.hpp
 	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o tests/test_vector tests/test_vector.cpp
 
+test_vector_std: tests/test_vector_std.cpp Vector.h tests/catch.hpp
+	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o tests/test_vector_std tests/test_vector_std.cpp
+
 run_tests: tests
 	./$(UNIT_TEST_BIN)
 	./tests/test_vector
+	./tests/test_vector_std
 
 # Vector benchmark
 benchmark_vector: benchmark_vector.cpp Vector.h
