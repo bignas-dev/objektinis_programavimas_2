@@ -31,6 +31,14 @@ test: $(TARGET_STRUCT) $(TARGET_CLASS)
 	@echo "=== CLASS versija ==="
 	./$(TARGET_CLASS)
 
+test_v1.2: test_v1.2.cpp student.h
+	$(CXX) $(CXXFLAGS) -o test_v1.2 test_v1.2.cpp
+
+run_test_v1.2: test_v1.2
+	./test_v1.2
+
+test_all: test test_v1.2
+
 O1: CXXFLAGS = -O1 -std=c++17 -Wall
 O1: clean $(TARGET_STRUCT) $(TARGET_CLASS)
 
