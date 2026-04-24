@@ -1,68 +1,41 @@
-# objektinis_programavimas (v1.5)
+# Objektinis Programavimas (v1.5)
 
-Objektinio programavimo repozitorija. **V1.5** versija įgyvendina **abstrakčią bazinę klasę Žmogus** ir išvestinę **Studentas** klasę su pilna "Rule of Five" implementacija.
+Šiame projekte realizuota studentų duomenų apdorojimo sistema su abstrakčia bazine klase.
 
-## 🎯 V1.5 Naujovės
+## V1.5 Naujovės
 
-| Komponentas | Aprašymas | Statusas |
-|-------------|-----------|----------|
-| **Abstrakti klasė Žmogus** | Bazinė klasė su grynaisiais virtualiais metodais | ✅ Realizuota |
-| **Išvestinė klasė Studentas** | Paveldi iš Žmogus, realizuoja virtualius metodus | ✅ Realizuota |
-| **Rule of Five** | Visi 5 pagrindiniai metodai Studentas klasėje | ✅ Realizuota |
-| **I/O Operatoriai** | `operator<<` ir `operator>>` | ✅ Realizuota |
-| **Polimorfizmas** | Bazinės klasės rodyklės į išvestines klases | ✅ Realizuota |
-| **Testavimas** | Pilnas testų rinkinys (69 testai) | ✅ Realizuota |
-| **Dokumentacija** | Išsamus aprašymas su diagramomis | ✅ Realizuota |
-
-## 🎯 V1.2 Naujovės
-
-| Komponentas | Aprašymas | Statusas |
-|-------------|-----------|----------|
-| **Rule of Five** | Visi 5 pagrindiniai metodai | ✅ Realizuota |
-| **I/O Operatoriai** | `operator<<` ir `operator>>` | ✅ Realizuota |
-| **Testavimas** | Pilnas testų rinkinys (28 testai) | ✅ Realizuota |
-| **Dokumentacija** | Išsamus aprašymas su lentelėmis | ✅ Realizuota |
+- Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
+- Išvestinė klasė `Studentas` paveldinti iš `Žmogus`
+- Pilna "Rule of Five" implementacija
+- Įvesties/išvesties operatoriai
+- Polimorfizmo demonstracija
+- 69 testai (100% sėkmė)
 
 ## Sistemos specifikacijos
 
 | Parametras | Reikšmė |
 |------------|---------|
-| **CPU** | AMD Ryzen 5 5600H with Radeon Graphics |
-| **RAM** | 13 GB DDR4 |
-| **Diskas** | NVMe SSD 476.9 GB |
-| **OS** | Linux |
-| **Kompiliatorius** | g++ (C++17) |
-| **Optimizacija** | -O3 (numatytoji) |
+| CPU | AMD Ryzen 5 5600H |
+| RAM | 13 GB DDR4 |
+| OS | Linux |
+| Kompiliatorius | g++ (C++17) |
+| Optimizacija | -O3 |
 
-## Paleidimo instrukcijos
+## Paleidimas
 
 ```bash
-# Kompiliavimas
-make
-
-# Paleidimas
-make run
-
-# Struct vs Class spartos testai
-make test
-
-# Skirtingi optimizacijos lygiai
-make O1
-make O2
-make O3
-
-# Valymas
-make clean
+make              # Kompiliuoti
+make run          # Paleisti programą
+make test         # Struct vs Class testai
+make test_v1.5    # V1.5 testai
+make run_test_v1.5 # Paleisti V1.5 testus
+make test_all     # Visi testai
+make clean        # Išvalyti
 ```
 
-## Klasių Hierarchija (v1.5)
+## Klasių Struktūra
 
-### Abstrakti Bazinė Klasė: Žmogus
-
-V1.5 versijoje sukurta **abstrakti klasė `Žmogus`** kuri:
-- Turi grynuosius virtualius metodus (= 0)
-- **Negalima sukurti objekto** tipo `Žmogus`
-- Naudojama kaip bazė išvestinėms klasėms
+### Abstrakti klasė Žmogus
 
 ```cpp
 class Zmogus {
@@ -71,10 +44,7 @@ protected:
     std::string pavarde_;
 
 public:
-    // Grynas virtualus destruktorius
-    virtual ~Zmogus() = 0;
-    
-    // Grynieji virtualūs metodai
+    virtual ~Zmogus() = 0;  // Grynas virtualus destruktorius
     virtual std::string getVardas() const = 0;
     virtual std::string getPavarde() const = 0;
     virtual std::ostream& print(std::ostream& os) const = 0;
@@ -82,54 +52,37 @@ public:
 };
 ```
 
-**Svarbu:** Šis kodas **NEKOMPILIUOSI**:
+**Svarbu:** Negalima sukurti `Zmogus` objekto:
 ```cpp
-Zmogus z("Vardas", "Pavarde");  // KLAIDA: abstrakti klasė!
+Zmogus z("Vardas", "Pavarde");  // KLAIDA: abstrakti klasė
 ```
 
-### Išvestinė Klasė: Studentas
+### Išvestinė klasė Studentas
 
 ```
-┌─────────────────────────────────────┐
-│         ABSTRAKTI KLASĖ             │
-│              Žmogus                 │
-├─────────────────────────────────────┤
-│ protected:                          │
-│   - vardas_: string                 │
-│   - pavarde_: string                │
-├─────────────────────────────────────┤
-│ public:                             │
-│   + virtual ~Zmogus() = 0           │
-│   + virtual getVardas() = 0         │
-│   + virtual getPavarde() = 0        │
-│   + virtual print() = 0             │
-│   + virtual read() = 0              │
-└─────────────────────────────────────┘
-                  ↑
-                  │ public paveldėjimas
-                  │
-┌─────────────────────────────────────┐
-│         IŠVESTINĖ KLASĖ             │
-│             Studentas               │
-├─────────────────────────────────────┤
-│ private:                            │
-│   - tarp_rez_: vector<int>          │
-│   - egz_rez_: int                   │
-│   - galutinis_: float               │
-├─────────────────────────────────────┤
-│ public:                             │
-│   + Rule of Five (7 metodai)        │
-│   + override getVardas()            │
-│   + override getPavarde()           │
-│   + override print()                │
-│   + override read()                 │
-└─────────────────────────────────────┘
+Zmogus (abstrakti)
+    ↑
+    | public paveldėjimas
+    |
+Studentas
+    - tarp_rez_: vector<int>
+    - egz_rez_: int
+    - galutinis_: float
 ```
 
-### Polimorfizmo Pavyzdys
+Studentas klasė realizuoja visus virtualius metodus ir turi Rule of Five metodus:
+- Numatytasis konstruktorius
+- Parametrinis konstruktorius
+- Kopijavimo konstruktorius
+- Move konstruktorius
+- Destruktorius
+- Kopijavimo priskyrimo operatorius
+- Move priskyrimo operatorius
+
+### Polimorfizmo pavyzdys
 
 ```cpp
-// Galima naudoti bazinės klasės rodyklę
+// Bazinės klasės rodyklė į Studentas
 Zmogus* z = new Studentas("Jonas", "Jonaitis");
 std::cout << z->getVardas();  // "Jonas"
 delete z;
@@ -145,493 +98,115 @@ for (Zmogus* p : people) {
 }
 ```
 
-## Studentas klasė
+## Įvestis/Išvestis
 
-### Rule of Five Realizacija
-
-V1.2 versijoje `Studentas` klasė turi pilną **"Rule of Five"** implementaciją:
-
-| # | Metodas | Tipas | Paskirtis |
-|---|---------|-------|-----------|
-| 1 | `Studentas()` | Konstruktorius | Sukuria tuščią studento objektą |
-| 2 | `Studentas(vardas, pavarde)` | Konstruktorius | Sukuria su nurodytu vardu ir pavarde |
-| 3 | `Studentas(const Studentas& other)` | Kopijavimo konstr. | Sukuria nepriklausomą kopiją (gili kopija) |
-| 4 | `Studentas(Studentas&& other)` | Move konstr. | Perkelia resursus be kopijavimo |
-| 5 | `~Studentas()` | Destruktorius | Išvalo atmintį (tarp_rez_ vector) |
-| 6 | `operator=(const Studentas&)` | Kopijavimo = | Kopijavimo priskyrimas |
-| 7 | `operator=(Studentas&&)` | Move = | Move priskyrimas |
+### operator<<
 
 ```cpp
-class Studentas {
-private:
-    std::string vardas_;
-    std::string pavarde_;
-    std::vector<int> tarp_rez_;
-    int egz_rez_;
-    float galutinis_;
+Studentas s("Jonas", "Jonaitis");
+s.addTarpRez(8);
+s.addTarpRez(9);
+s.setEgzRez(10);
 
-public:
-    // === RULE OF FIVE ===
-    Studentas();                                    // 1. Numatytasis konstruktorius
-    Studentas(std::string vardas, std::string pavarde);  // 2. Parametrinis
-    Studentas(const Studentas& other);              // 3. Kopijavimo konstruktorius
-    Studentas(Studentas&& other) noexcept;          // 4. Move konstruktorius
-    ~Studentas();                                   // 5. Destruktorius
-    
-    Studentas& operator=(const Studentas& other);   // 6. Kopijavimo priskyrimas
-    Studentas& operator=(Studentas&& other) noexcept; // 7. Move priskyrimas
-    
-    // === I/O OPERATORIAI ===
-    friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
-    friend std::istream& operator>>(std::istream& is, Studentas& s);
-    
-    // === GETTER/SETTER ===
-    std::string getVardas() const;
-    std::string getPavarde() const;
-    const std::vector<int>& getTarpRez() const;
-    int getEgzRez() const;
-    float getGalutinis() const;
-    
-    void setVardas(const std::string& vardas);
-    void setPavarde(const std::string& pavarde);
-    void addTarpRez(int rez);
-    void setEgzRez(int rez);
-    void setGalutinis(float gal);
-    void clearTarpRez();
-};
+std::cout << s;  // Arba: failas << s;
 ```
 
-### Įvesties/Išvesties Operatoriai
-
-#### Išvestis (`operator<<`)
-
-Išveda studento duomenis formatuota eilute į bet kurį `ostream` (ekraną arba failą).
-
-| Išvesties tipas | Kodo pavyzdys | Rezultatas |
-|-----------------|---------------|------------|
-| Į ekraną | `std::cout << studentas;` | Formatuota lentelė |
-| Į failą | `failas << studentas;` | Tas pats formatas |
-
-**Formatas:**
+Formatas:
 ```
-Vardas              Pavarde           ND1   ND2   ND3   ND4   ND5   Egz   Galutinis
-Testas              Testauskas        8     9     7     10    6     10    9.20
+Vardas              Pavarde           8     9     10
+Jonas               Jonaitis          8     9     10
 ```
 
-#### Įvestis (`operator>>`)
+### operator>>
 
-Nuskaito studento duomenis iš bet kurio `istream` (klaviatūros arba failo).
-
-| Įvesties tipas | Kodo pavyzdys | Aprašymas |
-|----------------|---------------|-----------|
-| Iš klaviatūros | `std::cin >> studentas;` | Rankinis įvedimas |
-| Iš failo | `failas >> studentas;` | Automatinis nuskaitymas |
-
-**Įvesties formatas:**
-```
-Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egz
-```
-
-**Pavyzdys:**
 ```cpp
-// Rankinis įvedimas
 Studentas s;
-std::cout << "Įveskite studento duomenis: ";
-std::cin >> s;
-
-// Automatinis nuskaitymas iš failo
-std::ifstream file("studentai.txt");
-Studentas s;
-file >> s;
-file.close();
+std::cin >> s;  // Arba: failas >> s;
 ```
 
-## Duomenų Srautų Diagrama
+Įvesties formatas: `Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egz`
 
-### Įvesties Būdai
+## Testai
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    ĮVESTIES BŪDAI                           │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  1. RANKINIS BŪDAS (per operator>>)                         │
-│     ┌──────────┐     std::cin >> s      ┌──────────────┐   │
-│     │ Klaviatūra│ ────────────────────→ │ Studentas s  │   │
-│     └──────────┘                        └──────────────┘   │
-│                                                             │
-│  2. AUTOMATINIS BŪDAS (iš failo)                            │
-│     ┌──────────┐     failas >> s        ┌──────────────┐   │
-│     │  Failas  │ ────────────────────→ │ Studentas s  │   │
-│     └──────────┘                        └──────────────┘   │
-│                                                             │
-│  3. GENERAVIMAS (programinis)                               │
-│     ┌──────────┐     s.addTarpRez()     ┌──────────────┐   │
-│     │  Kodas   │ ────────────────────→ │ Studentas s  │   │
-│     └──────────┘     s.setEgzRez()      └──────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Išvesties Būdai
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                   IŠVESTIES BŪDAI                           │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  1. Į EKRANĄ (per operator<<)                               │
-│     ┌──────────────┐    std::cout << s    ┌──────────┐     │
-│     │ Studentas s  │ ──────────────────→  │  Ekranas │     │
-│     └──────────────┘                      └──────────┘     │
-│                                                             │
-│  2. Į FAILĄ (per operator<<)                                │
-│     ┌──────────────┐    failas << s       ┌──────────┐     │
-│     │ Studentas s  │ ──────────────────→  │  Failas  │     │
-│     └──────────────┘                      └──────────┘     │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## Testų Rezultatai
-
-### V1.5 Testų Rinkinys
+### V1.5 Testų rezultatai
 
 Testų failas: `test_v1.5.cpp`
 
-| Testų Kategorija | Testų Skaičius | Tikrinami Metodai |
-|------------------|----------------|-------------------|
-| Abstrakti klasė Žmogus | 4 | Negalima sukurti objekto |
-| Numatytasis konstruktorius | 5 | `Studentas()` |
-| Parametrinis konstruktorius | 4 | `Studentas(v, p)` |
-| Kopijavimo konstruktorius | 9 | `Studentas(const Studentas&)` |
-| Move konstruktorius | 5 | `Studentas(Studentas&&)` |
-| Kopijavimo priskyrimas | 6 | `operator=(const Studentas&)` |
-| Move priskyrimas | 5 | `operator=(Studentas&&)` |
-| Išvesties operatorius | 4 | `operator<<` |
-| Įvesties operatorius | 6 | `operator>>` |
-| Failo I/O | 4 | `operator<<` + `operator>>` |
-| Destruktorius | 2 | `~Studentas()` |
-| Polimorfizmas | 7 | `Zmogus*` → `Studentas` |
-| Keliu studentų I/O | 4 | Vector<Studentas> |
-| Integracijos testas | 4 | Visi metodai kartu |
-| **IŠ VISO** | **69** | **100% sėkmė** |
+| Kategorija | Testai |
+|------------|--------|
+| Abstrakti klasė Žmogus | 4 |
+| Konstruktoriai | 14 |
+| Priskyrimo operatoriai | 11 |
+| I/O operatoriai | 10 |
+| Failo I/O | 4 |
+| Destruktorius | 2 |
+| Polimorfizmas | 7 |
+| Keliu studentų I/O | 4 |
+| Integracija | 4 |
+| **Iš viso** | **69** |
 
-### V1.2 Testų Rinkinys
+Visi 69 testai praeina (100% sėkmė).
 
-Testų failas: `test_v1.2.cpp`
+## Strukt vs Class spartos testai (v1.1)
 
-Testų failas: `test_v1.2.cpp`
+Tyrimas su 100k ir 1M įrašų, O3 optimizacija:
 
-| Testų Kategorija | Testų Skaičius | Tikrinami Metodai |
-|------------------|----------------|-------------------|
-| Numatytasis konstruktorius | 5 | `Studentas()` |
-| Parametrinis konstruktorius | 4 | `Studentas(v, p)` |
-| Kopijavimo konstruktorius | 8 | `Studentas(const Studentas&)` |
-| Move konstruktorius | 5 | `Studentas(Studentas&&)` |
-| Kopijavimo priskyrimas | 6 | `operator=(const Studentas&)` |
-| Move priskyrimas | 5 | `operator=(Studentas&&)` |
-| Išvesties operatorius | 4 | `operator<<` |
-| Įvesties operatorius | 6 | `operator>>` |
-| Failo I/O | 4 | `operator<<` + `operator>>` |
-| Keliu studentų I/O | 4 | Vector<Studentas> |
-| Destruktorius | 2 | `~Studentas()` |
-| Integracijos testas | 4 | Visi metodai kartu |
-| **IŠ VISO** | **57** | **Visi Rule of Five + I/O** |
+| Versija | 100k | 1M | Exe dydis |
+|---------|------|-----|-----------|
+| struct | 0.0812 s | 0.8562 s | 67 KB |
+| class | 0.0863 s | 0.9269 s | 67 KB |
 
-### Testų Vykdymo Rezultatai
+Struct versija ~6% greitesnė.
 
-```
-╔══════════════════════════════════════════════════════════╗
-║     V1.2 STUDENTAS KLASĖS TESTAI (Rule of Five + I/O)    ║
-╚══════════════════════════════════════════════════════════╝
+## Konteineriai
 
---- Numatytasis konstruktorius ---
-✅ [PASS] Numatytasis konstruktorius: vardas
-✅ [PASS] Numatytasis konstruktorius: pavarde
-✅ [PASS] Numatytasis konstruktorius: tarp_rez
-✅ [PASS] Numatytasis konstruktorius: egz_rez
-✅ [PASS] Numatytasis konstruktorius: galutinis
-
---- Parametrinis konstruktorius ---
-✅ [PASS] Parametrinis konstruktorius: vardas
-✅ [PASS] Parametrinis konstruktorius: pavarde
-✅ [PASS] Parametrinis konstruktorius: tarp_rez
-✅ [PASS] Parametrinis konstruktorius: egz_rez
-
---- Kopijavimo konstruktorius ---
-✅ [PASS] Kopijavimo konstruktorius: vardas
-✅ [PASS] Kopijavimo konstruktorius: pavarde
-✅ [PASS] Kopijavimo konstruktorius: tarp_rez dydis
-✅ [PASS] Kopijavimo konstruktorius: pirmas rez
-✅ [PASS] Kopijavimo konstruktorius: antras rez
-✅ [PASS] Kopijavimo konstruktorius: egz_rez
-✅ [PASS] Kopijavimo konstruktorius: galutinis
-✅ [PASS] Kopijavimo konstruktorius: nepriklausomumas
-
---- Move (perkėlimo) konstruktorius ---
-✅ [PASS] Move konstruktorius: vardas perkeltas
-✅ [PASS] Move konstruktorius: pavarde perkelta
-✅ [PASS] Move konstruktorius: tarp_rez perkeltas
-✅ [PASS] Move konstruktorius: egz_rez perkeltas
-✅ [PASS] Move konstruktorius: galutinis perkeltas
-
---- Kopijavimo priskyrimo operatorius ---
-✅ [PASS] Kopijavimo =: vardas
-✅ [PASS] Kopijavimo =: pavarde
-✅ [PASS] Kopijavimo =: tarp_rez dydis
-✅ [PASS] Kopijavimo =: pirmas rez
-✅ [PASS] Kopijavimo =: galutinis
-✅ [PASS] Self-assignment: apsauga
-
---- Move priskyrimo operatorius ---
-✅ [PASS] Move =: vardas perkeltas
-✅ [PASS] Move =: pavarde perkelta
-✅ [PASS] Move =: tarp_rez perkeltas
-✅ [PASS] Move =: egz_rez perkeltas
-✅ [PASS] Move =: galutinis perkeltas
-
---- Išvesties operatorius (operator<<) ---
-✅ [PASS] operator<<: vardas išvestas
-✅ [PASS] operator<<: pavarde išvesta
-✅ [PASS] operator<<: egz_rez išvestas
-✅ [PASS] operator<<: tarp_rez išvesti
-   Išvestis: Testas              Testauskas          8     9     7     10
-
---- Įvesties operatorius (operator>>) ---
-✅ [PASS] operator>>: vardas nuskaitytas
-✅ [PASS] operator>>: pavarde nuskaityta
-✅ [PASS] operator>>: tarp_rez dydis (5)
-✅ [PASS] operator>>: pirmas rez
-✅ [PASS] operator>>: paskutinis tarp_rez
-✅ [PASS] operator>>: egz_rez nuskaitytas
-
---- Failo įvestis/išvestis ---
-✅ [PASS] Failo IO: vardas
-✅ [PASS] Failo IO: pavarde
-✅ [PASS] Failo IO: tarp_rez dydis
-✅ [PASS] Failo IO: egz_rez
-
---- Keliu studentu įvestis/išvestis ---
-✅ [PASS] Keliu studentu IO: kiekis
-✅ [PASS] Keliu studentu IO: pirmas vardas
-✅ [PASS] Keliu studentu IO: antras vardas
-✅ [PASS] Keliu studentu IO: trecias vardas
-
---- Destruktorius ---
-✅ [PASS] Destructorius: nekrenta sunaikinant objektą
-✅ [PASS] Destructorius: nekrenta sunaikinant dinamini objektą
-
---- Pilnas integracijos testas ---
-✅ [PASS] Integracijos testas: vardas išvestas
-✅ [PASS] Integracijos testas: pavarde išvesta
-✅ [PASS] Integracijos testas: pilnas ciklas
-   Galutinė išvestis: Integracija         Testas              7     8     9     10
-
-╔══════════════════════════════════════════════════════════╗
-║                    REZULTATAI                            ║
-╠══════════════════════════════════════════════════════════╣
-║  Iš viso testų:                                      57 ║
-║  Sėkmingai:                                          57 ║
-║  Nesėkmingai:                                         0 ║
-║  Sėkmės rodiklis:                                   100.0% ║
-╚══════════════════════════════════════════════════════════╝
-
-🎉 VISI TESTAI SĖKMINGI! V1.2 paruošta release'ui.
-```
-
-## Paleidimo Instrukcijos (Atnaujinta)
-
-```bash
-# Pagrindinis kompiliavimas
-make
-
-# V1.2 testų kompiliavimas
-make test_v1.2
-
-# V1.2 testų paleidimas
-make run_test_v1.2
-
-# V1.5 testų kompiliavimas
-make test_v1.5
-
-# V1.5 testų paleidimas
-make run_test_v1.5
-
-# Visi testai (struct + class + v1.2 + v1.5)
-make test_all
-
-# Paleidimas
-make run
-
-# Struct vs Class spartos testai
-make test
-
-# Skirtingi optimizacijos lygiai
-make O1
-make O2
-make O3
-
-# Valymas
-make clean
-```
-
-## Struct vs Class spartos palyginimas
-
-Tyrimas atliktas su:
-- **Konteineris:** std::vector
-- **Strategija:** 3 (stable_partition)
-- **Failų dydžiai:** 100 000, 1 000 000 įrašų
-
-### O1 optimizacija
-
-| Versija | Įrašai | Bendras laikas | Exe dydis |
-|---------|--------|----------------|-----------|
-| struct  | 100 000 | 0.0819 s | 68 KB |
-| class   | 100 000 | 0.0888 s | 68 KB |
-| struct  | 1 000 000 | 0.8712 s | 68 KB |
-| class   | 1 000 000 | 0.9523 s | 68 KB |
-
-### O2 optimizacija
-
-| Versija | Įrašai | Bendras laikas | Exe dydis |
-|---------|--------|----------------|-----------|
-| struct  | 100 000 | 0.0851 s | 60 KB |
-| class   | 100 000 | 0.0929 s | 60 KB |
-| struct  | 1 000 000 | 0.8869 s | 60 KB |
-| class   | 1 000 000 | 0.9663 s | 60 KB |
-
-### O3 optimizacija
-
-| Versija | Įrašai | Bendras laikas | Exe dydis |
-|---------|--------|----------------|-----------|
-| struct  | 100 000 | 0.0812 s | 67 KB |
-| class   | 100 000 | 0.0863 s | 67 KB |
-| struct  | 1 000 000 | 0.8562 s | 67 KB |
-| class   | 1 000 000 | 0.9269 s | 67 KB |
-
-## Optimizacijos flag'ų palyginimas
-
-### Struct versija
-
-| Flag | 100k laikas | 1M laikas | Exe dydis |
-|------|-------------|-----------|-----------|
-| O1   | 0.0819 s | 0.8712 s | 68 KB |
-| O2   | 0.0851 s | 0.8869 s | 60 KB |
-| O3   | 0.0812 s | 0.8562 s | 67 KB |
-
-### Class versija
-
-| Flag | 100k laikas | 1M laikas | Exe dydis |
-|------|-------------|-----------|-----------|
-| O1   | 0.0888 s | 0.9523 s | 68 KB |
-| O2   | 0.0929 s | 0.9663 s | 60 KB |
-| O3   | 0.0863 s | 0.9269 s | 67 KB |
-
-## Išvados
-
-### Struct vs Class
-
-1. **Spartuma:** Struct versija yra ~6-8% greitesnė už Class versiją dėl paprastesnės atminties valdymo struktūros (nereikia kvieti getter/setter metodų).
-
-2. **Exe dydžiai:** Beveik tapatūs abiejose versijose. O2 sukuria mažiausius failus.
-
-3. **Optimizavimas:** O3 yra greičiausias, O2 - mažiausias exe failas.
-
-### Rekomendacija
-
-- Naudokite **O3** optimizaciją, jei svarbiausias greitis
-- Naudokite **O2** optimizaciją, jei svarbiausias failo dydis
-- Class versija rekomenduojama, kai reikalingas geresnis inkapsuliavimas ir duomenų apsauga
-
-## Konteineriai (v1.0 tyrimai)
-
-Programa palaiko tris C++ STL konteinerių tipus:
-
-| Konteineris | Charakteristika |
-|-------------|-----------------|
-| **std::vector** | Dinaminis masyvas, greita O(1) prieiga, lėtas įterpimas/trynimas viduryje |
-| **std::list** | Dvikryptis sąrašas, lėta O(n) prieiga, greitas įterpimas/trynimas |
-| **std::deque** | Dvikryptė eilė, greita prieiga, efektyvus įterpimas abiejose pusėse |
+Programa naudoja tris STL konteinerius:
+- `std::vector` - greita prieiga, lėtas trynimas
+- `std::list` - lėta prieiga, greitas trynimas
+- `std::deque` - balansas tarp vector ir list
 
 ## Strategijos
 
-### 1 strategija: Du nauji konteineriai
-Bendro studentų konteinerio skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų".
-
-### 2 strategija: Vienas naujas + trynimas
-Bendro studentų konteinerio skaidymas panaudojant tik vieną naują konteinerį: "vargšiukai".
-
-### 3 strategija: std::stable_partition / splice
-Optimizuotas skaidymas naudojant C++ STL algoritmus (greičiausia).
+1. **Du nauji konteineriai** - skaidymas į "vargšiukus" ir "kietiakus"
+2. **Vienas naujas + trynimas** - sukurti vargšiukus, trinti iš originalo
+3. **stable_partition** - optimizuotas skaidymas (greičiausia)
 
 ## Failų struktūra
 
 ```
 .
-├── main.cpp           # Pagrindinė programa su tyrimais
-├── main_struct.cpp    # Struct versijos spartos testai
-├── main_class.cpp     # Class versijos spartos testai
+├── main.cpp           # Pagrindinė programa
 ├── benchmark.h        # Benchmark struktūros
 ├── benchmark.cpp      # Benchmark implementacija
-├── zmogus.h           # Abstrakti bazinė klasė Žmogus (v1.5)
-├── student.h          # Studentas klasė (paveldi iš Zmogus)
-├── student_struct.h   # Mokinys struct (backup)
-├── test_v1.2.cpp      # V1.2 testai (Rule of Five + I/O)
-├── test_v1.5.cpp      # V1.5 testai (Abstrakti klasė + polimorfizmas)
-├── Makefile           # Kompiliavimo instrukcija
-└── README.md          # Šis dokumentas
+├── zmogus.h           # Abstrakti bazinė klasė (v1.5)
+├── student.h          # Studentas klasė
+├── test_v1.5.cpp      # V1.5 testai
+├── test_v1.2.cpp      # V1.2 testai
+├── Makefile
+└── README.md
 ```
 
-## Versijų Istorija
+## Versijų istorija
 
-| Versija | Data | Aprašymas |
-|---------|------|-----------|
-| v1.0 | 2026-04 | Pradinė versija su struct Mokinys, 3 konteineriais, 3 strategijomis |
-| v1.1 | 2026-04 | Konversija į class Studentas su pilnais konstruktoriais/destruktoriumi |
-| v1.2 | 2026-04-24 | **Rule of Five** + **I/O Operatoriai** + pilnas testavimas |
-| v1.5 | 2026-04-24 | **Abstrakti klasė Žmogus** + **Studentas išvestinė** + polimorfizmas |
+| Versija | Aprašymas |
+|---------|-----------|
+| v1.0 | Pradinė versija su struct Mokinys |
+| v1.1 | Konversija į class Studentas |
+| v1.2 | Rule of Five + I/O operatoriai |
+| v1.5 | Abstrakti klasė Žmogus + Studentas išvestinė |
 
-### V1.5 Detali Informacija
+## V1.5 Detaliau
 
-**Šaka:** `v1.5`  
-**Release:** `v1.5 - Abstrakti klasė Žmogus ir Studentas išvestinė`
+**Šaka:** `v1.5`
 
-**Realizuoti metodai:**
-- ✅ Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
-- ✅ Išvestinė klasė `Studentas : public Zmogus`
-- ✅ 7 Rule of Five metodai (išlaikyti iš v1.2)
-- ✅ Virtualių metodų override (`getVardas`, `getPavarde`, `print`, `read`)
-- ✅ 69 testai visiems metodams
-- ✅ Polimorfizmo demonstracija
+**Realizuota:**
+- Abstrakti bazinė klasė `Žmogus` su grynaisiais virtualiais metodais
+- Išvestinė klasė `Studentas : public Zmogus`
+- 7 Rule of Five metodai
+- Virtualių metodų override
+- 69 testai visiems metodams
 
-**Failai:**
-| Failas | Paskirtis |
-|--------|-----------|
-| `zmogus.h` | Abstrakti bazinė klasė Žmogus |
-| `student.h` | Studentas klasė paveldinti iš Zmogus |
-| `test_v1.5.cpp` | Pilnas testų rinkinys (69 testai) |
-| `Makefile` | Atnaujintas su test_v1.5 target'ais |
-| `README.md` | Išsami dokumentacija su diagramomis |
-
-### V1.2 Detali Informacija
-| v1.5 | 2026-04-24 | **Abstrakti klasė Žmogus** + **Studentas išvestinė** + polimorfizmas |
-
-### V1.2 Detali Informacija
-
-**Šaka:** `v1.2`  
-**Release:** `v1.2 - Rule of Five ir I/O Operatoriai`
-
-**Realizuoti metodai:**
-- ✅ 7 Rule of Five metodai (3 konstruktoriai, 1 destruktorius, 2 priskyrimo operatoriai, 1 move konstruktorius)
-- ✅ 2 I/O operatoriai (`operator<<`, `operator>>`)
-- ✅ 48 testai visiems metodams
-- ✅ Išsami dokumentacija
-
-**Failai:**
-| Failas | Paskirtis |
-|--------|-----------|
-| `student.h` | Studentas klasė su Rule of Five ir I/O |
-| `test_v1.2.cpp` | Pilnas testų rinkinys |
-| `Makefile` | Atnaujintas su test_v1.2 target'ais |
-| `README.md` | Išsami dokumentacija su lentelėmis |
+**Pagrindiniai failai:**
+- `zmogus.h` - abstrakti bazinė klasė
+- `student.h` - Studentas klasė
+- `test_v1.5.cpp` - testai
