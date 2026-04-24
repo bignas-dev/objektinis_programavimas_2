@@ -4,7 +4,7 @@ var hierarchy =
     [ "GenerationResult", "structGenerationResult.html", null ],
     [ "Mokinys", "structMokinys.html", null ],
     [ "ProcessingResult", "structProcessingResult.html", null ],
-    [ "V15Test", "classV15Test.html", null ],
+    [ "Vector&lt; T &gt;", "classVector.html", null ],
     [ "Zmogus", "classZmogus.html", [
       [ "Studentas", "classStudentas.html", null ]
     ] ]

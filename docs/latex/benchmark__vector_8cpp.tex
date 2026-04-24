@@ -1,0 +1,291 @@
+\doxysection{benchmark\+\_\+vector.\+cpp File Reference}
+\hypertarget{benchmark__vector_8cpp}{}\label{benchmark__vector_8cpp}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+
+
+\doxylink{classVector}{Vector} vs std::\+vector efektyvumo palyginimas.  
+
+
+{\ttfamily \+\#include "{}Vector.\+h"{}}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{benchmark__vector_8cpp_aab0a749241244d13922556533aeb7069}{print\+\_\+header}} ()
+\item 
+void \doxymbox{\hyperlink{benchmark__vector_8cpp_a534071dce9fb420db0cc68670d343691}{print\+\_\+result}} (const \doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} \&r)
+\item 
+\doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} \doxymbox{\hyperlink{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}{benchmark\+\_\+push\+\_\+back}} (size\+\_\+t size, const std::\+string \&name)
+\item 
+\doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} \doxymbox{\hyperlink{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58}{benchmark\+\_\+push\+\_\+back\+\_\+no\+\_\+reserve}} (size\+\_\+t size, const std::\+string \&name)
+\item 
+size\+\_\+t \doxymbox{\hyperlink{benchmark__vector_8cpp_a6c017ba2a02a1fae694d6afab4e4d162}{count\+\_\+reallocations\+\_\+push\+\_\+back}} (size\+\_\+t size)
+\item 
+int \doxymbox{\hyperlink{benchmark__vector_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classVector}{Vector} vs std::\+vector efektyvumo palyginimas. 
+
+
+
+Definition in file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{benchmark__vector_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!benchmark\_push\_back@{benchmark\_push\_back}}
+\index{benchmark\_push\_back@{benchmark\_push\_back}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{benchmark\_push\_back()}{benchmark\_push\_back()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a} 
+\doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} benchmark\+\_\+push\+\_\+back (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size}{, }\item[{const std::\+string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00037}{37}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ result;}
+\DoxyCodeLine{00039\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a69c9bf3dfe8ad79f18f6b7c3a7c06ba1}{test\_name}}\ =\ name;}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ std::vector\ benchmark}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<int>\ v1;}
+\DoxyCodeLine{00044\ \ \ \ \ v1.reserve(size);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ v1.push\_back(i);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00049\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a4d82dca1ecbb31eb50dc662b17836c81}{std\_vector\_time}}\ =\ duration<double,\ std::milli>(end\ -\/\ start).count();}
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Vector\ benchmark}}
+\DoxyCodeLine{00052\ \ \ \ \ start\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00053\ \ \ \ \ \doxymbox{\hyperlink{classVector}{Vector<int>}}\ v2;}
+\DoxyCodeLine{00054\ \ \ \ \ v2.\doxymbox{\hyperlink{classVector_afa0c4c5f0f2d2d7940180fbed0f46bc4}{reserve}}(size);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ v2.\doxymbox{\hyperlink{classVector_a4415960a83615855ec32f8169f641786}{push\_back}}(i);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ end\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00059\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a97eec7bbffd368e71b67f173ad01a0f8}{vector\_time}}\ =\ duration<double,\ std::milli>(end\ -\/\ start).count();}
+\DoxyCodeLine{00060\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_af9575aaf5f677ed9b2812038273f8e51}{speedup}}\ =\ result.\doxymbox{\hyperlink{structBenchmarkResult_a4d82dca1ecbb31eb50dc662b17836c81}{std\_vector\_time}}\ /\ result.\doxymbox{\hyperlink{structBenchmarkResult_a97eec7bbffd368e71b67f173ad01a0f8}{vector\_time}};}
+\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+\Hypertarget{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!benchmark\_push\_back\_no\_reserve@{benchmark\_push\_back\_no\_reserve}}
+\index{benchmark\_push\_back\_no\_reserve@{benchmark\_push\_back\_no\_reserve}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{benchmark\_push\_back\_no\_reserve()}{benchmark\_push\_back\_no\_reserve()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58} 
+\doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} benchmark\+\_\+push\+\_\+back\+\_\+no\+\_\+reserve (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size}{, }\item[{const std::\+string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00066}{66}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \doxymbox{\hyperlink{structBenchmarkResult}{BenchmarkResult}}\ result;}
+\DoxyCodeLine{00068\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a69c9bf3dfe8ad79f18f6b7c3a7c06ba1}{test\_name}}\ =\ name;}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ std::vector\ benchmark\ (no\ reserve)}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<int>\ v1;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ v1.push\_back(i);}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00077\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a4d82dca1ecbb31eb50dc662b17836c81}{std\_vector\_time}}\ =\ duration<double,\ std::milli>(end\ -\/\ start).count();}
+\DoxyCodeLine{00078\ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Vector\ benchmark\ (no\ reserve)}}
+\DoxyCodeLine{00080\ \ \ \ \ start\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00081\ \ \ \ \ \doxymbox{\hyperlink{classVector}{Vector<int>}}\ v2;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ v2.\doxymbox{\hyperlink{classVector_a4415960a83615855ec32f8169f641786}{push\_back}}(i);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ end\ =\ high\_resolution\_clock::now();}
+\DoxyCodeLine{00086\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_a97eec7bbffd368e71b67f173ad01a0f8}{vector\_time}}\ =\ duration<double,\ std::milli>(end\ -\/\ start).count();}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ result.\doxymbox{\hyperlink{structBenchmarkResult_af9575aaf5f677ed9b2812038273f8e51}{speedup}}\ =\ result.\doxymbox{\hyperlink{structBenchmarkResult_a4d82dca1ecbb31eb50dc662b17836c81}{std\_vector\_time}}\ /\ result.\doxymbox{\hyperlink{structBenchmarkResult_a97eec7bbffd368e71b67f173ad01a0f8}{vector\_time}};}
+\DoxyCodeLine{00089\ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00091\ \}}
+
+\end{DoxyCode}
+\Hypertarget{benchmark__vector_8cpp_a6c017ba2a02a1fae694d6afab4e4d162}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!count\_reallocations\_push\_back@{count\_reallocations\_push\_back}}
+\index{count\_reallocations\_push\_back@{count\_reallocations\_push\_back}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{count\_reallocations\_push\_back()}{count\_reallocations\_push\_back()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_a6c017ba2a02a1fae694d6afab4e4d162} 
+size\+\_\+t count\+\_\+reallocations\+\_\+push\+\_\+back (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00093}{93}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ reallocations\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ old\_capacity\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \doxymbox{\hyperlink{classVector}{Vector<int>}}\ v;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v.\doxymbox{\hyperlink{classVector_a85c39fed5822d2a03a3250336039c933}{capacity}}()\ !=\ old\_capacity)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ reallocations++;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ old\_capacity\ =\ v.\doxymbox{\hyperlink{classVector_a85c39fed5822d2a03a3250336039c933}{capacity}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ v.\doxymbox{\hyperlink{classVector_a4415960a83615855ec32f8169f641786}{push\_back}}(i);}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ reallocations;}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}
+\Hypertarget{benchmark__vector_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!main@{main}}
+\index{main@{main}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00109}{109}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \doxymbox{\hyperlink{benchmark__vector_8cpp_aab0a749241244d13922556533aeb7069}{print\_header}}();}
+\DoxyCodeLine{00111\ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ std::vector<BenchmarkResult>\ results;}
+\DoxyCodeLine{00113\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===\ PUSH\_BACK\ (su\ reserve)\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00115\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(25)\ <<\ \textcolor{stringliteral}{"{}Testas"{}}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::right\ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}std::vector"{}}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}Vector"{}}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Speedup\(\backslash\)n"{}};}
+\DoxyCodeLine{00119\ \ \ \ \ std::cout\ <<\ std::string(59,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00120\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ Benchmark\ with\ reserve}}
+\DoxyCodeLine{00122\ \ \ \ \ results.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}{benchmark\_push\_back}}(10000,\ \textcolor{stringliteral}{"{}10K\ elements"{}}));}
+\DoxyCodeLine{00123\ \ \ \ \ results.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}{benchmark\_push\_back}}(100000,\ \textcolor{stringliteral}{"{}100K\ elements"{}}));}
+\DoxyCodeLine{00124\ \ \ \ \ results.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}{benchmark\_push\_back}}(1000000,\ \textcolor{stringliteral}{"{}1M\ elements"{}}));}
+\DoxyCodeLine{00125\ \ \ \ \ results.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_a0e424a88ce2ada6c5a281da74dee531a}{benchmark\_push\_back}}(10000000,\ \textcolor{stringliteral}{"{}10M\ elements"{}}));}
+\DoxyCodeLine{00126\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{benchmark__vector_8cpp_a534071dce9fb420db0cc68670d343691}{print\_result}}(r);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n===\ PUSH\_BACK\ (be\ reserve)\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00132\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(25)\ <<\ \textcolor{stringliteral}{"{}Testas"{}}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::right\ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}std::vector"{}}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}Vector"{}}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Speedup\(\backslash\)n"{}};}
+\DoxyCodeLine{00136\ \ \ \ \ std::cout\ <<\ std::string(59,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00137\ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ std::vector<BenchmarkResult>\ results\_no\_reserve;}
+\DoxyCodeLine{00139\ \ \ \ \ results\_no\_reserve.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58}{benchmark\_push\_back\_no\_reserve}}(10000,\ \textcolor{stringliteral}{"{}10K\ elements"{}}));}
+\DoxyCodeLine{00140\ \ \ \ \ results\_no\_reserve.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58}{benchmark\_push\_back\_no\_reserve}}(100000,\ \textcolor{stringliteral}{"{}100K\ elements"{}}));}
+\DoxyCodeLine{00141\ \ \ \ \ results\_no\_reserve.push\_back(\doxymbox{\hyperlink{benchmark__vector_8cpp_ab2a1788118669980720108ca5b57fd58}{benchmark\_push\_back\_no\_reserve}}(1000000,\ \textcolor{stringliteral}{"{}1M\ elements"{}}));}
+\DoxyCodeLine{00142\ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results\_no\_reserve)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{benchmark__vector_8cpp_a534071dce9fb420db0cc68670d343691}{print\_result}}(r);}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Memory\ reallocation\ counting}}
+\DoxyCodeLine{00148\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n===\ ATMINTIES\ PERSKIRSTYMŲ\ SKAIČIUS\ ===\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00149\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Elementų\ skaičius"{}}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::right\ <<\ std::setw(20)\ <<\ \textcolor{stringliteral}{"{}Perskirstymai\(\backslash\)n"{}};}
+\DoxyCodeLine{00151\ \ \ \ \ std::cout\ <<\ std::string(40,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00153\ \ \ \ \ std::vector<size\_t>\ sizes\ =\ \{10000,\ 100000,\ 1000000,\ 10000000,\ 100000000\};}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ size\ :\ sizes)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ reallocs\ =\ \doxymbox{\hyperlink{benchmark__vector_8cpp_a6c017ba2a02a1fae694d6afab4e4d162}{count\_reallocations\_push\_back}}(size);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(20)\ <<\ size}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::right\ <<\ std::setw(20)\ <<\ reallocs\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ Save\ results\ to\ file}}
+\DoxyCodeLine{00161\ \ \ \ \ std::ofstream\ out(\textcolor{stringliteral}{"{}benchmark\_results.txt"{}});}
+\DoxyCodeLine{00162\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}Vector\ vs\ std::vector\ Benchmark\ Results\(\backslash\)n"{}};}
+\DoxyCodeLine{00163\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}========================================\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}PUSH\_BACK\ (su\ reserve):\(\backslash\)n"{}};}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ out\ <<\ r.test\_name\ <<\ \textcolor{stringliteral}{"{}:\ std::vector="{}}\ <<\ r.std\_vector\_time\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ms,\ Vector="{}}\ <<\ r.vector\_time\ <<\ \textcolor{stringliteral}{"{}ms,\ speedup="{}}\ <<\ r.speedup\ <<\ \textcolor{stringliteral}{"{}x\(\backslash\)n"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPUSH\_BACK\ (be\ reserve):\(\backslash\)n"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ r\ :\ results\_no\_reserve)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ out\ <<\ r.test\_name\ <<\ \textcolor{stringliteral}{"{}:\ std::vector="{}}\ <<\ r.std\_vector\_time\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ms,\ Vector="{}}\ <<\ r.vector\_time\ <<\ \textcolor{stringliteral}{"{}ms,\ speedup="{}}\ <<\ r.speedup\ <<\ \textcolor{stringliteral}{"{}x\(\backslash\)n"{}};}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nMemory\ Reallocations:\(\backslash\)n"{}};}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ size\ :\ sizes)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ out\ <<\ size\ <<\ \textcolor{stringliteral}{"{}\ elements:\ "{}}\ <<\ \doxymbox{\hyperlink{benchmark__vector_8cpp_a6c017ba2a02a1fae694d6afab4e4d162}{count\_reallocations\_push\_back}}(size)\ <<\ \textcolor{stringliteral}{"{}\ reallocations\(\backslash\)n"{}};}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ out.close();}
+\DoxyCodeLine{00182\ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nRezultatai\ išsaugoti\ į\ benchmark\_results.txt\(\backslash\)n"{}};}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00186\ \}}
+
+\end{DoxyCode}
+\Hypertarget{benchmark__vector_8cpp_aab0a749241244d13922556533aeb7069}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!print\_header@{print\_header}}
+\index{print\_header@{print\_header}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_header()}{print\_header()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_aab0a749241244d13922556533aeb7069} 
+void print\+\_\+header (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00022}{22}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00024\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╔══════════════════════════════════════════════════════════════════╗\(\backslash\)n"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}║\ \ \ \ \ \ \ \ \ Vector\ vs\ std::vector\ EFEKTYVUMO\ PALYGINIMAS\ \ \ \ \ \ \ \ \ \ \ \ \ ║\(\backslash\)n"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}╚══════════════════════════════════════════════════════════════════╝\(\backslash\)n"{}};}
+\DoxyCodeLine{00027\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}
+\Hypertarget{benchmark__vector_8cpp_a534071dce9fb420db0cc68670d343691}\index{benchmark\_vector.cpp@{benchmark\_vector.cpp}!print\_result@{print\_result}}
+\index{print\_result@{print\_result}!benchmark\_vector.cpp@{benchmark\_vector.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_result()}{print\_result()}}
+{\footnotesize\ttfamily \label{benchmark__vector_8cpp_a534071dce9fb420db0cc68670d343691} 
+void print\+\_\+result (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structBenchmarkResult}{Benchmark\+Result}} \&}]{r}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{benchmark__vector_8cpp_source_l00030}{30}} of file \doxymbox{\hyperlink{benchmark__vector_8cpp_source}{benchmark\+\_\+vector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ std::cout\ <<\ std::left\ <<\ std::setw(25)\ <<\ r.\doxymbox{\hyperlink{structBenchmarkResult_a69c9bf3dfe8ad79f18f6b7c3a7c06ba1}{test\_name}}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::right\ <<\ std::setw(12)\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ r.\doxymbox{\hyperlink{structBenchmarkResult_a4d82dca1ecbb31eb50dc662b17836c81}{std\_vector\_time}}\ <<\ \textcolor{stringliteral}{"{}\ ms"{}}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ r.\doxymbox{\hyperlink{structBenchmarkResult_a97eec7bbffd368e71b67f173ad01a0f8}{vector\_time}}\ <<\ \textcolor{stringliteral}{"{}\ ms"{}}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(10)\ <<\ r.\doxymbox{\hyperlink{structBenchmarkResult_af9575aaf5f677ed9b2812038273f8e51}{speedup}}\ <<\ \textcolor{stringliteral}{"{}x\(\backslash\)n"{}};}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}

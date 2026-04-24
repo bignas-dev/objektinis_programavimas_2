@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Objektinis Programavimas v2.0: Class List</title>
+<title>Objektinis Programavimas v2.0: Vector.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -56,31 +56,54 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('annotated.html','',''); });
+$(function(){initNavTree('Vector_8h.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
 <div class="header">
-  <div class="headertitle"><div class="title">Class List</div></div>
+  <div class="headertitle"><div class="title">Vector.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here are the classes, structs, unions and interfaces with brief descriptions:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structBenchmarkResult.html" target="_self">BenchmarkResult</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structGenerationResult.html" target="_self">GenerationResult</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structMokinys.html" target="_self">Mokinys</a></td><td class="desc"></td></tr>
-<tr id="row_3_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structProcessingResult.html" target="_self">ProcessingResult</a></td><td class="desc">Apdorojimo rezultatu struktura </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classStudentas.html" target="_self">Studentas</a></td><td class="desc">Išvestine klase is <a class="el" href="classZmogus.html" title="Abstrakti klase, reprezentuojanti zmogu.">Zmogus</a>, reprezentuojanti studenta </td></tr>
-<tr id="row_5_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classVector.html" target="_self">Vector</a></td><td class="desc">Dinaminis masyvo konteineris </td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classZmogus.html" target="_self">Zmogus</a></td><td class="desc">Abstrakti klase, reprezentuojanti zmogu </td></tr>
+
+<p>Dinaminis masyvo konteineris (std::vector analogas).  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;initializer_list&gt;</code><br />
+</div>
+<p><a href="Vector_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Vector_3C_20T_20_3E" id="r_Vector_3C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classVector.html">Vector&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dinaminis masyvo konteineris.  <a href="classVector.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- directory -->
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dinaminis masyvo konteineris (std::vector analogas). </p>
+<p>Šis konteineris realizuoja pagrindines std::vector funkcijas:</p><ul>
+<li>push_back, pop_back, clear</li>
+<li>size, capacity, empty, reserve</li>
+<li>operator[], at, front, back, data</li>
+<li>begin, end iteratoriai</li>
+<li>insert, erase</li>
+<li>Copy/Move operacijos </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="Vector_8h_source.html">Vector.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a href="Vector_8h.html">Vector.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

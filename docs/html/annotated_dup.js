@@ -5,6 +5,6 @@ var annotated_dup =
     [ "Mokinys", "structMokinys.html", "structMokinys" ],
     [ "ProcessingResult", "structProcessingResult.html", "structProcessingResult" ],
     [ "Studentas", "classStudentas.html", "classStudentas" ],
-    [ "V15Test", "classV15Test.html", "classV15Test" ],
+    [ "Vector", "classVector.html", "classVector" ],
     [ "Zmogus", "classZmogus.html", "classZmogus" ]
 ];
