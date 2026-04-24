@@ -2,6 +2,9 @@ exec
 program
 test_struct
 test_class
+test_v1.2
+test_v1.5
+tests/unit_tests
 *.txt
 *.csv
-test_v1.5
+docs/

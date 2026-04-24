@@ -45,7 +45,34 @@ run_test_v1.5: test_v1.5
 
 test_all: test test_v1.2 test_v1.5
 
-O1: CXXFLAGS = -O1 -std=c++17 -Wall
+# Unit testai su Catch2
+CATCH_INCLUDE = -Itests
+UNIT_TEST_SRC = tests/unit_tests.cpp
+UNIT_TEST_BIN = tests/unit_tests
+
+tests: $(UNIT_TEST_BIN)
+
+$(UNIT_TEST_BIN): $(UNIT_TEST_SRC) tests/catch.hpp student.h zmogus.h
+	$(CXX) $(CXXFLAGS) $(CATCH_INCLUDE) -o $(UNIT_TEST_BIN) $(UNIT_TEST_SRC)
+
+run_tests: tests
+	./$(UNIT_TEST_BIN)
+
+# Doxygen dokumentacija
+doxygen:
+	doxygen Doxyfile
+
+doxygen_pdf: doxygen
+	@echo "PDF generavimui reikalingas TeXLive. Naudokite Overleaf jei neturite."
+
+# Valymas
+clean:
+	rm -f $(TARGET) $(TARGET_STRUCT) $(TARGET_CLASS) *.txt rezultatai.csv palyginimas*.csv
+	rm -rf docs/
+	rm -f tests/unit_tests
+
+.PHONY: all clean run test tests run_tests doxygen doxygen_pdf O1 O2 O3 debug
+
 O1: clean $(TARGET_STRUCT) $(TARGET_CLASS)
 
 O2: CXXFLAGS = -O2 -std=c++17 -Wall
