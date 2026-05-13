@@ -11,8 +11,8 @@
 
 
 int main() {
-    std::vector<std::string> sizes = {"1k", "10k", "100k", "1M", "10M" };
-    std::vector<std::string> containers = {"vector"};
+    std::vector<std::string> sizes = {"1k", "10k", "100k" };
+    std::vector<std::string> containers = {"vector", "list", "deque"};
     
     std::cout << "\n";
     std::cout << std::left 
@@ -24,7 +24,7 @@ int main() {
     std::cout << std::string(54, '-') << "\n";
     
     for (const auto& container : containers) {
-        for (int strategy = 1; strategy <= 3; strategy+=69) {
+        for (int strategy = 1; strategy <= 3; ++strategy) {
             for (const auto& size : sizes) {
                 std::string filename = size + ".txt";
                 long long duration = -1;

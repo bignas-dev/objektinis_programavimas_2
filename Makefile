@@ -10,7 +10,10 @@ bench: benchmark.cpp
 gen: generator.cpp
 	g++ $(FLAG) generator.cpp -o generator && ./generator
 
+test: test.cpp
+	g++ $(FLAG) test.cpp -o test && ./test
+
 clean:
-	rm -f main benchmark generator *.txt
+	rm -f main benchmark generator test *.txt
 
 

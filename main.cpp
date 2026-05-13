@@ -22,14 +22,14 @@ int main() {
         return 1;
     }
 
-    std::vector<Mokinys> students;
+    std::vector<Studentas> students;
 
     if (input_mode == 1) {
         while (true) {
             std::cout << "\nĮveskite " << students.size() + 1 << " studento duomenis:\n";
-            Mokinys m;
-            readStudentData(m);
-            students.push_back(m);
+            Studentas s;
+            readStudentData(s);
+            students.push_back(s);
 
             std::string ans;
             std::cout << "Ar norite įvesti dar vieną studentą? (t/n): ";
@@ -40,15 +40,15 @@ int main() {
         }
     }
     else if (input_mode == 2) {
-		std::cout << "\nĮveskite skaiciu kiek studentu sugeneruoti:\n";
-		int mokSkaicius;
-		std::cin >> mokSkaicius;
-		for (int i = 0; i < mokSkaicius; i++) {
-			Mokinys m;
-			generateRandomData(m);
-			students.push_back(m);
-		}
-		std::cout << "Sugeneruota " << mokSkaicius << " mokiniu ";
+        std::cout << "\nĮveskite skaiciu kiek studentu sugeneruoti:\n";
+        int mokSkaicius;
+        std::cin >> mokSkaicius;
+        for (int i = 0; i < mokSkaicius; i++) {
+            Studentas s;
+            generateRandomData(s);
+            students.push_back(s);
+        }
+        std::cout << "Sugeneruota " << mokSkaicius << " mokiniu ";
     }
     else { 
         std::string filename;
@@ -74,8 +74,8 @@ int main() {
         return 1;
     }
 
-    for (auto& m : students) {
-        calculateFinalGrade(m, choice);
+    for (auto& s : students) {
+        calculateFinalGrade(s, choice);
     }
 
     int sort_choice;
@@ -106,16 +106,16 @@ int main() {
     if (sort_choice == 1) {
         std::sort(students.begin(), students.end());
     } else if (sort_choice == 2) {
-        std::sort(students.begin(), students.end(), Mokinys::CompareByLastName());
+        std::sort(students.begin(), students.end(), Studentas::CompareByLastName());
     } else { 
-        std::sort(students.begin(), students.end(), Mokinys::CompareByFinalGradeDesc());
+        std::sort(students.begin(), students.end(), Studentas::CompareByFinalGradeDesc());
     }
 
-	if (output_option == 1) {
-		displayResults(students, choice);
-	} else {
-		writeResultsToAFile(students, choice, "output.txt");
-	}
+    if (output_option == 1) {
+        displayResults(students, choice);
+    } else {
+        writeResultsToAFile(students, choice, "output.txt");
+    }
 
     return 0;
 }

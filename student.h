@@ -9,8 +9,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <chrono>
+#include <cstring>
 
-class Mokinys {
+class Studentas {
 private:
     std::string vardas;
     std::string pavarde;
@@ -40,10 +41,53 @@ private:
     }
 
 public:
-    Mokinys() : vardas(""), pavarde(""), egz_rez(0), galutinis(-1.0f) {}
+    Studentas() : vardas(""), pavarde(""), egz_rez(0), galutinis(-1.0f) {}
 
-    Mokinys(const std::string& firstName, const std::string& lastName)
+    Studentas(const std::string& firstName, const std::string& lastName)
         : vardas(firstName), pavarde(lastName), egz_rez(0), galutinis(-1.0f) {}
+
+    ~Studentas() = default;
+
+    Studentas(const Studentas& other)
+        : vardas(other.vardas),
+          pavarde(other.pavarde),
+          tarp_rez(other.tarp_rez),
+          egz_rez(other.egz_rez),
+          galutinis(other.galutinis) {}
+
+    Studentas(Studentas&& other) noexcept
+        : vardas(std::move(other.vardas)),
+          pavarde(std::move(other.pavarde)),
+          tarp_rez(std::move(other.tarp_rez)),
+          egz_rez(other.egz_rez),
+          galutinis(other.galutinis) {
+        other.egz_rez = 0;
+        other.galutinis = -1.0f;
+    }
+
+    Studentas& operator=(const Studentas& other) {
+        if (this != &other) {
+            vardas = other.vardas;
+            pavarde = other.pavarde;
+            tarp_rez = other.tarp_rez;
+            egz_rez = other.egz_rez;
+            galutinis = other.galutinis;
+        }
+        return *this;
+    }
+
+    Studentas& operator=(Studentas&& other) noexcept {
+        if (this != &other) {
+            vardas = std::move(other.vardas);
+            pavarde = std::move(other.pavarde);
+            tarp_rez = std::move(other.tarp_rez);
+            egz_rez = other.egz_rez;
+            galutinis = other.galutinis;
+            other.egz_rez = 0;
+            other.galutinis = -1.0f;
+        }
+        return *this;
+    }
 
     const std::string& getFirstName() const { return vardas; }
     const std::string& getLastName() const { return pavarde; }
@@ -57,22 +101,38 @@ public:
     void setExamGrade(int egz) { egz_rez = egz; }
     void setFinalGrade(float gal) { galutinis = gal; }
 
-    bool operator<(const Mokinys& other) const {
+    bool operator<(const Studentas& other) const {
         return vardas < other.vardas;
     }
 
-    bool operator>(const Mokinys& other) const {
+    bool operator>(const Studentas& other) const {
         return galutinis > other.galutinis;
     }
 
+    bool operator==(const Studentas& other) const {
+        return vardas == other.vardas && pavarde == other.pavarde;
+    }
+
+    bool operator!=(const Studentas& other) const {
+        return !(*this == other);
+    }
+
+    bool operator<=(const Studentas& other) const {
+        return *this < other || *this == other;
+    }
+
+    bool operator>=(const Studentas& other) const {
+        return *this > other || *this == other;
+    }
+
     struct CompareByLastName {
-        bool operator()(const Mokinys& a, const Mokinys& b) const {
+        bool operator()(const Studentas& a, const Studentas& b) const {
             return a.pavarde < b.pavarde;
         }
     };
 
     struct CompareByFinalGradeDesc {
-        bool operator()(const Mokinys& a, const Mokinys& b) const {
+        bool operator()(const Studentas& a, const Studentas& b) const {
             return a.galutinis > b.galutinis;
         }
     };
@@ -86,7 +146,60 @@ public:
         }
         galutinis = 0.6f * egz_rez + 0.4f * tarp_rez_val;
     }
+
+    friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
+    friend std::istream& operator>>(std::istream& in, Studentas& studentas);
 };
+
+std::ostream& operator<<(std::ostream& out, const Studentas& studentas) {
+    out << studentas.vardas << " " << studentas.pavarde;
+    out << " Tarpiniai pazymiai: [";
+    for (size_t i = 0; i < studentas.tarp_rez.size(); ++i) {
+        if (i > 0) out << ", ";
+        out << studentas.tarp_rez[i];
+    }
+    out << "] Egzaminas: " << studentas.egz_rez;
+    if (studentas.galutinis >= 0.0f) {
+        out << " Galutinis: " << std::fixed << std::setprecision(2) << studentas.galutinis;
+    }
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, Studentas& studentas) {
+    std::cout << "Iveskite varda: ";
+    in >> studentas.vardas;
+    
+    std::cout << "Iveskite pavarde: ";
+    in >> studentas.pavarde;
+    
+    std::cout << "Iveskite tarpiniu pazymiu skaiciu: ";
+    int tarp_count;
+    in >> tarp_count;
+    
+    studentas.tarp_rez.clear();
+    for (int i = 0; i < tarp_count; ++i) {
+        std::cout << "Iveskite " << (i + 1) << "-aji pazymi: ";
+        int grade;
+        in >> grade;
+        if (grade < 0 || grade > 10) {
+            std::cout << "Neteisingas pazymys (turi buti 0-10), praleidziama.\n";
+            continue;
+        }
+        studentas.tarp_rez.push_back(grade);
+    }
+    
+    std::cout << "Iveskite egzamino rezultata (0-10): ";
+    int egz;
+    in >> egz;
+    if (egz < 0 || egz > 10) {
+        std::cout << "Neteisingas egzamino pazymys, nustatoma 0.\n";
+        egz = 0;
+    }
+    studentas.egz_rez = egz;
+    studentas.galutinis = -1.0f;
+    
+    return in;
+}
 
 const std::string vardai[] = {"Jonas", "Petras", "Antanas", "Vytautas", "Kazys", "Juozas", "Algirdas", "Bronius", "Edmundas", "Rimantas"};
 const std::string pavardes[] = {"Jonaitis", "Petraitis", "Antanaitis", "Vytautaitis", "Kazaitis", "Juozaitis", "Algirdaitis", "Bronaitis", "Edmundaitis", "Rimantaitis"};
@@ -94,10 +207,10 @@ const std::string pavardes[] = {"Jonaitis", "Petraitis", "Antanaitis", "Vytautai
 int getVarduKiekis() { return 10; }
 int getPavardziuKiekis() { return 10; }
 
-void generateRandomGrades(Mokinys& mokinys) {
+void generateRandomGrades(Studentas& studentas) {
     int tarp_count = rand() % 10 + 1;
     for (int i = 0; i < tarp_count; ++i) {
-        mokinys.addIntermediateGrade(rand() % 11);
+        studentas.addIntermediateGrade(rand() % 11);
     }
 }
 
@@ -121,35 +234,35 @@ float calculateMedian(std::vector<int> arr) {
     }
 }
 
-void generateRandomData(Mokinys& mokinys) {
-    mokinys.setFirstName(vardai[rand() % getVarduKiekis()]);
-    mokinys.setLastName(pavardes[rand() % getPavardziuKiekis()]);
+void generateRandomData(Studentas& studentas) {
+    studentas.setFirstName(vardai[rand() % getVarduKiekis()]);
+    studentas.setLastName(pavardes[rand() % getPavardziuKiekis()]);
 
     int tarp_count = rand() % 10 + 1; 
     for (int i = 0; i < tarp_count; ++i) {
-        mokinys.addIntermediateGrade(rand() % 11); 
+        studentas.addIntermediateGrade(rand() % 11); 
     }
-    mokinys.setExamGrade(rand() % 11);
+    studentas.setExamGrade(rand() % 11);
 }
 
-void readStudentData(Mokinys& mokinys) {
+void readStudentData(Studentas& studentas) {
     std::string firstName, lastName;
-    std::cout << "Įveskite vardą: ";
+    std::cout << "Iveskite varda: ";
     std::cin >> firstName;
-    mokinys.setFirstName(firstName);
+    studentas.setFirstName(firstName);
     
-    std::cout << "Įveskite pavardę: ";
+    std::cout << "Iveskite pavarde: ";
     std::cin >> lastName;
-    mokinys.setLastName(lastName);
+    studentas.setLastName(lastName);
 
     while (true) {
-        std::cout << "Įveskite " << mokinys.getIntermediateGrades().size() + 1
-                  << " tarpinį rezultatą (arba -1, jei baigėte): ";
+        std::cout << "Iveskite " << studentas.getIntermediateGrades().size() + 1
+                  << " tarpini rezultata (arba -1, jei baigete): ";
         int grade;
         if (!(std::cin >> grade)) {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
-            std::cout << "Neteisinga įvestis. Bandykite dar kartą.\n";
+            std::cout << "Neteisinga ivedis. Bandykite dar karta.\n";
             continue;
         }
 
@@ -157,29 +270,29 @@ void readStudentData(Mokinys& mokinys) {
             break;
         }
         if (grade < 0 || grade > 10) {
-            std::cout << "Rezultatas turi būti nuo 0 iki 10. Bandykite dar kartą.\n";
+            std::cout << "Rezultatas turi buti nuo 0 iki 10. Bandykite dar karta.\n";
             continue;
         }
-        mokinys.addIntermediateGrade(grade);
+        studentas.addIntermediateGrade(grade);
     }
 
-    if (mokinys.getIntermediateGrades().empty()) {
-        std::cout << "Turite įvesti bent vieną tarpinį rezultatą. Generuojami atsitiktiniai.\n";
-        generateRandomGrades(mokinys);
+    if (studentas.getIntermediateGrades().empty()) {
+        std::cout << "Turite ivesti bent viena tarpini rezultata. Generuojami atsitiktiniai.\n";
+        generateRandomGrades(studentas);
     }
 
-    std::cout << "Įveskite egzamino rezultatą: ";
+    std::cout << "Iveskite egzamino rezultata: ";
     int egz;
     while (!(std::cin >> egz) || egz < 0 || egz > 10) {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "Neteisinga įvestis (0-10). Bandykite dar kartą: ";
+        std::cout << "Neteisinga ivedis (0-10). Bandykite dar karta: ";
     }
-    mokinys.setExamGrade(egz);
+    studentas.setExamGrade(egz);
 }
 
-std::vector<Mokinys> readFromFile(const std::string& filename) {
-    std::vector<Mokinys> students;
+std::vector<Studentas> readFromFile(const std::string& filename) {
+    std::vector<Studentas> students;
     std::ifstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Klaida: nepavyko atidaryti failo " + filename);
@@ -192,33 +305,33 @@ std::vector<Mokinys> readFromFile(const std::string& filename) {
         if (line.empty()) continue; 
 
         std::istringstream iss(line);
-        Mokinys m;
+        Studentas s;
         std::string firstName, lastName;
         if (!(iss >> firstName >> lastName)) continue;
-        m.setFirstName(firstName);
-        m.setLastName(lastName);
+        s.setFirstName(firstName);
+        s.setLastName(lastName);
 
         int grade;
         for (int i = 0; i < 5; ++i) {
             if (iss >> grade) {
-                m.addIntermediateGrade(grade);
+                s.addIntermediateGrade(grade);
             }
         }
         int egz;
         iss >> egz;
-        m.setExamGrade(egz);
-        students.push_back(m);
+        s.setExamGrade(egz);
+        students.push_back(s);
     }
 
     file.close();
     return students;
 }
 
-void calculateFinalGrade(Mokinys& mokinys, const std::string& choice) {
-    mokinys.calculateFinalGrade(choice);
+void calculateFinalGrade(Studentas& studentas, const std::string& choice) {
+    studentas.calculateFinalGrade(choice);
 }
 
-void printResults(const std::vector<Mokinys>& students,
+void printResults(const std::vector<Studentas>& students,
                   const std::string& choice,
                   std::ostream& out)
 {
@@ -226,24 +339,24 @@ void printResults(const std::vector<Mokinys>& students,
     std::string kategorija = (choice == "1") ? "Galutinis (Vid.)" : "Galutinis (Med.)";
 
     out << std::left;
-    out << std::setw(langelio_ilgis) << "Pavardė"
+    out << std::setw(langelio_ilgis) << "Pavarde"
         << std::setw(langelio_ilgis) << "Vardas"
         << std::setw(langelio_ilgis) << kategorija << '\n';
     out << std::string(3 * langelio_ilgis, '-') << '\n';
 
-    for (const auto& m : students) {
-        out << std::setw(langelio_ilgis) << m.getLastName()
-            << std::setw(langelio_ilgis) << m.getFirstName()
-            << std::setw(langelio_ilgis) << std::fixed << std::setprecision(2) << m.getFinalGrade()
+    for (const auto& s : students) {
+        out << std::setw(langelio_ilgis) << s.getLastName()
+            << std::setw(langelio_ilgis) << s.getFirstName()
+            << std::setw(langelio_ilgis) << std::fixed << std::setprecision(2) << s.getFinalGrade()
             << '\n';
     }
 }
 
-void displayResults(const std::vector<Mokinys>& students, const std::string& choice) {
+void displayResults(const std::vector<Studentas>& students, const std::string& choice) {
     printResults(students, choice, std::cout);
 }
 
-void writeResultsToAFile(const std::vector<Mokinys>& students, const std::string& choice, const std::string& filename) {
+void writeResultsToAFile(const std::vector<Studentas>& students, const std::string& choice, const std::string& filename) {
     std::ofstream outFile(filename);
     if (!outFile) {
         std::cerr << "Failed to open the file.\n";
@@ -255,13 +368,13 @@ void writeResultsToAFile(const std::vector<Mokinys>& students, const std::string
 void runGenerationTest(const std::string& filename, int count) {
 	auto start = std::chrono::high_resolution_clock::now();
 
-	std::vector<Mokinys> students;
+	std::vector<Studentas> students;
 	students.reserve(count);
 
 	for (int j = 0; j < count; j++) {
-		Mokinys m;
-		generateRandomData(m);
-		students.push_back(m);
+		Studentas s;
+		generateRandomData(s);
+		students.push_back(s);
 	}
 
 	std::ofstream outFile(filename);
@@ -290,9 +403,9 @@ void runGenerationTestT(const std::string& filename, int count) {
 	auto start = std::chrono::high_resolution_clock::now();
 	Container students;
 	for (int j = 0; j < count; j++) {
-		Mokinys m;
-		generateRandomData(m);
-		students.push_back(m);
+		Studentas s;
+		generateRandomData(s);
+		students.push_back(s);
 	}
 	std::ofstream outFile(filename);
 	outFile << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde";
@@ -311,7 +424,7 @@ void runGenerationTestT(const std::string& filename, int count) {
 
 void runProcessingTest(const std::string& filename) {
     auto read_start = std::chrono::high_resolution_clock::now();
-    std::vector<Mokinys> students = readFromFile(filename);
+    std::vector<Studentas> students = readFromFile(filename);
     auto read_end = std::chrono::high_resolution_clock::now();
 	auto read_duration = std::chrono::duration_cast<std::chrono::milliseconds>(read_end - read_start).count();
 	std::cout << filename << " read " << read_duration << "ms\n";
@@ -321,8 +434,8 @@ void runProcessingTest(const std::string& filename) {
         s.calculateFinalGrade("1");
     }
     
-    std::vector<Mokinys> vargsiukai;
-    std::vector<Mokinys> kietiakiai;
+    std::vector<Studentas> vargsiukai;
+    std::vector<Studentas> kietiakiai;
     
     for (const auto& s : students) {
         if (s.getFinalGrade() < 5.0f) {
@@ -336,7 +449,7 @@ void runProcessingTest(const std::string& filename) {
 	std::cout << filename << " sort " << sort_duration << "ms\n";
     
     auto write_start = std::chrono::high_resolution_clock::now();
-    auto write_to_file = [&](const std::string& fname, const std::vector<Mokinys>& list) {
+    auto write_to_file = [&](const std::string& fname, const std::vector<Studentas>& list) {
         std::ofstream out(fname);
         out << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde" << "Galutinis\n";
         for (const auto& s : list) {
@@ -346,7 +459,7 @@ void runProcessingTest(const std::string& filename) {
         out.close();
     };
     
-    write_to_file("vargšiukai.txt", vargsiukai);
+    write_to_file("vargsiukai.txt", vargsiukai);
     write_to_file("kietiakai.txt", kietiakiai);
     auto write_end = std::chrono::high_resolution_clock::now();
 	auto write_duration = std::chrono::duration_cast<std::chrono::milliseconds>(write_end - write_start).count();
@@ -366,20 +479,20 @@ Container readFromFileGeneric(const std::string& filename) {
     while (std::getline(file, line)) {
         if (line.empty()) continue;
         std::istringstream iss(line);
-        Mokinys m;
+        Studentas s;
         std::string firstName, lastName;
         iss >> firstName >> lastName;
-        m.setFirstName(firstName);
-        m.setLastName(lastName);
+        s.setFirstName(firstName);
+        s.setLastName(lastName);
         int grade;
         for (int i = 0; i < 5; ++i) {
-            if (iss >> grade) m.addIntermediateGrade(grade);
+            if (iss >> grade) s.addIntermediateGrade(grade);
         }
         int egz;
         iss >> egz;
-        m.setExamGrade(egz);
-        m.calculateFinalGrade("1");
-        students.push_back(m);
+        s.setExamGrade(egz);
+        s.calculateFinalGrade("1");
+        students.push_back(s);
     }
     return students;
 }
@@ -407,7 +520,7 @@ void partitionStrategy2(Container& students, Container& vargsiukai) {
 template<typename Container>
 void partitionStrategy3(Container& students, Container& vargsiukai, Container& kietiakiai) {
     auto partition_it = std::stable_partition(students.begin(), students.end(),
-        [](const Mokinys& s) { return s.getFinalGrade() >= 5.0f; });
+        [](const Studentas& s) { return s.getFinalGrade() >= 5.0f; });
     kietiakiai.assign(students.begin(), partition_it);
     vargsiukai.assign(partition_it, students.end());
 }
