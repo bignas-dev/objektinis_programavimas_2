@@ -1,4 +1,4 @@
-.PHONY: main bench gen clean
+.PHONY: main bench test clean
 FLAG=-O3
 
 main: main.cpp
@@ -6,9 +6,6 @@ main: main.cpp
 
 bench: benchmark.cpp
 	g++ $(FLAG) benchmark.cpp -o benchmark && ./benchmark
-
-gen: generator.cpp
-	g++ $(FLAG) generator.cpp -o generator && ./generator
 
 test: test.cpp
 	g++ $(FLAG) test.cpp -o test && ./test

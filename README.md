@@ -22,6 +22,8 @@ Pasirinkite įvesties būdą:
 1 - Rankinis įvedimas (konsolė)
 2 - Automatinis generavimas
 3 - Nuskaitymas iš failo
+4 - Automatinis generavimas (failų kūrimas)
+5 - Failo apdorojimas (skaidymas į kietakus ir vargsiukus)
 
 === Galutinio Balo Skaičiavimas ===
 1 - Vidurkis
@@ -44,8 +46,7 @@ Pasirinkite įvesties būdą:
 ```
 objektinis_programavimas_2/
 ├── student.h          # Studentas klasė su perdengtais I/O metodais
-├── main.cpp           # Pagrindinė programa (naudoja naujus metodus)
-├── generator.cpp      # Duomenų generatorius benchmark'ams
+├── main.cpp           # Pagrindinė programa (su generatoriumi)
 ├── test.cpp           # Unit testai
 ├── benchmark.cpp      # Sparos testai su skirtingomis konteineriais
 ├── output.txt         # Išvesties failas (sukuria programa)

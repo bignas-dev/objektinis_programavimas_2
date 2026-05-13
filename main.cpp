@@ -5,6 +5,12 @@
 #include <ctime>
 #include <stdexcept>
 #include <fstream>
+#include <list>
+#include <deque>
+#include <iomanip>
+#include <random>
+#include <chrono>
+#include <sstream>
 #include "student.h"
 
 int main() {
@@ -16,11 +22,13 @@ int main() {
               << "1 - Rankinis įvedimas (konsolė)\n"
               << "2 - Automatinis generavimas\n"
               << "3 - Nuskaitymas iš failo\n"
+              << "4 - Automatinis generavimas (failų kūrimas)\n"
+              << "5 - Failo apdorojimas (skaidymas)\n"
               << "Jūsų pasirinkimas: ";
     std::cin >> input_mode;
 
-    if (std::cin.fail() || input_mode < 1 || input_mode > 3) {
-        std::cout << "Neteisinga įvestis: tinka '1', '2' arba '3'.\n";
+    if (std::cin.fail() || input_mode < 1 || input_mode > 5) {
+        std::cout << "Neteisinga įvestis: tinka '1', '2', '3', '4' arba '5'.\n";
         return 1;
     }
 
@@ -53,7 +61,7 @@ int main() {
         }
         std::cout << "Sugeneruota " << mokSkaicius << " studentų.\n";
     }
-    else {
+    else if (input_mode == 3) {
         std::cout << "\n--- Įvestis iš Failo ---\n";
         std::string filename;
         std::cout << "Įveskite failo pavadinimą: ";
@@ -66,6 +74,37 @@ int main() {
             return 1;
         }
         std::cout << "Nuskaityta " << students.size() << " studentų.\n";
+    }
+    else if (input_mode == 4) {
+        std::cout << "\n--- Automatinis Generavimas (Failų Kūrimas) ---\n";
+        std::vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
+        std::vector<std::string> size_names = {"1k", "10k", "100k", "1M", "10M"};
+
+        std::cout << "Pradedami spartos tyrimai...\n";
+        std::cout << "Ar norite į failus: 'taip' jeigu taip\n";
+        std::string answer;
+        std::cin >> answer;
+
+        if (answer == "taip") {
+            for (size_t i = 0; i < sizes.size(); ++i) {
+                std::cout << "\n" << size_names[i] << ":\n";
+                runGenerationTestT<std::vector<Studentas>>(size_names[i] + ".txt", sizes[i]);
+            }
+        }
+
+        std::cout << "\nTyrimai baigti.\n";
+        return 0;
+    }
+    else {
+        std::cout << "\n--- Failo Apdorojimas (Skaidymas) ---\n";
+        std::string filename;
+        std::cout << "Kokį failą padalinti į kietakus ir vargsiukus: ";
+        std::cin >> filename;
+
+        runProcessingTest(filename);
+
+        std::cout << "\nApdorojimas baigtas.\n";
+        return 0;
     }
 
     std::string choice;
