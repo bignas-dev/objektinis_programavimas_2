@@ -1,261 +1,107 @@
-/**
- * @file student.h
- * @brief Studento klase, paveldinti is Zmogus
- * 
- * Realizuoja studento duomenu saugojima ir apdorojima:
- * - Tarpiniai rezultatai (vektorius)
- * - Egzamino rezultatas
- * - Galutinis balas
- */
-
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include "zmogus.h"
+#include <iostream>
 #include <vector>
-#include <list>
-#include <deque>
+#include <iomanip>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <chrono>
 
-/**
- * @class Studentas
- * @brief Išvestine klase is Zmogus, reprezentuojanti studenta
- * 
- * Studentas turi:
- * - Varda ir pavarde (paveldeta is Zmogus)
- * - Tarpinius rezultatus (std::vector<int>)
- * - Egzamino rezultata (int)
- * - Galutini bala (float)
- * 
- * Implementuoja Rule of Five:
- * 1. Numatytasis konstruktorius
- * 2. Parametrinis konstruktorius
- * 3. Kopijavimo konstruktorius
- * 4. Move konstruktorius
- * 5. Destruktorius
- * 6. Kopijavimo priskyrimo operatorius
- * 7. Move priskyrimo operatorius
- */
-class Studentas : public Zmogus {
+class Mokinys {
 private:
-    std::vector<int> tarp_rez_;   ///< Tarpiniu rezultatu vektorius
-    int egz_rez_;                  ///< Egzamino rezultatas
-    float galutinis_;              ///< Galutinis balas
+    std::string vardas;
+    std::string pavarde;
+    std::vector<int> tarp_rez;
+    int egz_rez;
+    float galutinis;
+
+    float calculateAverage() const {
+        if (tarp_rez.empty()) return 0.0f;
+        int sum = 0;
+        for (int val : tarp_rez) {
+            sum += val;
+        }
+        return static_cast<float>(sum) / static_cast<float>(tarp_rez.size());
+    }
+
+    float calculateMedian() const {
+        if (tarp_rez.empty()) return 0.0f;
+        std::vector<int> sorted = tarp_rez;
+        std::sort(sorted.begin(), sorted.end());
+        size_t size = sorted.size();
+        if (size % 2 == 0) {
+            return (sorted[size/2 - 1] + sorted[size/2]) / 2.0f;
+        } else {
+            return static_cast<float>(sorted[size/2]);
+        }
+    }
 
 public:
-    // === RULE OF FIVE ===
-    
-    /**
-     * @brief 1. Numatytasis konstruktorius
-     * 
-     * Sukuria studenta su tusciais duomenimis.
-     * Inicializuoja: egz_rez_ = 0, galutinis_ = 0.0f
-     */
-    Studentas() : Zmogus(), egz_rez_(0), galutinis_(0.0f) {}
-    
-    /**
-     * @brief 2. Parametrinis konstruktorius
-     * @param vardas Studento vardas
-     * @param pavarde Studento pavarde
-     * 
-     * Sukuria studenta su nurodytu vardu ir pavarde.
-     * Tarpiniai rezultatai tusti, egz_rez_ = 0, galutinis_ = 0.0f
-     */
-    Studentas(std::string vardas, std::string pavarde)
-        : Zmogus(std::move(vardas), std::move(pavarde)), egz_rez_(0), galutinis_(0.0f) {}
-    
-    /**
-     * @brief 3. Kopijavimo konstruktorius
-     * @param other Kopijuojamas Studentas objektas
-     * 
-     * Sukuria nepriklausoma kopija (gili kopija).
-     * Kopijuojami visi duomenys: vardas, pavarde, tarp_rez_, egz_rez_, galutinis_
-     */
-    Studentas(const Studentas& other)
-        : Zmogus(other.vardas_, other.pavarde_),
-          tarp_rez_(other.tarp_rez_),
-          egz_rez_(other.egz_rez_),
-          galutinis_(other.galutinis_) {}
-    
-    /**
-     * @brief 4. Move konstruktorius
-     * @param other Perkeliamas Studentas objektas
-     * 
-     * Perkelia resursus be kopijavimo (efektyvu).
-     * Po move operacijos, originalo objektas lieka validus bet su undefined reiksmemis.
-     */
-    Studentas(Studentas&& other) noexcept
-        : Zmogus(std::move(other.vardas_), std::move(other.pavarde_)),
-          tarp_rez_(std::move(other.tarp_rez_)),
-          egz_rez_(other.egz_rez_),
-          galutinis_(other.galutinis_) {
-        other.egz_rez_ = 0;
-        other.galutinis_ = 0.0f;
+    Mokinys() : vardas(""), pavarde(""), egz_rez(0), galutinis(-1.0f) {}
+
+    Mokinys(const std::string& firstName, const std::string& lastName)
+        : vardas(firstName), pavarde(lastName), egz_rez(0), galutinis(-1.0f) {}
+
+    const std::string& getFirstName() const { return vardas; }
+    const std::string& getLastName() const { return pavarde; }
+    const std::vector<int>& getIntermediateGrades() const { return tarp_rez; }
+    int getExamGrade() const { return egz_rez; }
+    float getFinalGrade() const { return galutinis; }
+
+    void setFirstName(const std::string& v) { vardas = v; }
+    void setLastName(const std::string& p) { pavarde = p; }
+    void addIntermediateGrade(int grade) { tarp_rez.push_back(grade); }
+    void setExamGrade(int egz) { egz_rez = egz; }
+    void setFinalGrade(float gal) { galutinis = gal; }
+
+    bool operator<(const Mokinys& other) const {
+        return vardas < other.vardas;
     }
-    
-    /**
-     * @brief 5. Destruktorius
-     * 
-     * Išvalo atminti: tarp_rez_.clear()
-     */
-    ~Studentas() {
-        tarp_rez_.clear();
+
+    bool operator>(const Mokinys& other) const {
+        return galutinis > other.galutinis;
     }
-    
-    /**
-     * @brief 6. Kopijavimo priskyrimo operatorius
-     * @param other Kopijuojamas Studentas objektas
-     * @return Nuoroda i save
-     * 
-     * Apsauga nuo self-assignment.
-     * Kopijuoja bazines klases ir išvestines klases narius.
-     */
-    Studentas& operator=(const Studentas& other) {
-        if (this != &other) {
-            Zmogus::operator=(other);
-            tarp_rez_ = other.tarp_rez_;
-            egz_rez_ = other.egz_rez_;
-            galutinis_ = other.galutinis_;
+
+    struct CompareByLastName {
+        bool operator()(const Mokinys& a, const Mokinys& b) const {
+            return a.pavarde < b.pavarde;
         }
-        return *this;
-    }
-    
-    /**
-     * @brief 7. Move priskyrimo operatorius
-     * @param other Perkeliamas Studentas objektas
-     * @return Nuoroda i save
-     * 
-     * Perkelia resursus be kopijavimo.
-     */
-    Studentas& operator=(Studentas&& other) noexcept {
-        if (this != &other) {
-            Zmogus::operator=(std::move(other));
-            tarp_rez_ = std::move(other.tarp_rez_);
-            egz_rez_ = other.egz_rez_;
-            galutinis_ = other.galutinis_;
-            other.egz_rez_ = 0;
-            other.galutinis_ = 0.0f;
+    };
+
+    struct CompareByFinalGradeDesc {
+        bool operator()(const Mokinys& a, const Mokinys& b) const {
+            return a.galutinis > b.galutinis;
         }
-        return *this;
-    }
-    
-    // === OVERRIDE VIRTUALŪS METODAI ===
-    
-    /**
-     * @brief Gauto vardo metoda (override is Zmogus)
-     * @return Studento vardas
-     */
-    std::string getVardas() const override {
-        return vardas_;
-    }
-    
-    /**
-     * @brief Gauto pavardes metoda (override is Zmogus)
-     * @return Studento pavarde
-     */
-    std::string getPavarde() const override {
-        return pavarde_;
-    }
-    
-    /**
-     * @brief Išvesties i srauta metoda (override is Zmogus)
-     * @param os Išvesties srautas
-     * @return Nuoroda i išvesties srauta
-     * 
-     * Formatas: Vardas Pavarde ND1 ND2 ... NDn Egz
-     */
-    std::ostream& print(std::ostream& os) const override {
-        os << std::left << std::setw(20) << vardas_
-           << std::setw(20) << pavarde_;
-        
-        for (int rez : tarp_rez_) {
-            os << std::setw(6) << rez;
+    };
+
+    void calculateFinalGrade(const std::string& choice) {
+        float tarp_rez_val;
+        if (choice == "1") {
+            tarp_rez_val = calculateAverage();
+        } else {
+            tarp_rez_val = calculateMedian();
         }
-        
-        os << std::setw(6) << egz_rez_;
-        return os;
+        galutinis = 0.6f * egz_rez + 0.4f * tarp_rez_val;
     }
-    
-    /**
-     * @brief Įvesties is srauto metoda (override is Zmogus)
-     * @param is Įvesties srautas
-     * @return Nuoroda i įvesties srauta
-     * 
-     * Nuskaitymo formatas: Vardas Pavarde ND1 ND2 ... NDn Egz
-     * Paskutinis skaicius - egzaminas, visi kiti - tarpiniai rezultatai.
-     */
-    std::istream& read(std::istream& is) override {
-        if (is >> vardas_ >> pavarde_) {
-            tarp_rez_.clear();
-            std::vector<int> grades;
-            int grade;
-            while (is >> grade) {
-                grades.push_back(grade);
-            }
-            
-            if (!grades.empty()) {
-                egz_rez_ = grades.back();
-                grades.pop_back();
-                tarp_rez_ = std::move(grades);
-            }
-        }
-        return is;
-    }
-    
-    // === I/O OPERATORIAI (friend) ===
-    
-    /**
-     * @brief Išvesties operatorius (friend)
-     * @param os Išvesties srautas
-     * @param s Studentas objektas
-     * @return Nuoroda i išvesties srauta
-     * 
-     * Naudojimas: std::cout << studentas;
-     */
-    friend std::ostream& operator<<(std::ostream& os, const Studentas& s) {
-        return s.print(os);
-    }
-    
-    /**
-     * @brief Įvesties operatorius (friend)
-     * @param is Įvesties srautas
-     * @param s Studentas objektas
-     * @return Nuoroda i įvesties srauta
-     * 
-     * Naudojimas: std::cin >> studentas;
-     */
-    friend std::istream& operator>>(std::istream& is, Studentas& s) {
-        return s.read(is);
-    }
-    
-    // === GETTER/SETTER ===
-    
-    /**
-     * @brief Gauti tarpiniu rezultatu vektoriu
-     * @return Const nuoroda i tarp_rez_
-     */
-    inline const std::vector<int>& getTarpRez() const { return tarp_rez_; }
-    inline int getEgzRez() const { return egz_rez_; }
-    inline float getGalutinis() const { return galutinis_; }
-    
-    inline void addTarpRez(int rez) { tarp_rez_.push_back(rez); }
-    inline void setEgzRez(int rez) { egz_rez_ = rez; }
-    inline void setGalutinis(float gal) { galutinis_ = gal; }
-    inline void clearTarpRez() { tarp_rez_.clear(); }
-    
-    inline void setVardas(const std::string& vardas) { vardas_ = vardas; }
-    inline void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
 };
 
-/**
- * @brief Apskaiciuoti vidurki
- * @param arr Rezultatu vektorius
- * @return Vidurkis (float)
- */
-inline float calculateAverage(const std::vector<int>& arr) {
+const std::string vardai[] = {"Jonas", "Petras", "Antanas", "Vytautas", "Kazys", "Juozas", "Algirdas", "Bronius", "Edmundas", "Rimantas"};
+const std::string pavardes[] = {"Jonaitis", "Petraitis", "Antanaitis", "Vytautaitis", "Kazaitis", "Juozaitis", "Algirdaitis", "Bronaitis", "Edmundaitis", "Rimantaitis"};
+
+int getVarduKiekis() { return 10; }
+int getPavardziuKiekis() { return 10; }
+
+void generateRandomGrades(Mokinys& mokinys) {
+    int tarp_count = rand() % 10 + 1;
+    for (int i = 0; i < tarp_count; ++i) {
+        mokinys.addIntermediateGrade(rand() % 11);
+    }
+}
+
+float calculateAverage(const std::vector<int>& arr) {
     if (arr.empty()) return 0.0f;
     int sum = 0;
     for (int val : arr) {
@@ -264,12 +110,7 @@ inline float calculateAverage(const std::vector<int>& arr) {
     return static_cast<float>(sum) / static_cast<float>(arr.size());
 }
 
-/**
- * @brief Apskaiciuoti mediana
- * @param arr Rezultatu vektorius
- * @return Mediana (float)
- */
-inline float calculateMedian(std::vector<int> arr) {   
+float calculateMedian(std::vector<int> arr) {   
     if (arr.empty()) return 0.0f;
     std::sort(arr.begin(), arr.end());
     size_t size = arr.size();
@@ -280,48 +121,65 @@ inline float calculateMedian(std::vector<int> arr) {
     }
 }
 
-/**
- * @brief Sugeneruoti atsitiktinius pazymius
- * @param studentas Studentas objektas
- * 
- * Generuoja 1-10 atsitiktiniu tarpiniu rezultatu (0-10).
- * Egzamino rezultatas taip pat atsitiktinis (0-10).
- */
-inline void generateRandomGrades(Studentas& studentas) {
+void generateRandomData(Mokinys& mokinys) {
+    mokinys.setFirstName(vardai[rand() % getVarduKiekis()]);
+    mokinys.setLastName(pavardes[rand() % getPavardziuKiekis()]);
+
     int tarp_count = rand() % 10 + 1; 
     for (int i = 0; i < tarp_count; ++i) {
-        studentas.addTarpRez(rand() % 11);
+        mokinys.addIntermediateGrade(rand() % 11); 
     }
-    studentas.setEgzRez(rand() % 11);
+    mokinys.setExamGrade(rand() % 11);
 }
 
-/**
- * @brief Apskaiciuoti galutini bala
- * @param studentas Studentas objektas
- * @param choice "1" - vidurkis, kitu atveju - mediana
- * 
- * Formulė: 0.6 * egzaminas + 0.4 * (vidurkis ARBA mediana)
- */
-inline void calculateFinalGrade(Studentas& studentas, const std::string& choice) {
-    float tarp_rez;
-    if (choice == "1") {
-        tarp_rez = calculateAverage(studentas.getTarpRez());
-    } else {
-        tarp_rez = calculateMedian(studentas.getTarpRez());
+void readStudentData(Mokinys& mokinys) {
+    std::string firstName, lastName;
+    std::cout << "Įveskite vardą: ";
+    std::cin >> firstName;
+    mokinys.setFirstName(firstName);
+    
+    std::cout << "Įveskite pavardę: ";
+    std::cin >> lastName;
+    mokinys.setLastName(lastName);
+
+    while (true) {
+        std::cout << "Įveskite " << mokinys.getIntermediateGrades().size() + 1
+                  << " tarpinį rezultatą (arba -1, jei baigėte): ";
+        int grade;
+        if (!(std::cin >> grade)) {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            std::cout << "Neteisinga įvestis. Bandykite dar kartą.\n";
+            continue;
+        }
+
+        if (grade == -1) {
+            break;
+        }
+        if (grade < 0 || grade > 10) {
+            std::cout << "Rezultatas turi būti nuo 0 iki 10. Bandykite dar kartą.\n";
+            continue;
+        }
+        mokinys.addIntermediateGrade(grade);
     }
-    studentas.setGalutinis(0.6f * studentas.getEgzRez() + 0.4f * tarp_rez);
+
+    if (mokinys.getIntermediateGrades().empty()) {
+        std::cout << "Turite įvesti bent vieną tarpinį rezultatą. Generuojami atsitiktiniai.\n";
+        generateRandomGrades(mokinys);
+    }
+
+    std::cout << "Įveskite egzamino rezultatą: ";
+    int egz;
+    while (!(std::cin >> egz) || egz < 0 || egz > 10) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Neteisinga įvestis (0-10). Bandykite dar kartą: ";
+    }
+    mokinys.setExamGrade(egz);
 }
 
-/**
- * @brief Nuskaityti studentus is failo
- * @tparam Container Konteinerio tipas (vector, list, deque)
- * @param filename Failo pavadinimas
- * @return Konteineris su Studentas objektais
- * @throws std::runtime_error Jei nepavyko atidaryti failo
- */
-template<typename Container>
-Container readFromFile(const std::string& filename) {
-    Container students;
+std::vector<Mokinys> readFromFile(const std::string& filename) {
+    std::vector<Mokinys> students;
     std::ifstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Klaida: nepavyko atidaryti failo " + filename);
@@ -334,140 +192,246 @@ Container readFromFile(const std::string& filename) {
         if (line.empty()) continue; 
 
         std::istringstream iss(line);
-        std::string vardas, pavarde;
-        if (!(iss >> vardas >> pavarde)) continue;
+        Mokinys m;
+        std::string firstName, lastName;
+        if (!(iss >> firstName >> lastName)) continue;
+        m.setFirstName(firstName);
+        m.setLastName(lastName);
 
-        Studentas s(vardas, pavarde);
         int grade;
         for (int i = 0; i < 5; ++i) {
             if (iss >> grade) {
-                s.addTarpRez(grade);
+                m.addIntermediateGrade(grade);
             }
         }
-        iss >> grade;
-        s.setEgzRez(grade);
-        students.push_back(s);
+        int egz;
+        iss >> egz;
+        m.setExamGrade(egz);
+        students.push_back(m);
     }
 
     file.close();
     return students;
 }
 
-/**
- * @brief Rusiuoti studentus pagal galutini bala
- * @tparam Container Konteinerio tipas
- * @param students Studentu konteineris
- */
-template<typename Container>
-void sortStudents(Container& students) {
-    std::sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
-        return a.getGalutinis() < b.getGalutinis();
-    });
+void calculateFinalGrade(Mokinys& mokinys, const std::string& choice) {
+    mokinys.calculateFinalGrade(choice);
 }
 
-/**
- * @brief Rusiuoti studentus (specializacija list konteineriui)
- * @param students Studentu sarasas
- */
-template<>
-inline void sortStudents<std::list<Studentas>>(std::list<Studentas>& students) {
-    students.sort([](const Studentas& a, const Studentas& b) {
-        return a.getGalutinis() < b.getGalutinis();
-    });
+void printResults(const std::vector<Mokinys>& students,
+                  const std::string& choice,
+                  std::ostream& out)
+{
+    const int langelio_ilgis = 20;
+    std::string kategorija = (choice == "1") ? "Galutinis (Vid.)" : "Galutinis (Med.)";
+
+    out << std::left;
+    out << std::setw(langelio_ilgis) << "Pavardė"
+        << std::setw(langelio_ilgis) << "Vardas"
+        << std::setw(langelio_ilgis) << kategorija << '\n';
+    out << std::string(3 * langelio_ilgis, '-') << '\n';
+
+    for (const auto& m : students) {
+        out << std::setw(langelio_ilgis) << m.getLastName()
+            << std::setw(langelio_ilgis) << m.getFirstName()
+            << std::setw(langelio_ilgis) << std::fixed << std::setprecision(2) << m.getFinalGrade()
+            << '\n';
+    }
 }
 
-/**
- * @brief 1 strategija: Skaidymas i du naujus konteinerius
- * @tparam Container Konteinerio tipas
- * @param students Studentu konteineris
- * @return Vargsiuku konteineris (galutinis < 5.0)
- */
+void displayResults(const std::vector<Mokinys>& students, const std::string& choice) {
+    printResults(students, choice, std::cout);
+}
+
+void writeResultsToAFile(const std::vector<Mokinys>& students, const std::string& choice, const std::string& filename) {
+    std::ofstream outFile(filename);
+    if (!outFile) {
+        std::cerr << "Failed to open the file.\n";
+        return; 
+    }
+    printResults(students, choice, outFile);
+}
+
+void runGenerationTest(const std::string& filename, int count) {
+	auto start = std::chrono::high_resolution_clock::now();
+
+	std::vector<Mokinys> students;
+	students.reserve(count);
+
+	for (int j = 0; j < count; j++) {
+		Mokinys m;
+		generateRandomData(m);
+		students.push_back(m);
+	}
+
+	std::ofstream outFile(filename);
+	outFile << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde";
+	for (int i = 0; i < 5; i++) {
+		outFile << std::setw(10) << "Pazymys";
+	}
+	outFile << std::setw(10) << "Egzaminas\n";
+
+	for (const auto& s : students) {
+		outFile << std::left << std::setw(20) << s.getFirstName() << std::setw(20) << s.getLastName();
+		for (int grade : s.getIntermediateGrades()) {
+			outFile << std::setw(10) << grade;
+		}
+		outFile << std::setw(10) << s.getExamGrade() << "\n";
+	}
+	outFile.close();
+
+	auto end = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+	std::cout << filename << " generated " << count << " students in " << duration << "ms\n";
+}
+
 template<typename Container>
-Container strategy1Split(Container& students) {
-    Container vargsiukai;
+void runGenerationTestT(const std::string& filename, int count) {
+	auto start = std::chrono::high_resolution_clock::now();
+	Container students;
+	for (int j = 0; j < count; j++) {
+		Mokinys m;
+		generateRandomData(m);
+		students.push_back(m);
+	}
+	std::ofstream outFile(filename);
+	outFile << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde";
+	for (int i = 0; i < 5; i++) outFile << std::setw(10) << "Pazymys";
+	outFile << std::setw(10) << "Egzaminas\n";
+	for (const auto& s : students) {
+		outFile << std::left << std::setw(20) << s.getFirstName() << std::setw(20) << s.getLastName();
+		for (int grade : s.getIntermediateGrades()) outFile << std::setw(10) << grade;
+		outFile << std::setw(10) << s.getExamGrade() << "\n";
+	}
+	outFile.close();
+	auto end = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+	std::cout << filename << " generated " << count << " students in " << duration << "ms\n";
+}
+
+void runProcessingTest(const std::string& filename) {
+    auto read_start = std::chrono::high_resolution_clock::now();
+    std::vector<Mokinys> students = readFromFile(filename);
+    auto read_end = std::chrono::high_resolution_clock::now();
+	auto read_duration = std::chrono::duration_cast<std::chrono::milliseconds>(read_end - read_start).count();
+	std::cout << filename << " read " << read_duration << "ms\n";
+    
+    auto sort_start = std::chrono::high_resolution_clock::now();
+    for (auto& s : students) {
+        s.calculateFinalGrade("1");
+    }
+    
+    std::vector<Mokinys> vargsiukai;
+    std::vector<Mokinys> kietiakiai;
+    
     for (const auto& s : students) {
-        if (s.getGalutinis() < 5.0f) {
+        if (s.getFinalGrade() < 5.0f) {
             vargsiukai.push_back(s);
+        } else {
+            kietiakiai.push_back(s);
         }
     }
-    return vargsiukai;
+    auto sort_end = std::chrono::high_resolution_clock::now();
+	auto sort_duration = std::chrono::duration_cast<std::chrono::milliseconds>(sort_end - sort_start).count();
+	std::cout << filename << " sort " << sort_duration << "ms\n";
+    
+    auto write_start = std::chrono::high_resolution_clock::now();
+    auto write_to_file = [&](const std::string& fname, const std::vector<Mokinys>& list) {
+        std::ofstream out(fname);
+        out << std::left << std::setw(20) << "Vardas" << std::setw(20) << "Pavarde" << "Galutinis\n";
+        for (const auto& s : list) {
+            out << std::left << std::setw(20) << s.getFirstName() << std::setw(20) << s.getLastName() 
+                << std::fixed << std::setprecision(2) << s.getFinalGrade() << "\n";
+        }
+        out.close();
+    };
+    
+    write_to_file("vargšiukai.txt", vargsiukai);
+    write_to_file("kietiakai.txt", kietiakiai);
+    auto write_end = std::chrono::high_resolution_clock::now();
+	auto write_duration = std::chrono::duration_cast<std::chrono::milliseconds>(write_end - write_start).count();
+	std::cout << filename << " write " << write_duration << "ms\n";
+    
+	auto total_duration = std::chrono::duration_cast<std::chrono::milliseconds>(write_end - read_start).count();
+	std::cout << filename << " all " << total_duration << "ms\n";
 }
 
-/**
- * @brief 2 strategija: Vienas naujas + trynimas is originalo
- * @tparam Container Konteinerio tipas
- * @param students Studentu konteineris
- * @return Vargsiuku konteineris (galutinis < 5.0)
- */
 template<typename Container>
-Container strategy2Split(Container& students) {
-    Container vargsiukai;
-    auto it = students.begin();
-    while (it != students.end()) {
-        if (it->getGalutinis() < 5.0f) {
-            vargsiukai.push_back(*it);
+Container readFromFileGeneric(const std::string& filename) {
+    Container students;
+    std::ifstream file(filename);
+    if (!file.is_open()) throw std::runtime_error("Cannot open: " + filename);
+    std::string line;
+    std::getline(file, line);
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+        std::istringstream iss(line);
+        Mokinys m;
+        std::string firstName, lastName;
+        iss >> firstName >> lastName;
+        m.setFirstName(firstName);
+        m.setLastName(lastName);
+        int grade;
+        for (int i = 0; i < 5; ++i) {
+            if (iss >> grade) m.addIntermediateGrade(grade);
+        }
+        int egz;
+        iss >> egz;
+        m.setExamGrade(egz);
+        m.calculateFinalGrade("1");
+        students.push_back(m);
+    }
+    return students;
+}
+
+template<typename Container>
+void partitionStrategy1(const Container& students, Container& vargsiukai, Container& kietiakiai) {
+    for (const auto& s : students) {
+        if (s.getFinalGrade() < 5.0f) vargsiukai.push_back(s);
+        else kietiakiai.push_back(s);
+    }
+}
+
+template<typename Container>
+void partitionStrategy2(Container& students, Container& vargsiukai) {
+    for (auto it = students.begin(); it != students.end(); ) {
+        if (it->getFinalGrade() < 5.0f) {
+            vargsiukai.push_back(std::move(*it));
             it = students.erase(it);
         } else {
             ++it;
         }
     }
-    return vargsiukai;
 }
 
-/**
- * @brief 3 strategija: std::stable_partition (greiciausia)
- * @tparam Container Konteinerio tipas
- * @param students Studentu konteineris
- * @return Vargsiuku konteineris (galutinis < 5.0)
- */
 template<typename Container>
-Container strategy3Split(Container& students) {
-    Container vargsiukai;
-    auto partition_point = std::stable_partition(students.begin(), students.end(), 
-        [](const Studentas& s) { return s.getGalutinis() >= 5.0f; });
-    
-    vargsiukai.insert(vargsiukai.end(), partition_point, students.end());
-    students.erase(partition_point, students.end());
-    
-    return vargsiukai;
+void partitionStrategy3(Container& students, Container& vargsiukai, Container& kietiakiai) {
+    auto partition_it = std::stable_partition(students.begin(), students.end(),
+        [](const Mokinys& s) { return s.getFinalGrade() >= 5.0f; });
+    kietiakiai.assign(students.begin(), partition_it);
+    vargsiukai.assign(partition_it, students.end());
 }
 
-/**
- * @brief 3 strategija (specializacija list konteineriui)
- * @param students Studentu sarasas
- * @return Vargsiuku konteineris (galutinis < 5.0)
- */
-template<>
-inline std::list<Studentas> strategy3Split<std::list<Studentas>>(std::list<Studentas>& students) {
-    std::list<Studentas> vargsiukai;
-    auto it = students.begin();
-    while (it != students.end()) {
-        if (it->getGalutinis() < 5.0f) {
-            vargsiukai.splice(vargsiukai.end(), students, it++);
-        } else {
-            ++it;
-        }
+template<typename Container>
+long long runPartitionBenchmark(const std::string& filename, int strategy) {
+    Container students = readFromFileGeneric<Container>(filename);
+    for (auto& s : students) {
+        s.calculateFinalGrade("1");
     }
-    return vargsiukai;
-}
-
-/**
- * @struct ProcessingResult
- * @brief Apdorojimo rezultatu struktura
- * 
- * Saugo laiko matavimus kiekvienam etapu ir konteinerio tipa.
- */
-struct ProcessingResult {
-    double readDuration;    ///< Nuskaitymo laikas (s)
-    double sortDuration;    ///< Rusiavimo laikas (s)
-    double splitDuration;   ///< Dalijimo laikas (s)
-    double writeDuration;   ///< Išvedimo laikas (s)
-    double totalDuration;   ///< Bendras laikas (s)
-    std::string containerType;  ///< Konteinerio tipas
-    int strategy;           ///< Strategijos numeris (1-3)
     
-    ProcessingResult() : readDuration(0), sortDuration(0), splitDuration(0), 
-                         writeDuration(0), totalDuration(0), strategy(0) {}
-};
+    auto part_start = std::chrono::high_resolution_clock::now();
+    Container vargsiukai, kietiakiai;
+    
+    if (strategy == 1) {
+        partitionStrategy1(students, vargsiukai, kietiakiai);
+    } else if (strategy == 2) {
+        partitionStrategy2(students, vargsiukai);
+    } else {
+        partitionStrategy3(students, vargsiukai, kietiakiai);
+    }
+    
+    auto part_end = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(part_end - part_start).count();
+}
 
 #endif

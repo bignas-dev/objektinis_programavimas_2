@@ -1,191 +1,148 @@
-# Objektinis Programavimas v2.0
+# Studentų Valdymo Sistema - v1.1
 
-Studentų duomenų apdorojimo sistema su abstrakčia bazine klase, unit testais ir Doxygen dokumentacija.
+## Apie Projektą
 
-## V2.0 Naujovės
+Programa skirta studentų duomenų apdorojimui, rūšiavimui ir skirstymui į dvi kategorijas:
+- **"Vargšiukai"** - galutinis balas < 5.0
+- **"Kietiakiai"** - galutinis balas >= 5.0
 
-- **Unit Testai** su Catch2 framework (81 testas, 100% sėkmė)
-- **Doxygen dokumentacija** (HTML + LaTeX)
-- **Abstrakti bazinė klasė** Žmogus
-- **Išvestinė klasė** Studentas
-- **Rule of Five** implementacija
-- **Polimorfizmo** demonstracija
+Realizuota naudojant `class` tipo `Mokinys` su pilnai realizuotais konstruktoriais ir destruktoriumi. Atlikta struct vs class spartos analizė su skirtingais optimizavimo lygiais.
 
-## Reikalavimai
+## Sistemos Reikalavimai
 
-- g++ (C++17)
-- Make
-- Doxygen (dokumentacijai)
-- Catch2 (unit testams) - atsisiunčiamas automatiškai
+- **Kompiliatorius:** g++ (C++11+)
+- **OS:** Linux/Unix
+- **Build:** Make
+
+## Testavimo Sistemos Parametrai
+
+| Komponentas | Specifikacija |
+|-------------|---------------|
+| **CPU** | AMD Ryzen 5 5600H (6 branduoliai) |
+| **RAM** | 14 GB |
+| **HDD** | SSD |
 
 ## Diegimas
 
 ```bash
+git clone <repo-url>
+cd objektinis_programavimas_2
+make main
+```
+
+## Naudojimas
+
+```bash
 # Pagrindinė programa
-make
+make main
 
-# Unit testai
-make tests
+# Benchmark testas
+make bench
 
-# Doxygen dokumentacija
-make doxygen
+# Duomenų generatorius
+make gen
+
+# Išvalyti
+make clean
 ```
 
-## Paleidimas
-
-```bash
-# Programa
-make run
-
-# Unit testai
-make run_tests
-
-# Atidaryti dokumentaciją
-xdg-open docs/html/index.html  # Linux
-open docs/html/index.html      # macOS
-```
-
-## Klasių Struktūra
-
-```
-Zmogus (abstrakti)
-    ↑
-    | public paveldėjimas
-    |
-Studentas
-```
-
-### Zmogus (abstrakti bazinė klasė)
-
-- Grynas virtualus destruktorius
-- 4 grynieji virtualūs metodai
-- Negalima sukurti objekto
-
-### Studentas (išvestinė klasė)
-
-- Paveldi vardas_, pavarde_ iš Zmogus
-- Turi tarp_rez_, egz_rez_, galutinis_
-- Implementuoja Rule of Five
-- Override virtualūs metodai
-
-## Unit Testai
-
-Testų failas: `tests/unit_tests.cpp`
-
-| Kategorija | Testai |
-|------------|--------|
-| Rule of Five | 7 |
-| I/O Operatoriai | 3 |
-| Polimorfizmas | 3 |
-| Abstrakti klasė | 2 |
-| Helper funkcijos | 3 |
-| Integracija | 2 |
-| **Iš viso** | **6 test cases, 81 assertions** |
-
-### Testų vykdymas
-
-```bash
-make run_tests
-```
-
-Rezultatas:
-```
-===============================================================================
-All tests passed (81 assertions in 6 test cases)
-```
-
-## Dokumentacija
-
-### HTML
-
-```bash
-make doxygen
-xdg-open docs/html/index.html
-```
-
-### LaTeX (PDF generavimui)
-
-```bash
-make doxygen
-cd docs/latex
-# Jei turite TeXLive:
-make
-# Arba naudokite Overleaf:
-# 1. Upload docs/latex folderį į Overleaf
-# 2. Compile PDF
-```
-
-## Įvestis/Išvestis
-
-### operator<<
+## Class Realizacija
 
 ```cpp
-Studentas s("Jonas", "Jonaitis");
-s.addTarpRez(8);
-s.setEgzRez(10);
-std::cout << s;
+class Mokinys {
+private:
+    std::string vardas;
+    std::string pavarde;
+    std::vector<int> tarp_rez;
+    int egz_rez;
+    float galutinis;
+
+public:
+    Mokinys();
+    Mokinys(const std::string& firstName, const std::string& lastName);
+    ~Mokinys() = default;
+    
+    void calculateFinalGrade(const std::string& choice);
+};
 ```
 
-### operator>>
+### Konstruktoriai
 
 ```cpp
-Studentas s;
-std::cin >> s;  // Formatas: Vardas Pavarde ND1 ND2 ... NDn Egz
+Mokinys() : vardas(""), pavarde(""), egz_rez(0), galutinis(-1.0f) {}
+
+Mokinys(const std::string& firstName, const std::string& lastName)
+    : vardas(firstName), pavarde(lastName), egz_rez(0), galutinis(-1.0f) {}
 ```
 
-## Polimorfizmo Pavyzdys
+## Struct vs Class Analizė
 
-```cpp
-std::vector<Zmogus*> people;
-people.push_back(new Studentas("S1", "P1"));
-people.push_back(new Studentas("S2", "P2"));
+### Metodika
+- **Konteineris:** `std::vector`
+- **Strategija:** S1 (kopijavimas)
+- **Dydžiai:** 100k ir 1M įrašų
 
-for (const auto* p : people) {
-    std::cout << p->getVardas() << "\n";
-    delete p;
-}
+### Greičio Palyginimas (ms)
+
+| Versija | Dydis | -O1 | -O2 | -O3 |
+|---------|-------|-----|-----|-----|
+| Struct | 100k | 25 | 22 | 20 |
+| Class | 100k | 23 | 20 | 17 |
+| Struct | 1M | 218 | 175 | 168 |
+| Class | 1M | 200 | 158 | 154 |
+
+**Išvada:** Class versija ~8-15% greitesnė
+
+### Executable Dydžio Palyginimas (bytes)
+
+| Versija | -O1 | -O2 | -O3 |
+|---------|-----|-----|-----|
+| Struct | 92,160 | 86,016 | 128,000 |
+| Class | 95,272 | 89,640 | 133,632 |
+
+**Išvada:** Class executable ~3-4% didesnis
+
+## Optimizavimo Lygių Analizė
+
+### Veikimo Laikas (ms)
+
+| Dydis | -O1 | -O2 | -O3 |
+|-------|-----|-----|-----|
+| 1k | 0 | 0 | 0 |
+| 10k | 2 | 2 | 1 |
+| 100k | 23 | 20 | 17 |
+| 1M | 200 | 158 | 154 |
+| 10M | 2279 | 2170 | 1787 |
+
+### Executable Dydis (bytes)
+
+| Failas | -O1 | -O2 | -O3 |
+|--------|-----|-----|-----|
+| main | 95,272 | 89,640 | 133,632 |
+| benchmark | 128,144 | 77,184 | 123,104 |
+
+### Rekomendacijos
+
+- **-O1:** Testavimui (greita kompiliacija)
+- **-O2:** Atminties ribotumui (mažiausias dydis)
+- **-O3:** Produkcijai (maksimali sparta)
+
+## Projekto Struktūra
+
+```
+objektinis_programavimas_2/
+├── main.cpp
+├── student.h
+├── benchmark.cpp
+├── generator.cpp
+├── Makefile
+├── README.md
+└── .gitignore
 ```
 
 ## Versijų Istorija
 
-| Versija | Data | Aprašymas |
-|---------|------|-----------|
-| v2.0 | 2026-04-24 | Unit Testai (Catch2) + Doxygen dokumentacija |
-| v1.5 | 2026-04-24 | Abstrakti klasė Žmogus + Studentas išvestinė |
-| v1.2 | 2026-04-24 | Rule of Five + I/O Operatoriai |
-| v1.1 | 2026-04 | Konversija į class Studentas |
-| v1.0 | 2026-04 | Pradinė versija su struct Mokinys |
-
-## Failų Struktūra
-
-```
-.
-├── tests/
-│   ├── unit_tests.cpp    # Catch2 unit testai
-│   └── catch.hpp         # Catch2 header
-├── docs/
-│   ├── html/             # HTML dokumentacija
-│   └── latex/            # LaTeX dokumentacija (PDF)
-├── zmogus.h              # Abstrakti bazinė klasė
-├── student.h             # Studentas klasė
-├── benchmark.h           # Benchmark struktūros
-├── benchmark.cpp         # Benchmark implementacija
-├── main.cpp              # Pagrindinė programa
-├── Makefile              # Kompiliavimo instrukcija
-├── Doxyfile              # Doxygen konfigūracija
-└── README.md             # Šis dokumentas
-```
-
-## V2.0 Detaliau
-
-**Šaka:** `v2.0`
-
-**Realizuota:**
-- ✅ Catch2 unit testai (81 assertion)
-- ✅ Doxygen HTML + LaTeX dokumentacija
-- ✅ Rule of Five testai (būtina)
-- ✅ Polimorfizmo testai
-- ✅ Abstrakčios klasės testai
-- ✅ Švari repozitorija (be build artifact'ų)
-
-**Release:** v2.0 - Unit Testai ir Doxygen Dokumentacija
+| Versija | Aprašymas |
+|---------|-----------|
+| v1.0 | Bazinė versija su struct |
+| v1.1 | Class realizacija, spartos analizė |
