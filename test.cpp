@@ -4,6 +4,7 @@
 #include <vector>
 #include <utility>
 #include <string>
+#include <memory>
 #include "student.h"
 
 void testDefaultConstructor() {
@@ -145,6 +146,59 @@ void testDestructor() {
     std::cout << "PASSED (no memory leaks)\n";
 }
 
+void testAbstractClassCannotBeInstantiated() {
+    std::cout << "Test: Abstract class Zmogus cannot be instantiated... ";
+    std::cout << "\n  (Kompiliacijos klaida jei bandytumete: Zmogus z;)";
+    std::cout << "\n  (Grynai virtualus metodas getFinalGrade() = 0 darino klase abstrakcia)";
+    
+    Zmogus* ptr = nullptr;
+    Studentas s("Testas", "Testauskas");
+    ptr = &s;
+    
+    assert(ptr != nullptr);
+    assert(ptr->getFirstName() == "Testas");
+    assert(ptr->getLastName() == "Testauskas");
+    
+    std::cout << " PASSED (bazinis pointeris gali rodyti i Studentas)\n";
+}
+
+void testBaseClassPointerToStudent() {
+    std::cout << "Test: Base class pointer to Student (virtual method)... ";
+    
+    Studentas s("Petras", "Petraitis");
+    s.addIntermediateGrade(8);
+    s.addIntermediateGrade(9);
+    s.addIntermediateGrade(10);
+    s.setExamGrade(9);
+    s.calculateFinalGrade("1");
+    
+    Zmogus* basePtr = &s;
+    
+    assert(basePtr->getFirstName() == "Petras");
+    assert(basePtr->getLastName() == "Petraitis");
+    assert(basePtr->getFinalGrade() == s.getFinalGrade());
+    
+    std::cout << "PASSED\n";
+}
+
+void testBaseClassReferenceToStudent() {
+    std::cout << "Test: Base class reference to Student (virtual method)... ";
+    
+    Studentas s("Jonas", "Jonaitis");
+    s.addIntermediateGrade(7);
+    s.addIntermediateGrade(8);
+    s.setExamGrade(10);
+    s.calculateFinalGrade("1");
+    
+    Zmogus& baseRef = s;
+    
+    assert(baseRef.getFirstName() == "Jonas");
+    assert(baseRef.getLastName() == "Jonaitis");
+    assert(baseRef.getFinalGrade() == s.getFinalGrade());
+    
+    std::cout << "PASSED\n";
+}
+
 void testEqualityOperator() {
     std::cout << "Test: Equality operator (==)... ";
     Studentas s1("Jonas", "Jonaitis");
@@ -196,8 +250,11 @@ void testGreaterThanOperator() {
 void testLessThanOrEqualOperator() {
     std::cout << "Test: Less than or equal operator (<=)... ";
     Studentas s1("Antanas", "Antanaitis");
+    s1.setFinalGrade(7.0f);
     Studentas s2("Antanas", "Antanaitis");
+    s2.setFinalGrade(7.0f);
     Studentas s3("Bronius", "Bronaitis");
+    s3.setFinalGrade(8.0f);
     
     assert(s1 <= s2);
     assert(s1 <= s3);
@@ -212,9 +269,12 @@ void testGreaterThanOrEqualOperator() {
     s1.setFinalGrade(8.5f);
     Studentas s2("Petras", "Petraitis");
     s2.setFinalGrade(7.0f);
+    Studentas s3("Kazys", "Kazaitis");
+    s3.setFinalGrade(8.5f);
     
     assert(s1 >= s2);
     assert(!(s2 >= s1));
+    assert(s1 >= s3);
     
     std::cout << "PASSED\n";
 }
@@ -386,6 +446,11 @@ int main() {
     testMoveConstructor();
     testMoveAssignmentOperator();
     testDestructor();
+    
+    std::cout << "\n--- Abstract Base Class Tests ---\n";
+    testAbstractClassCannotBeInstantiated();
+    testBaseClassPointerToStudent();
+    testBaseClassReferenceToStudent();
     
     std::cout << "\n--- I/O Operator Tests ---\n";
     testOutputStreamOperator();

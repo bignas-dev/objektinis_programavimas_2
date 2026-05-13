@@ -11,10 +11,58 @@
 #include <chrono>
 #include <cstring>
 
-class Studentas {
-private:
+class Zmogus {
+protected:
     std::string vardas;
     std::string pavarde;
+
+public:
+    Zmogus() : vardas(""), pavarde("") {}
+    
+    Zmogus(const std::string& vardas, const std::string& pavarde)
+        : vardas(vardas), pavarde(pavarde) {}
+    
+    virtual ~Zmogus() = default;
+    
+    const std::string& getFirstName() const { return vardas; }
+    const std::string& getLastName() const { return pavarde; }
+    
+    void setFirstName(const std::string& v) { vardas = v; }
+    void setLastName(const std::string& p) { pavarde = p; }
+    
+    virtual float getFinalGrade() const = 0;
+    
+    virtual void print(std::ostream& out) const {
+        out << vardas << " " << pavarde;
+    }
+    
+    bool operator==(const Zmogus& other) const {
+        return vardas == other.vardas && pavarde == other.pavarde;
+    }
+    
+    bool operator!=(const Zmogus& other) const {
+        return !(*this == other);
+    }
+    
+    bool operator<(const Zmogus& other) const {
+        return vardas < other.vardas;
+    }
+    
+    bool operator<=(const Zmogus& other) const {
+        return *this < other || *this == other;
+    }
+    
+    bool operator>(const Zmogus& other) const {
+        return !(*this <= other);
+    }
+    
+    bool operator>=(const Zmogus& other) const {
+        return !(*this < other);
+    }
+};
+
+class Studentas : public Zmogus {
+private:
     std::vector<int> tarp_rez;
     int egz_rez;
     float galutinis;
@@ -41,23 +89,21 @@ private:
     }
 
 public:
-    Studentas() : vardas(""), pavarde(""), egz_rez(0), galutinis(-1.0f) {}
+    Studentas() : Zmogus(), egz_rez(0), galutinis(-1.0f) {}
 
     Studentas(const std::string& firstName, const std::string& lastName)
-        : vardas(firstName), pavarde(lastName), egz_rez(0), galutinis(-1.0f) {}
+        : Zmogus(firstName, lastName), egz_rez(0), galutinis(-1.0f) {}
 
     ~Studentas() = default;
 
     Studentas(const Studentas& other)
-        : vardas(other.vardas),
-          pavarde(other.pavarde),
+        : Zmogus(other.vardas, other.pavarde),
           tarp_rez(other.tarp_rez),
           egz_rez(other.egz_rez),
           galutinis(other.galutinis) {}
 
     Studentas(Studentas&& other) noexcept
-        : vardas(std::move(other.vardas)),
-          pavarde(std::move(other.pavarde)),
+        : Zmogus(std::move(other.vardas), std::move(other.pavarde)),
           tarp_rez(std::move(other.tarp_rez)),
           egz_rez(other.egz_rez),
           galutinis(other.galutinis) {
@@ -67,8 +113,7 @@ public:
 
     Studentas& operator=(const Studentas& other) {
         if (this != &other) {
-            vardas = other.vardas;
-            pavarde = other.pavarde;
+            Zmogus::operator=(other);
             tarp_rez = other.tarp_rez;
             egz_rez = other.egz_rez;
             galutinis = other.galutinis;
@@ -78,8 +123,7 @@ public:
 
     Studentas& operator=(Studentas&& other) noexcept {
         if (this != &other) {
-            vardas = std::move(other.vardas);
-            pavarde = std::move(other.pavarde);
+            Zmogus::operator=(std::move(other));
             tarp_rez = std::move(other.tarp_rez);
             egz_rez = other.egz_rez;
             galutinis = other.galutinis;
@@ -89,17 +133,13 @@ public:
         return *this;
     }
 
-    const std::string& getFirstName() const { return vardas; }
-    const std::string& getLastName() const { return pavarde; }
     const std::vector<int>& getIntermediateGrades() const { return tarp_rez; }
     int getExamGrade() const { return egz_rez; }
-    float getFinalGrade() const { return galutinis; }
+    float getFinalGrade() const override { return galutinis; }
 
-    void setFirstName(const std::string& v) { vardas = v; }
-    void setLastName(const std::string& p) { pavarde = p; }
-    void addIntermediateGrade(int grade) { tarp_rez.push_back(grade); }
     void setExamGrade(int egz) { egz_rez = egz; }
     void setFinalGrade(float gal) { galutinis = gal; }
+    void addIntermediateGrade(int grade) { tarp_rez.push_back(grade); }
 
     bool operator<(const Studentas& other) const {
         return vardas < other.vardas;
@@ -109,20 +149,12 @@ public:
         return galutinis > other.galutinis;
     }
 
-    bool operator==(const Studentas& other) const {
-        return vardas == other.vardas && pavarde == other.pavarde;
-    }
-
-    bool operator!=(const Studentas& other) const {
-        return !(*this == other);
-    }
-
     bool operator<=(const Studentas& other) const {
-        return *this < other || *this == other;
+        return galutinis <= other.galutinis;
     }
 
     bool operator>=(const Studentas& other) const {
-        return *this > other || *this == other;
+        return galutinis >= other.galutinis;
     }
 
     struct CompareByLastName {
@@ -147,21 +179,25 @@ public:
         galutinis = 0.6f * egz_rez + 0.4f * tarp_rez_val;
     }
 
+    void print(std::ostream& out) const override {
+        out << vardas << " " << pavarde;
+        out << " Tarpiniai pazymiai: [";
+        for (size_t i = 0; i < tarp_rez.size(); ++i) {
+            if (i > 0) out << ", ";
+            out << tarp_rez[i];
+        }
+        out << "] Egzaminas: " << egz_rez;
+        if (galutinis >= 0.0f) {
+            out << " Galutinis: " << std::fixed << std::setprecision(2) << galutinis;
+        }
+    }
+
     friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
     friend std::istream& operator>>(std::istream& in, Studentas& studentas);
 };
 
 std::ostream& operator<<(std::ostream& out, const Studentas& studentas) {
-    out << studentas.vardas << " " << studentas.pavarde;
-    out << " Tarpiniai pazymiai: [";
-    for (size_t i = 0; i < studentas.tarp_rez.size(); ++i) {
-        if (i > 0) out << ", ";
-        out << studentas.tarp_rez[i];
-    }
-    out << "] Egzaminas: " << studentas.egz_rez;
-    if (studentas.galutinis >= 0.0f) {
-        out << " Galutinis: " << std::fixed << std::setprecision(2) << studentas.galutinis;
-    }
+    studentas.print(out);
     return out;
 }
 
