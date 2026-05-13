@@ -1,36 +1,33 @@
-#include <iostream>
-#include <cassert>
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+#include "student.h"
 #include <sstream>
 #include <vector>
-#include <utility>
-#include <string>
 #include <memory>
-#include "student.h"
 
-void testDefaultConstructor() {
-    std::cout << "Test: Default constructor... ";
+// ============================================================================
+// RULE OF FIVE TESTS
+// ============================================================================
+
+TEST_CASE("Default constructor creates empty Student", "[RuleOfFive]") {
     Studentas s;
-    assert(s.getFirstName() == "");
-    assert(s.getLastName() == "");
-    assert(s.getExamGrade() == 0);
-    assert(s.getFinalGrade() == -1.0f);
-    assert(s.getIntermediateGrades().empty());
-    std::cout << "PASSED\n";
+    REQUIRE(s.getFirstName() == "");
+    REQUIRE(s.getLastName() == "");
+    REQUIRE(s.getExamGrade() == 0);
+    REQUIRE(s.getFinalGrade() == -1.0f);
+    REQUIRE(s.getIntermediateGrades().empty());
 }
 
-void testParameterizedConstructor() {
-    std::cout << "Test: Parameterized constructor... ";
+TEST_CASE("Parameterized constructor initializes name and surname", "[RuleOfFive]") {
     Studentas s("Jonas", "Jonaitis");
-    assert(s.getFirstName() == "Jonas");
-    assert(s.getLastName() == "Jonaitis");
-    assert(s.getExamGrade() == 0);
-    assert(s.getFinalGrade() == -1.0f);
-    assert(s.getIntermediateGrades().empty());
-    std::cout << "PASSED\n";
+    REQUIRE(s.getFirstName() == "Jonas");
+    REQUIRE(s.getLastName() == "Jonaitis");
+    REQUIRE(s.getExamGrade() == 0);
+    REQUIRE(s.getFinalGrade() == -1.0f);
+    REQUIRE(s.getIntermediateGrades().empty());
 }
 
-void testCopyConstructor() {
-    std::cout << "Test: Copy constructor... ";
+TEST_CASE("Copy constructor creates independent copy", "[RuleOfFive]") {
     Studentas original("Petras", "Petraitis");
     original.addIntermediateGrade(8);
     original.addIntermediateGrade(9);
@@ -40,26 +37,25 @@ void testCopyConstructor() {
     
     Studentas copy(original);
     
-    assert(copy.getFirstName() == "Petras");
-    assert(copy.getLastName() == "Petraitis");
-    assert(copy.getIntermediateGrades().size() == 3);
-    assert(copy.getIntermediateGrades()[0] == 8);
-    assert(copy.getIntermediateGrades()[1] == 9);
-    assert(copy.getIntermediateGrades()[2] == 7);
-    assert(copy.getExamGrade() == 10);
-    assert(copy.getFinalGrade() == 9.2f);
+    REQUIRE(copy.getFirstName() == "Petras");
+    REQUIRE(copy.getLastName() == "Petraitis");
+    REQUIRE(copy.getIntermediateGrades().size() == 3);
+    REQUIRE(copy.getIntermediateGrades()[0] == 8);
+    REQUIRE(copy.getIntermediateGrades()[1] == 9);
+    REQUIRE(copy.getIntermediateGrades()[2] == 7);
+    REQUIRE(copy.getExamGrade() == 10);
+    REQUIRE(copy.getFinalGrade() == 9.2f);
     
-    assert(copy.getFirstName() == original.getFirstName());
-    assert(copy.getLastName() == original.getLastName());
+    REQUIRE(copy.getFirstName() == original.getFirstName());
+    REQUIRE(copy.getLastName() == original.getLastName());
     
-    original.setFirstName("Antanas");
-    assert(copy.getFirstName() == "Petras");
-    
-    std::cout << "PASSED\n";
+    SECTION("Modifying original doesn't affect copy") {
+        original.setFirstName("Antanas");
+        REQUIRE(copy.getFirstName() == "Petras");
+    }
 }
 
-void testCopyAssignmentOperator() {
-    std::cout << "Test: Copy assignment operator... ";
+TEST_CASE("Copy assignment operator works correctly", "[RuleOfFive]") {
     Studentas original("Vytautas", "Vytautaitis");
     original.addIntermediateGrade(6);
     original.addIntermediateGrade(7);
@@ -69,27 +65,28 @@ void testCopyAssignmentOperator() {
     Studentas assigned;
     assigned = original;
     
-    assert(assigned.getFirstName() == "Vytautas");
-    assert(assigned.getLastName() == "Vytautaitis");
-    assert(assigned.getIntermediateGrades().size() == 2);
-    assert(assigned.getIntermediateGrades()[0] == 6);
-    assert(assigned.getIntermediateGrades()[1] == 7);
-    assert(assigned.getExamGrade() == 8);
-    assert(assigned.getFinalGrade() == 7.4f);
+    REQUIRE(assigned.getFirstName() == "Vytautas");
+    REQUIRE(assigned.getLastName() == "Vytautaitis");
+    REQUIRE(assigned.getIntermediateGrades().size() == 2);
+    REQUIRE(assigned.getIntermediateGrades()[0] == 6);
+    REQUIRE(assigned.getIntermediateGrades()[1] == 7);
+    REQUIRE(assigned.getExamGrade() == 8);
+    REQUIRE(assigned.getFinalGrade() == 7.4f);
     
-    original.setFirstName("Kazys");
-    assert(assigned.getFirstName() == "Vytautas");
+    SECTION("Modifying original doesn't affect assigned") {
+        original.setFirstName("Kazys");
+        REQUIRE(assigned.getFirstName() == "Vytautas");
+    }
     
-    Studentas selfAssign;
-    selfAssign.setFirstName("Testas");
-    selfAssign = selfAssign;
-    assert(selfAssign.getFirstName() == "Testas");
-    
-    std::cout << "PASSED\n";
+    SECTION("Self-assignment is safe") {
+        Studentas selfAssign;
+        selfAssign.setFirstName("Testas");
+        selfAssign = selfAssign;
+        REQUIRE(selfAssign.getFirstName() == "Testas");
+    }
 }
 
-void testMoveConstructor() {
-    std::cout << "Test: Move constructor... ";
+TEST_CASE("Move constructor transfers resources", "[RuleOfFive]") {
     Studentas original("Juozas", "Juozaitis");
     original.addIntermediateGrade(5);
     original.addIntermediateGrade(6);
@@ -102,20 +99,17 @@ void testMoveConstructor() {
     
     Studentas moved(std::move(original));
     
-    assert(moved.getFirstName() == originalName);
-    assert(moved.getLastName() == originalLastName);
-    assert(moved.getIntermediateGrades().size() == 3);
-    assert(moved.getIntermediateGrades()[0] == 5);
-    assert(moved.getIntermediateGrades()[1] == 6);
-    assert(moved.getIntermediateGrades()[2] == 7);
-    assert(moved.getExamGrade() == 9);
-    assert(moved.getFinalGrade() == 7.8f);
-    
-    std::cout << "PASSED\n";
+    REQUIRE(moved.getFirstName() == originalName);
+    REQUIRE(moved.getLastName() == originalLastName);
+    REQUIRE(moved.getIntermediateGrades().size() == 3);
+    REQUIRE(moved.getIntermediateGrades()[0] == 5);
+    REQUIRE(moved.getIntermediateGrades()[1] == 6);
+    REQUIRE(moved.getIntermediateGrades()[2] == 7);
+    REQUIRE(moved.getExamGrade() == 9);
+    REQUIRE(moved.getFinalGrade() == 7.8f);
 }
 
-void testMoveAssignmentOperator() {
-    std::cout << "Test: Move assignment operator... ";
+TEST_CASE("Move assignment operator transfers resources", "[RuleOfFive]") {
     Studentas original("Algirdas", "Algirdaitis");
     original.addIntermediateGrade(10);
     original.addIntermediateGrade(9);
@@ -125,46 +119,41 @@ void testMoveAssignmentOperator() {
     Studentas assigned("Temporary", "Temp");
     assigned = std::move(original);
     
-    assert(assigned.getFirstName() == "Algirdas");
-    assert(assigned.getLastName() == "Algirdaitis");
-    assert(assigned.getIntermediateGrades().size() == 2);
-    assert(assigned.getIntermediateGrades()[0] == 10);
-    assert(assigned.getIntermediateGrades()[1] == 9);
-    assert(assigned.getExamGrade() == 10);
-    assert(assigned.getFinalGrade() == 9.8f);
-    
-    std::cout << "PASSED\n";
+    REQUIRE(assigned.getFirstName() == "Algirdas");
+    REQUIRE(assigned.getLastName() == "Algirdaitis");
+    REQUIRE(assigned.getIntermediateGrades().size() == 2);
+    REQUIRE(assigned.getIntermediateGrades()[0] == 10);
+    REQUIRE(assigned.getIntermediateGrades()[1] == 9);
+    REQUIRE(assigned.getExamGrade() == 10);
+    REQUIRE(assigned.getFinalGrade() == 9.8f);
 }
 
-void testDestructor() {
-    std::cout << "Test: Destructor... ";
+TEST_CASE("Destructor cleans up properly", "[RuleOfFive]") {
     {
         Studentas s("Bronius", "Bronaitis");
         s.addIntermediateGrade(8);
         s.setExamGrade(7);
     }
-    std::cout << "PASSED (no memory leaks)\n";
+    // If we reach here without crash, destructor worked
+    REQUIRE(true);
 }
 
-void testAbstractClassCannotBeInstantiated() {
-    std::cout << "Test: Abstract class Zmogus cannot be instantiated... ";
-    std::cout << "\n  (Kompiliacijos klaida jei bandytumete: Zmogus z;)";
-    std::cout << "\n  (Grynai virtualus metodas getFinalGrade() = 0 darino klase abstrakcia)";
+// ============================================================================
+// ABSTRACT BASE CLASS TESTS
+// ============================================================================
+
+TEST_CASE("Zmogus is abstract - can use pointer to Student", "[AbstractBase]") {
+    // Zmogus z; // <-- This would cause compilation error (abstract class)
     
-    Zmogus* ptr = nullptr;
     Studentas s("Testas", "Testauskas");
-    ptr = &s;
+    Zmogus* ptr = &s;
     
-    assert(ptr != nullptr);
-    assert(ptr->getFirstName() == "Testas");
-    assert(ptr->getLastName() == "Testauskas");
-    
-    std::cout << " PASSED (bazinis pointeris gali rodyti i Studentas)\n";
+    REQUIRE(ptr != nullptr);
+    REQUIRE(ptr->getFirstName() == "Testas");
+    REQUIRE(ptr->getLastName() == "Testauskas");
 }
 
-void testBaseClassPointerToStudent() {
-    std::cout << "Test: Base class pointer to Student (virtual method)... ";
-    
+TEST_CASE("Base class pointer to Student - virtual method works", "[AbstractBase]") {
     Studentas s("Petras", "Petraitis");
     s.addIntermediateGrade(8);
     s.addIntermediateGrade(9);
@@ -174,16 +163,12 @@ void testBaseClassPointerToStudent() {
     
     Zmogus* basePtr = &s;
     
-    assert(basePtr->getFirstName() == "Petras");
-    assert(basePtr->getLastName() == "Petraitis");
-    assert(basePtr->getFinalGrade() == s.getFinalGrade());
-    
-    std::cout << "PASSED\n";
+    REQUIRE(basePtr->getFirstName() == "Petras");
+    REQUIRE(basePtr->getLastName() == "Petraitis");
+    REQUIRE(basePtr->getFinalGrade() == s.getFinalGrade());
 }
 
-void testBaseClassReferenceToStudent() {
-    std::cout << "Test: Base class reference to Student (virtual method)... ";
-    
+TEST_CASE("Base class reference to Student - virtual method works", "[AbstractBase]") {
     Studentas s("Jonas", "Jonaitis");
     s.addIntermediateGrade(7);
     s.addIntermediateGrade(8);
@@ -192,172 +177,16 @@ void testBaseClassReferenceToStudent() {
     
     Zmogus& baseRef = s;
     
-    assert(baseRef.getFirstName() == "Jonas");
-    assert(baseRef.getLastName() == "Jonaitis");
-    assert(baseRef.getFinalGrade() == s.getFinalGrade());
-    
-    std::cout << "PASSED\n";
+    REQUIRE(baseRef.getFirstName() == "Jonas");
+    REQUIRE(baseRef.getLastName() == "Jonaitis");
+    REQUIRE(baseRef.getFinalGrade() == s.getFinalGrade());
 }
 
-void testEqualityOperator() {
-    std::cout << "Test: Equality operator (==)... ";
-    Studentas s1("Jonas", "Jonaitis");
-    Studentas s2("Jonas", "Jonaitis");
-    Studentas s3("Petras", "Petraitis");
-    
-    assert(s1 == s2);
-    assert(!(s1 == s3));
-    
-    std::cout << "PASSED\n";
-}
+// ============================================================================
+// I/O OPERATOR TESTS
+// ============================================================================
 
-void testInequalityOperator() {
-    std::cout << "Test: Inequality operator (!=)... ";
-    Studentas s1("Jonas", "Jonaitis");
-    Studentas s2("Jonas", "Jonaitis");
-    Studentas s3("Petras", "Petraitis");
-    
-    assert(!(s1 != s2));
-    assert(s1 != s3);
-    
-    std::cout << "PASSED\n";
-}
-
-void testLessThanOperator() {
-    std::cout << "Test: Less than operator (<)... ";
-    Studentas s1("Antanas", "Antanaitis");
-    Studentas s2("Bronius", "Bronaitis");
-    
-    assert(s1 < s2);
-    assert(!(s2 < s1));
-    
-    std::cout << "PASSED\n";
-}
-
-void testGreaterThanOperator() {
-    std::cout << "Test: Greater than operator (>)... ";
-    Studentas s1("Jonas", "Jonaitis");
-    s1.setFinalGrade(8.5f);
-    Studentas s2("Petras", "Petraitis");
-    s2.setFinalGrade(7.0f);
-    
-    assert(s1 > s2);
-    assert(!(s2 > s1));
-    
-    std::cout << "PASSED\n";
-}
-
-void testLessThanOrEqualOperator() {
-    std::cout << "Test: Less than or equal operator (<=)... ";
-    Studentas s1("Antanas", "Antanaitis");
-    s1.setFinalGrade(7.0f);
-    Studentas s2("Antanas", "Antanaitis");
-    s2.setFinalGrade(7.0f);
-    Studentas s3("Bronius", "Bronaitis");
-    s3.setFinalGrade(8.0f);
-    
-    assert(s1 <= s2);
-    assert(s1 <= s3);
-    assert(!(s3 <= s1));
-    
-    std::cout << "PASSED\n";
-}
-
-void testGreaterThanOrEqualOperator() {
-    std::cout << "Test: Greater than or equal operator (>=)... ";
-    Studentas s1("Jonas", "Jonaitis");
-    s1.setFinalGrade(8.5f);
-    Studentas s2("Petras", "Petraitis");
-    s2.setFinalGrade(7.0f);
-    Studentas s3("Kazys", "Kazaitis");
-    s3.setFinalGrade(8.5f);
-    
-    assert(s1 >= s2);
-    assert(!(s2 >= s1));
-    assert(s1 >= s3);
-    
-    std::cout << "PASSED\n";
-}
-
-void testCalculateFinalGrade() {
-    std::cout << "Test: Calculate final grade (average)... ";
-    Studentas s("Test", "Testinis");
-    s.addIntermediateGrade(8);
-    s.addIntermediateGrade(9);
-    s.addIntermediateGrade(10);
-    s.setExamGrade(9);
-    
-    s.calculateFinalGrade("1");
-    
-    float expected = 0.6f * 9 + 0.4f * 9.0f;
-    assert(s.getFinalGrade() == expected);
-    
-    std::cout << "Test: Calculate final grade (median)... ";
-    Studentas s2("Test2", "Testinis2");
-    s2.addIntermediateGrade(7);
-    s2.addIntermediateGrade(8);
-    s2.addIntermediateGrade(9);
-    s2.setExamGrade(10);
-    
-    s2.calculateFinalGrade("2");
-    
-    float expectedMedian = 0.6f * 10 + 0.4f * 8.0f;
-    assert(s2.getFinalGrade() == expectedMedian);
-    
-    std::cout << "PASSED\n";
-}
-
-void testSettersAndGetters() {
-    std::cout << "Test: Setters and getters... ";
-    Studentas s;
-    
-    s.setFirstName("Jonas");
-    assert(s.getFirstName() == "Jonas");
-    
-    s.setLastName("Jonaitis");
-    assert(s.getLastName() == "Jonaitis");
-    
-    s.addIntermediateGrade(8);
-    s.addIntermediateGrade(9);
-    assert(s.getIntermediateGrades().size() == 2);
-    assert(s.getIntermediateGrades()[0] == 8);
-    assert(s.getIntermediateGrades()[1] == 9);
-    
-    s.setExamGrade(10);
-    assert(s.getExamGrade() == 10);
-    
-    s.setFinalGrade(9.5f);
-    assert(s.getFinalGrade() == 9.5f);
-    
-    std::cout << "PASSED\n";
-}
-
-void testVectorStorage() {
-    std::cout << "Test: Storing in vector (tests move semantics)... ";
-    std::vector<Studentas> students;
-    
-    Studentas s1("Jonas", "Jonaitis");
-    s1.addIntermediateGrade(8);
-    s1.setExamGrade(9);
-    
-    Studentas s2("Petras", "Petraitis");
-    s2.addIntermediateGrade(7);
-    s2.setExamGrade(8);
-    
-    students.push_back(s1);
-    students.push_back(s2);
-    students.push_back(Studentas("Antanas", "Antanaitis"));
-    
-    assert(students.size() == 3);
-    assert(students[0].getFirstName() == "Jonas");
-    assert(students[1].getFirstName() == "Petras");
-    assert(students[2].getFirstName() == "Antanas");
-    
-    std::cout << "PASSED\n";
-}
-
-void testOutputStreamOperator() {
-    std::cout << "Test: Output stream operator (<<)... ";
+TEST_CASE("Output stream operator formats student correctly", "[IO]") {
     Studentas s("Edmundas", "Edmundaitis");
     s.addIntermediateGrade(8);
     s.addIntermediateGrade(9);
@@ -369,18 +198,15 @@ void testOutputStreamOperator() {
     oss << s;
     std::string output = oss.str();
     
-    assert(output.find("Edmundas") != std::string::npos);
-    assert(output.find("Edmundaitis") != std::string::npos);
-    assert(output.find("8") != std::string::npos);
-    assert(output.find("9") != std::string::npos);
-    assert(output.find("10") != std::string::npos);
-    assert(output.find("9.00") != std::string::npos);
-    
-    std::cout << "PASSED\n";
+    REQUIRE_THAT(output, Catch::Contains("Edmundas"));
+    REQUIRE_THAT(output, Catch::Contains("Edmundaitis"));
+    REQUIRE_THAT(output, Catch::Contains("8"));
+    REQUIRE_THAT(output, Catch::Contains("9"));
+    REQUIRE_THAT(output, Catch::Contains("10"));
+    REQUIRE_THAT(output, Catch::Contains("9.00"));
 }
 
-void testInputStreamOperator() {
-    std::cout << "Test: Input stream operator (>>)... ";
+TEST_CASE("Input stream operator parses data correctly", "[IO]") {
     std::istringstream iss("Rimantas Rimantaitis 3 7 8 9 10");
     
     Studentas s;
@@ -404,19 +230,16 @@ void testInputStreamOperator() {
     iss >> egz;
     s.setExamGrade(egz);
     
-    assert(s.getFirstName() == "Rimantas");
-    assert(s.getLastName() == "Rimantaitis");
-    assert(s.getIntermediateGrades().size() == 3);
-    assert(s.getIntermediateGrades()[0] == 7);
-    assert(s.getIntermediateGrades()[1] == 8);
-    assert(s.getIntermediateGrades()[2] == 9);
-    assert(s.getExamGrade() == 10);
-    
-    std::cout << "PASSED\n";
+    REQUIRE(s.getFirstName() == "Rimantas");
+    REQUIRE(s.getLastName() == "Rimantaitis");
+    REQUIRE(s.getIntermediateGrades().size() == 3);
+    REQUIRE(s.getIntermediateGrades()[0] == 7);
+    REQUIRE(s.getIntermediateGrades()[1] == 8);
+    REQUIRE(s.getIntermediateGrades()[2] == 9);
+    REQUIRE(s.getExamGrade() == 10);
 }
 
-void testStreamRoundTrip() {
-    std::cout << "Test: Stream round-trip (output then parse)... ";
+TEST_CASE("Stream round-trip preserves data", "[IO]") {
     Studentas original("Kazys", "Kazaitis");
     original.addIntermediateGrade(7);
     original.addIntermediateGrade(8);
@@ -428,49 +251,146 @@ void testStreamRoundTrip() {
     oss << original;
     std::string output = oss.str();
     
-    assert(output.find("Kazys") != std::string::npos);
-    assert(output.find("Kazaitis") != std::string::npos);
-    assert(output.find("9.00") != std::string::npos);
-    
-    std::cout << "PASSED\n";
+    REQUIRE_THAT(output, Catch::Contains("Kazys"));
+    REQUIRE_THAT(output, Catch::Contains("Kazaitis"));
+    REQUIRE_THAT(output, Catch::Contains("9.00"));
 }
 
-int main() {
-    std::cout << "=== Studentas Class Test Suite ===\n\n";
+// ============================================================================
+// COMPARISON OPERATOR TESTS
+// ============================================================================
+
+TEST_CASE("Equality operator compares name and surname", "[Comparison]") {
+    Studentas s1("Jonas", "Jonaitis");
+    Studentas s2("Jonas", "Jonaitis");
+    Studentas s3("Petras", "Petraitis");
     
-    std::cout << "--- Rule of Five Tests ---\n";
-    testDefaultConstructor();
-    testParameterizedConstructor();
-    testCopyConstructor();
-    testCopyAssignmentOperator();
-    testMoveConstructor();
-    testMoveAssignmentOperator();
-    testDestructor();
+    REQUIRE(s1 == s2);
+    REQUIRE_FALSE(s1 == s3);
+}
+
+TEST_CASE("Inequality operator works correctly", "[Comparison]") {
+    Studentas s1("Jonas", "Jonaitis");
+    Studentas s2("Jonas", "Jonaitis");
+    Studentas s3("Petras", "Petraitis");
     
-    std::cout << "\n--- Abstract Base Class Tests ---\n";
-    testAbstractClassCannotBeInstantiated();
-    testBaseClassPointerToStudent();
-    testBaseClassReferenceToStudent();
+    REQUIRE_FALSE(s1 != s2);
+    REQUIRE(s1 != s3);
+}
+
+TEST_CASE("Less than operator compares by first name", "[Comparison]") {
+    Studentas s1("Antanas", "Antanaitis");
+    Studentas s2("Bronius", "Bronaitis");
     
-    std::cout << "\n--- I/O Operator Tests ---\n";
-    testOutputStreamOperator();
-    testInputStreamOperator();
-    testStreamRoundTrip();
+    REQUIRE(s1 < s2);
+    REQUIRE_FALSE(s2 < s1);
+}
+
+TEST_CASE("Greater than operator compares by final grade", "[Comparison]") {
+    Studentas s1("Jonas", "Jonaitis");
+    s1.setFinalGrade(8.5f);
+    Studentas s2("Petras", "Petraitis");
+    s2.setFinalGrade(7.0f);
     
-    std::cout << "\n--- Comparison Operator Tests ---\n";
-    testEqualityOperator();
-    testInequalityOperator();
-    testLessThanOperator();
-    testGreaterThanOperator();
-    testLessThanOrEqualOperator();
-    testGreaterThanOrEqualOperator();
+    REQUIRE(s1 > s2);
+    REQUIRE_FALSE(s2 > s1);
+}
+
+TEST_CASE("Less than or equal operator compares by final grade", "[Comparison]") {
+    Studentas s1("Antanas", "Antanaitis");
+    s1.setFinalGrade(7.0f);
+    Studentas s2("Antanas", "Antanaitis");
+    s2.setFinalGrade(7.0f);
+    Studentas s3("Bronius", "Bronaitis");
+    s3.setFinalGrade(8.0f);
     
-    std::cout << "\n--- Functionality Tests ---\n";
-    testCalculateFinalGrade();
-    testSettersAndGetters();
-    testVectorStorage();
+    REQUIRE(s1 <= s2);
+    REQUIRE(s1 <= s3);
+    REQUIRE_FALSE(s3 <= s1);
+}
+
+TEST_CASE("Greater than or equal operator compares by final grade", "[Comparison]") {
+    Studentas s1("Jonas", "Jonaitis");
+    s1.setFinalGrade(8.5f);
+    Studentas s2("Petras", "Petraitis");
+    s2.setFinalGrade(7.0f);
+    Studentas s3("Kazys", "Kazaitis");
+    s3.setFinalGrade(8.5f);
     
-    std::cout << "\n=== All tests PASSED! ===\n";
+    REQUIRE(s1 >= s2);
+    REQUIRE_FALSE(s2 >= s1);
+    REQUIRE(s1 >= s3);
+}
+
+// ============================================================================
+// FUNCTIONALITY TESTS
+// ============================================================================
+
+TEST_CASE("Calculate final grade with average", "[Functionality]") {
+    Studentas s("Test", "Testinis");
+    s.addIntermediateGrade(8);
+    s.addIntermediateGrade(9);
+    s.addIntermediateGrade(10);
+    s.setExamGrade(9);
     
-    return 0;
+    s.calculateFinalGrade("1");
+    
+    float expected = 0.6f * 9 + 0.4f * 9.0f;
+    REQUIRE(s.getFinalGrade() == Approx(expected));
+}
+
+TEST_CASE("Calculate final grade with median", "[Functionality]") {
+    Studentas s2("Test2", "Testinis2");
+    s2.addIntermediateGrade(7);
+    s2.addIntermediateGrade(8);
+    s2.addIntermediateGrade(9);
+    s2.setExamGrade(10);
+    
+    s2.calculateFinalGrade("2");
+    
+    float expectedMedian = 0.6f * 10 + 0.4f * 8.0f;
+    REQUIRE(s2.getFinalGrade() == Approx(expectedMedian));
+}
+
+TEST_CASE("Setters and getters work correctly", "[Functionality]") {
+    Studentas s;
+    
+    s.setFirstName("Jonas");
+    REQUIRE(s.getFirstName() == "Jonas");
+    
+    s.setLastName("Jonaitis");
+    REQUIRE(s.getLastName() == "Jonaitis");
+    
+    s.addIntermediateGrade(8);
+    s.addIntermediateGrade(9);
+    REQUIRE(s.getIntermediateGrades().size() == 2);
+    REQUIRE(s.getIntermediateGrades()[0] == 8);
+    REQUIRE(s.getIntermediateGrades()[1] == 9);
+    
+    s.setExamGrade(10);
+    REQUIRE(s.getExamGrade() == 10);
+    
+    s.setFinalGrade(9.5f);
+    REQUIRE(s.getFinalGrade() == 9.5f);
+}
+
+TEST_CASE("Storing in vector tests move semantics", "[Functionality]") {
+    std::vector<Studentas> students;
+    
+    Studentas s1("Jonas", "Jonaitis");
+    s1.addIntermediateGrade(8);
+    s1.setExamGrade(9);
+    
+    Studentas s2("Petras", "Petraitis");
+    s2.addIntermediateGrade(7);
+    s2.setExamGrade(8);
+    
+    students.push_back(s1);
+    students.push_back(s2);
+    students.push_back(Studentas("Antanas", "Antanaitis"));
+    
+    REQUIRE(students.size() == 3);
+    REQUIRE(students[0].getFirstName() == "Jonas");
+    REQUIRE(students[1].getFirstName() == "Petras");
+    REQUIRE(students[2].getFirstName() == "Antanas");
 }

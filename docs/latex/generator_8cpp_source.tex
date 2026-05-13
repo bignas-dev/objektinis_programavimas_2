@@ -1,0 +1,46 @@
+\doxysection{generator.\+cpp}
+\hypertarget{generator_8cpp_source}{}\label{generator_8cpp_source}\doxymbox{\hyperlink{generator_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{student_8h}{student.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00015}\doxymbox{\hyperlink{generator_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00015}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{benchmark_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00016}00016\ \ \ \ \ std::vector<int>\ sizes\ =\ \{1000,\ 10000,\ 100000,\ 1000000,\ 10000000\};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00017}00017\ \ \ \ \ std::vector<std::string>\ size\_names\ =\ \{\textcolor{stringliteral}{"{}1k"{}},\ \textcolor{stringliteral}{"{}10k"{}},\ \textcolor{stringliteral}{"{}100k"{}},\ \textcolor{stringliteral}{"{}1M"{}},\ \textcolor{stringliteral}{"{}10M"{}}\};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00018}00018\ \ \ \ \ std::vector<std::string>\ containers\ =\ \{\textcolor{stringliteral}{"{}vector"{}},\ \textcolor{stringliteral}{"{}list"{}},\ \textcolor{stringliteral}{"{}deque"{}}\};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00020}00020\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Pradedami\ spartos\ tyrimai...\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ size\_names[i]\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{student_8h_a134894da78e20b8bd3ba0f645e70f830}{runGenerationTestT<std::vector<Mokinys>}}>(size\_names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ sizes[i]);}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ container\ :\ containers)\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ container\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ sizes.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename\ =\ size\_names[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}vector"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{student_8h_a3ac4bde86ceb3076778836dc3ea868b9}{runProcessingTest}}(filename);}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}list"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{student_8h_a3ac4bde86ceb3076778836dc3ea868b9}{runProcessingTest}}(filename);}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}deque"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{student_8h_a3ac4bde86ceb3076778836dc3ea868b9}{runProcessingTest}}(filename);}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00039}00039\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nTyrimai\ baigti.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{generator_8cpp_source_l00041}00041\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,332 @@
+\doxysection{student.\+h File Reference}
+\hypertarget{student_8h}{}\label{student_8h}\index{student.h@{student.h}}
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$sstream$>$}\newline
+{\ttfamily \+\#include $<$stdexcept$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$cstring$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classZmogus}{Zmogus}}
+\item 
+class \doxymbox{\hyperlink{classStudentas}{Studentas}}
+\item 
+struct \doxymbox{\hyperlink{structStudentas_1_1CompareByLastName}{Studentas::\+\+Compare\+By\+Last\+Name}}
+\item 
+struct \doxymbox{\hyperlink{structStudentas_1_1CompareByFinalGradeDesc}{Studentas::\+\+Compare\+By\+Final\+Grade\+Desc}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::\+ostream \& \doxymbox{\hyperlink{student_8h_a9201792d00afa48c63cd2e4f1ea41bb2}{operator$<$$<$}} (std::\+ostream \&out, const \doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas)
+\item 
+std::\+istream \& \doxymbox{\hyperlink{student_8h_ae33769c156dd94d4cea9cdba0c136194}{operator$>$$>$}} (std::\+istream \&in, \doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas)
+\item 
+int \doxymbox{\hyperlink{student_8h_ac4db6b3014e125aa554d555851d6b7a0}{get\+Vardu\+Kiekis}} ()
+\item 
+int \doxymbox{\hyperlink{student_8h_ae9671477aa0b5fbe43b5a51c54cb7910}{get\+Pavardziu\+Kiekis}} ()
+\item 
+void \doxymbox{\hyperlink{student_8h_acd9f7b1fc12b625d8d7cba1d05dad6fe}{generate\+Random\+Grades}} (\doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas)
+\item 
+float \doxymbox{\hyperlink{student_8h_a994578dc6ddde205dd2700127d015f6f}{calculate\+Average}} (const std::\+vector$<$ int $>$ \&arr)
+\item 
+float \doxymbox{\hyperlink{student_8h_a3a3ef22ba2de557405b4432b13c2be20}{calculate\+Median}} (std::\+vector$<$ int $>$ arr)
+\item 
+void \doxymbox{\hyperlink{student_8h_a5910f97f389db254766d044fb804edc6}{generate\+Random\+Data}} (\doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas)
+\item 
+void \doxymbox{\hyperlink{student_8h_a434de3465c5220904c766d15cc16f5e9}{read\+Student\+Data}} (\doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas)
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \doxymbox{\hyperlink{student_8h_aa7aa395b81e67e82edce3013ccf29e98}{read\+From\+File}} (const std::\+string \&filename)
+\item 
+void \doxymbox{\hyperlink{student_8h_a20d70fb908fa1bb11bc208d1855bd926}{calculate\+Final\+Grade}} (\doxymbox{\hyperlink{classStudentas}{Studentas}} \&studentas, const std::\+string \&choice)
+\item 
+void \doxymbox{\hyperlink{student_8h_ae4c17b84b99cc29e1fa2139bfdd25175}{print\+Results}} (const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&students, const std::\+string \&choice, std::\+ostream \&out)
+\item 
+void \doxymbox{\hyperlink{student_8h_a744dbade1ab813c9c8af11a0a7469313}{display\+Results}} (const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&students, const std::\+string \&choice)
+\item 
+void \doxymbox{\hyperlink{student_8h_a526b775f775d6d91db367a2c01685ce3}{write\+Results\+To\+AFile}} (const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&students, const std::\+string \&choice, const std::\+string \&filename)
+\item 
+void \doxymbox{\hyperlink{student_8h_aa8f20177f0124eb5eefe629e5bedf323}{run\+Generation\+Test}} (const std::\+string \&filename, int count)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\void \doxymbox{\hyperlink{student_8h_a134894da78e20b8bd3ba0f645e70f830}{run\+Generation\+TestT}} (const std::\+string \&filename, int count)
+\item 
+void \doxymbox{\hyperlink{student_8h_a3ac4bde86ceb3076778836dc3ea868b9}{run\+Processing\+Test}} (const std::\+string \&filename)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\Container \doxymbox{\hyperlink{student_8h_a9d9692518d69a6f3a21fb104bb66ff48}{read\+From\+File\+Generic}} (const std::\+string \&filename)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\void \doxymbox{\hyperlink{student_8h_a87653d8eb7fee45bd371ae804c58adc2}{partition\+Strategy1}} (const Container \&students, Container \&vargsiukai, Container \&kietiakiai)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\void \doxymbox{\hyperlink{student_8h_acfc8acaa713ceee9e3e915d7158d9c0f}{partition\+Strategy2}} (Container \&students, Container \&vargsiukai)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\void \doxymbox{\hyperlink{student_8h_ab9ab8fba2032b471766f534e60dc6fa3}{partition\+Strategy3}} (Container \&students, Container \&vargsiukai, Container \&kietiakiai)
+\item 
+{\footnotesize template$<$typename Container$>$ }\\long long \doxymbox{\hyperlink{student_8h_ab57bad1f030706d75f6c0c57f77ed156}{run\+Partition\+Benchmark}} (const std::\+string \&filename, int strategy)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \doxymbox{\hyperlink{student_8h_a32becf09eb383a1548f52dba41cebaf9}{vardai}} \+[$\,$]\+ = \{"{}Jonas"{}, "{}Petras"{}, "{}Antanas"{}, "{}Vytautas"{}, "{}Kazys"{}, "{}Juozas"{}, "{}Algirdas"{}, "{}Bronius"{}, "{}Edmundas"{}, "{}Rimantas"{}\}
+\item 
+const std::\+string \doxymbox{\hyperlink{student_8h_ab6103b3d091c5ce3ec89990575edfd7e}{pavardes}} \+[$\,$]\+ = \{"{}Jonaitis"{}, "{}Petraitis"{}, "{}Antanaitis"{}, "{}Vytautaitis"{}, "{}Kazaitis"{}, "{}Juozaitis"{}, "{}Algirdaitis"{}, "{}Bronaitis"{}, "{}Edmundaitis"{}, "{}Rimantaitis"{}\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{student_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{student_8h_a994578dc6ddde205dd2700127d015f6f}\index{student.h@{student.h}!calculateAverage@{calculateAverage}}
+\index{calculateAverage@{calculateAverage}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{calculateAverage()}{calculateAverage()}}
+{\footnotesize\ttfamily \label{student_8h_a994578dc6ddde205dd2700127d015f6f} 
+float calculate\+Average (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{arr}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00253}{253}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a20d70fb908fa1bb11bc208d1855bd926}\index{student.h@{student.h}!calculateFinalGrade@{calculateFinalGrade}}
+\index{calculateFinalGrade@{calculateFinalGrade}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{calculateFinalGrade()}{calculateFinalGrade()}}
+{\footnotesize\ttfamily \label{student_8h_a20d70fb908fa1bb11bc208d1855bd926} 
+void calculate\+Final\+Grade (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00366}{366}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a3a3ef22ba2de557405b4432b13c2be20}\index{student.h@{student.h}!calculateMedian@{calculateMedian}}
+\index{calculateMedian@{calculateMedian}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{calculateMedian()}{calculateMedian()}}
+{\footnotesize\ttfamily \label{student_8h_a3a3ef22ba2de557405b4432b13c2be20} 
+float calculate\+Median (\begin{DoxyParamCaption}\item[{std::\+vector$<$ int $>$}]{arr}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00262}{262}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a744dbade1ab813c9c8af11a0a7469313}\index{student.h@{student.h}!displayResults@{displayResults}}
+\index{displayResults@{displayResults}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{displayResults()}{displayResults()}}
+{\footnotesize\ttfamily \label{student_8h_a744dbade1ab813c9c8af11a0a7469313} 
+void display\+Results (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&}]{students}{, }\item[{const std::\+string \&}]{choice}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00391}{391}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a5910f97f389db254766d044fb804edc6}\index{student.h@{student.h}!generateRandomData@{generateRandomData}}
+\index{generateRandomData@{generateRandomData}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{generateRandomData()}{generateRandomData()}}
+{\footnotesize\ttfamily \label{student_8h_a5910f97f389db254766d044fb804edc6} 
+void generate\+Random\+Data (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00273}{273}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_acd9f7b1fc12b625d8d7cba1d05dad6fe}\index{student.h@{student.h}!generateRandomGrades@{generateRandomGrades}}
+\index{generateRandomGrades@{generateRandomGrades}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{generateRandomGrades()}{generateRandomGrades()}}
+{\footnotesize\ttfamily \label{student_8h_acd9f7b1fc12b625d8d7cba1d05dad6fe} 
+void generate\+Random\+Grades (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00246}{246}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ae9671477aa0b5fbe43b5a51c54cb7910}\index{student.h@{student.h}!getPavardziuKiekis@{getPavardziuKiekis}}
+\index{getPavardziuKiekis@{getPavardziuKiekis}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{getPavardziuKiekis()}{getPavardziuKiekis()}}
+{\footnotesize\ttfamily \label{student_8h_ae9671477aa0b5fbe43b5a51c54cb7910} 
+int get\+Pavardziu\+Kiekis (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00244}{244}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ac4db6b3014e125aa554d555851d6b7a0}\index{student.h@{student.h}!getVarduKiekis@{getVarduKiekis}}
+\index{getVarduKiekis@{getVarduKiekis}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{getVarduKiekis()}{getVarduKiekis()}}
+{\footnotesize\ttfamily \label{student_8h_ac4db6b3014e125aa554d555851d6b7a0} 
+int get\+Vardu\+Kiekis (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00243}{243}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a9201792d00afa48c63cd2e4f1ea41bb2}\index{student.h@{student.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \label{student_8h_a9201792d00afa48c63cd2e4f1ea41bb2} 
+std::\+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std::\+ostream \&}]{out}{, }\item[{const \doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00199}{199}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ae33769c156dd94d4cea9cdba0c136194}\index{student.h@{student.h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
+{\footnotesize\ttfamily \label{student_8h_ae33769c156dd94d4cea9cdba0c136194} 
+std::\+istream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std::\+istream \&}]{in}{, }\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00204}{204}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a87653d8eb7fee45bd371ae804c58adc2}\index{student.h@{student.h}!partitionStrategy1@{partitionStrategy1}}
+\index{partitionStrategy1@{partitionStrategy1}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{partitionStrategy1()}{partitionStrategy1()}}
+{\footnotesize\ttfamily \label{student_8h_a87653d8eb7fee45bd371ae804c58adc2} 
+template$<$typename Container$>$ \\
+void partition\+Strategy1 (\begin{DoxyParamCaption}\item[{const Container \&}]{students}{, }\item[{Container \&}]{vargsiukai}{, }\item[{Container \&}]{kietiakiai}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00537}{537}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_acfc8acaa713ceee9e3e915d7158d9c0f}\index{student.h@{student.h}!partitionStrategy2@{partitionStrategy2}}
+\index{partitionStrategy2@{partitionStrategy2}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{partitionStrategy2()}{partitionStrategy2()}}
+{\footnotesize\ttfamily \label{student_8h_acfc8acaa713ceee9e3e915d7158d9c0f} 
+template$<$typename Container$>$ \\
+void partition\+Strategy2 (\begin{DoxyParamCaption}\item[{Container \&}]{students}{, }\item[{Container \&}]{vargsiukai}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00545}{545}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ab9ab8fba2032b471766f534e60dc6fa3}\index{student.h@{student.h}!partitionStrategy3@{partitionStrategy3}}
+\index{partitionStrategy3@{partitionStrategy3}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{partitionStrategy3()}{partitionStrategy3()}}
+{\footnotesize\ttfamily \label{student_8h_ab9ab8fba2032b471766f534e60dc6fa3} 
+template$<$typename Container$>$ \\
+void partition\+Strategy3 (\begin{DoxyParamCaption}\item[{Container \&}]{students}{, }\item[{Container \&}]{vargsiukai}{, }\item[{Container \&}]{kietiakiai}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00557}{557}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ae4c17b84b99cc29e1fa2139bfdd25175}\index{student.h@{student.h}!printResults@{printResults}}
+\index{printResults@{printResults}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{printResults()}{printResults()}}
+{\footnotesize\ttfamily \label{student_8h_ae4c17b84b99cc29e1fa2139bfdd25175} 
+void print\+Results (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&}]{students}{, }\item[{const std::\+string \&}]{choice}{, }\item[{std::\+ostream \&}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00370}{370}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_aa7aa395b81e67e82edce3013ccf29e98}\index{student.h@{student.h}!readFromFile@{readFromFile}}
+\index{readFromFile@{readFromFile}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{readFromFile()}{readFromFile()}}
+{\footnotesize\ttfamily \label{student_8h_aa7aa395b81e67e82edce3013ccf29e98} 
+std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ read\+From\+File (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00330}{330}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a9d9692518d69a6f3a21fb104bb66ff48}\index{student.h@{student.h}!readFromFileGeneric@{readFromFileGeneric}}
+\index{readFromFileGeneric@{readFromFileGeneric}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{readFromFileGeneric()}{readFromFileGeneric()}}
+{\footnotesize\ttfamily \label{student_8h_a9d9692518d69a6f3a21fb104bb66ff48} 
+template$<$typename Container$>$ \\
+Container read\+From\+File\+Generic (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00509}{509}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a434de3465c5220904c766d15cc16f5e9}\index{student.h@{student.h}!readStudentData@{readStudentData}}
+\index{readStudentData@{readStudentData}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{readStudentData()}{readStudentData()}}
+{\footnotesize\ttfamily \label{student_8h_a434de3465c5220904c766d15cc16f5e9} 
+void read\+Student\+Data (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classStudentas}{Studentas}} \&}]{studentas}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00284}{284}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_aa8f20177f0124eb5eefe629e5bedf323}\index{student.h@{student.h}!runGenerationTest@{runGenerationTest}}
+\index{runGenerationTest@{runGenerationTest}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{runGenerationTest()}{runGenerationTest()}}
+{\footnotesize\ttfamily \label{student_8h_aa8f20177f0124eb5eefe629e5bedf323} 
+void run\+Generation\+Test (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00404}{404}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a134894da78e20b8bd3ba0f645e70f830}\index{student.h@{student.h}!runGenerationTestT@{runGenerationTestT}}
+\index{runGenerationTestT@{runGenerationTestT}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{runGenerationTestT()}{runGenerationTestT()}}
+{\footnotesize\ttfamily \label{student_8h_a134894da78e20b8bd3ba0f645e70f830} 
+template$<$typename Container$>$ \\
+void run\+Generation\+TestT (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00438}{438}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_ab57bad1f030706d75f6c0c57f77ed156}\index{student.h@{student.h}!runPartitionBenchmark@{runPartitionBenchmark}}
+\index{runPartitionBenchmark@{runPartitionBenchmark}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{runPartitionBenchmark()}{runPartitionBenchmark()}}
+{\footnotesize\ttfamily \label{student_8h_ab57bad1f030706d75f6c0c57f77ed156} 
+template$<$typename Container$>$ \\
+long long run\+Partition\+Benchmark (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{int}]{strategy}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00565}{565}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a3ac4bde86ceb3076778836dc3ea868b9}\index{student.h@{student.h}!runProcessingTest@{runProcessingTest}}
+\index{runProcessingTest@{runProcessingTest}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{runProcessingTest()}{runProcessingTest()}}
+{\footnotesize\ttfamily \label{student_8h_a3ac4bde86ceb3076778836dc3ea868b9} 
+void run\+Processing\+Test (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00461}{461}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a526b775f775d6d91db367a2c01685ce3}\index{student.h@{student.h}!writeResultsToAFile@{writeResultsToAFile}}
+\index{writeResultsToAFile@{writeResultsToAFile}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{writeResultsToAFile()}{writeResultsToAFile()}}
+{\footnotesize\ttfamily \label{student_8h_a526b775f775d6d91db367a2c01685ce3} 
+void write\+Results\+To\+AFile (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{classStudentas}{Studentas}} $>$ \&}]{students}{, }\item[{const std::\+string \&}]{choice}{, }\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00395}{395}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+
+
+\label{doc-var-members}
+\Hypertarget{student_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{student_8h_ab6103b3d091c5ce3ec89990575edfd7e}\index{student.h@{student.h}!pavardes@{pavardes}}
+\index{pavardes@{pavardes}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{pavardes}{pavardes}}
+{\footnotesize\ttfamily \label{student_8h_ab6103b3d091c5ce3ec89990575edfd7e} 
+const std::\+string pavardes\+[$\,$]\+ = \{"{}Jonaitis"{}, "{}Petraitis"{}, "{}Antanaitis"{}, "{}Vytautaitis"{}, "{}Kazaitis"{}, "{}Juozaitis"{}, "{}Algirdaitis"{}, "{}Bronaitis"{}, "{}Edmundaitis"{}, "{}Rimantaitis"{}\}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00241}{241}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+
+\Hypertarget{student_8h_a32becf09eb383a1548f52dba41cebaf9}\index{student.h@{student.h}!vardai@{vardai}}
+\index{vardai@{vardai}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{vardai}{vardai}}
+{\footnotesize\ttfamily \label{student_8h_a32becf09eb383a1548f52dba41cebaf9} 
+const std::\+string vardai\+[$\,$]\+ = \{"{}Jonas"{}, "{}Petras"{}, "{}Antanas"{}, "{}Vytautas"{}, "{}Kazys"{}, "{}Juozas"{}, "{}Algirdas"{}, "{}Bronius"{}, "{}Edmundas"{}, "{}Rimantas"{}\}}
+
+
+
+Definition at line \doxymbox{\hyperlink{student_8h_source_l00240}{240}} of file \doxymbox{\hyperlink{student_8h_source}{student.\+h}}.
+

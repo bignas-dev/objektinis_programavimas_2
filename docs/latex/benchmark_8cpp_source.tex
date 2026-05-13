@@ -1,0 +1,65 @@
+\doxysection{benchmark.\+cpp}
+\hypertarget{benchmark_8cpp_source}{}\label{benchmark_8cpp_source}\doxymbox{\hyperlink{benchmark_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{student_8h}{student.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00013}\doxymbox{\hyperlink{benchmark_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00013}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{benchmark_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00014}00014\ \ \ \ \ std::vector<std::string>\ sizes\ =\ \{\textcolor{stringliteral}{"{}1k"{}},\ \textcolor{stringliteral}{"{}10k"{}},\ \textcolor{stringliteral}{"{}100k"{}}\ \};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00015}00015\ \ \ \ \ std::vector<std::string>\ containers\ =\ \{\textcolor{stringliteral}{"{}vector"{}},\ \textcolor{stringliteral}{"{}list"{}},\ \textcolor{stringliteral}{"{}deque"{}}\};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00016}00016\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00017}00017\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00018}00018\ \ \ \ \ std::cout\ <<\ std::left\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ \textcolor{stringliteral}{"{}Container"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(10)\ <<\ \textcolor{stringliteral}{"{}Strategy"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(8)\ <<\ \textcolor{stringliteral}{"{}Size"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ \textcolor{stringliteral}{"{}Partition(ms)"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00024}00024\ \ \ \ \ std::cout\ <<\ std::string(54,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ container\ :\ containers)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ strategy\ =\ 1;\ strategy\ <=\ 3;\ ++strategy)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ size\ :\ sizes)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename\ =\ size\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ duration\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}vector"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duration\ =\ \doxymbox{\hyperlink{student_8h_ab57bad1f030706d75f6c0c57f77ed156}{runPartitionBenchmark<std::vector<Mokinys>}}>(filename,\ strategy);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}list"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duration\ =\ \doxymbox{\hyperlink{student_8h_ab57bad1f030706d75f6c0c57f77ed156}{runPartitionBenchmark<std::list<Mokinys>}}>(filename,\ strategy);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (container\ ==\ \textcolor{stringliteral}{"{}deque"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duration\ =\ \doxymbox{\hyperlink{student_8h_ab57bad1f030706d75f6c0c57f77ed156}{runPartitionBenchmark<std::deque<Mokinys>}}>(filename,\ strategy);}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::left\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(12)\ <<\ container}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(10)\ <<\ (\textcolor{stringliteral}{"{}S"{}}\ +\ std::to\_string(strategy))}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(8)\ <<\ size}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::setw(14)\ <<\ duration}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00054}00054\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nSummary:\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00055}00055\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ Strategy\ 1:\ Copy\ to\ two\ containers\ (simple,\ uses\ more\ memory)\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00056}00056\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ Strategy\ 2:\ Move\ and\ erase\ from\ original\ (slow\ for\ vector\ due\ to\ O(n)\ erase)\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00057}00057\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ Strategy\ 3:\ STL\ stable\_partition\ +\ assign\ (fastest\ for\ all\ containers)\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00058}00058\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{benchmark_8cpp_source_l00060}00060\ \}}
+
+\end{DoxyCode}
