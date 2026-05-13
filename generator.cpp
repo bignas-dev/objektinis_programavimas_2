@@ -15,14 +15,20 @@
 int main(int argc, char* argv[]) {
     std::vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
     std::vector<std::string> size_names = {"1k", "10k", "100k", "1M", "10M"};
-    std::vector<std::string> containers = {"vector", "list", "deque"};
+    std::vector<std::string> containers = {"vector" };
 
     std::cout << "Pradedami spartos tyrimai...\n";
+	std::cout << "ar norite failu: 'taip' jeigu taip\n";
+	std::string answer;
+	std::cin >> answer;
 
-	for (size_t i = 0; i < sizes.size(); ++i) {
-		std::cout << "\n" << size_names[i] << ":\n";
-		runGenerationTestT<std::vector<Mokinys>>(size_names[i] + ".txt", sizes[i]);
+	if (answer == "taip") {
+		for (size_t i = 0; i < sizes.size(); ++i) {
+			std::cout << "\n" << size_names[i] << ":\n";
+			runGenerationTestT<std::vector<Studentas>>(size_names[i] + ".txt", sizes[i]);
+		}
 	}
+
 	for (const auto& container : containers) {
 		std::cout << "\n" << container << ":\n";
 		for (size_t i = 0; i < sizes.size(); ++i) {

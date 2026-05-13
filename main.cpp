@@ -4,15 +4,17 @@
 #include <cstdlib>
 #include <ctime>
 #include <stdexcept>
+#include <fstream>
 #include "student.h"
 
 int main() {
     srand(static_cast<unsigned>(time(nullptr)));
 
     int input_mode;
-    std::cout << "Pasirinkite įvesties būdą:\n"
-              << "1 - Rankinis įvedimas\n"
-              << "2 - Atsitiktinis generavimas\n"
+    std::cout << "=== Studentų Duomenų Įvestis ===\n"
+              << "Pasirinkite įvesties būdą:\n"
+              << "1 - Rankinis įvedimas (konsolė)\n"
+              << "2 - Automatinis generavimas\n"
               << "3 - Nuskaitymas iš failo\n"
               << "Jūsų pasirinkimas: ";
     std::cin >> input_mode;
@@ -25,45 +27,50 @@ int main() {
     std::vector<Studentas> students;
 
     if (input_mode == 1) {
+        std::cout << "\n--- Rankinė Įvestis ---\n";
         while (true) {
             std::cout << "\nĮveskite " << students.size() + 1 << " studento duomenis:\n";
             Studentas s;
-            readStudentData(s);
+            s.inputManual();
             students.push_back(s);
 
             std::string ans;
             std::cout << "Ar norite įvesti dar vieną studentą? (t/n): ";
             std::cin >> ans;
-            if (ans != "T" && ans != "t") {
-                break;
-            }
+            if (ans != "T" && ans != "t") break;
         }
     }
     else if (input_mode == 2) {
-        std::cout << "\nĮveskite skaiciu kiek studentu sugeneruoti:\n";
+        std::cout << "\n--- Automatinis Generavimas ---\n";
+        std::cout << "Įveskite studentų skaičių: ";
         int mokSkaicius;
         std::cin >> mokSkaicius;
+        
         for (int i = 0; i < mokSkaicius; i++) {
             Studentas s;
-            generateRandomData(s);
+            s.inputAuto();
             students.push_back(s);
         }
-        std::cout << "Sugeneruota " << mokSkaicius << " mokiniu ";
+        std::cout << "Sugeneruota " << mokSkaicius << " studentų.\n";
     }
-    else { 
+    else {
+        std::cout << "\n--- Įvestis iš Failo ---\n";
         std::string filename;
         std::cout << "Įveskite failo pavadinimą: ";
         std::cin >> filename;
+        
         students = readFromFile(filename);
+        
         if (students.empty()) {
-            std::cerr << "Nepavyko nuskaityti jokių duomenų iš failo. Programa baigiama." << std::endl;
+            std::cerr << "Nepavyko nuskaityti duomenų.\n";
             return 1;
         }
-        std::cout << "Iš failo nuskaityta " << students.size() << " studentų.\n";
+        std::cout << "Nuskaityta " << students.size() << " studentų.\n";
     }
 
     std::string choice;
-    std::cout << "\nPasirinkite galutinio balo skaičiavimo būdą:\n"
+    std::cout << "\n=== Galutinio Balo Skaičiavimas ===\n"
+              << "Pasirinkite būdą:\n"
               << "1 - Vidurkis\n"
               << "2 - Mediana\n"
               << "Jūsų pasirinkimas: ";
@@ -75,31 +82,20 @@ int main() {
     }
 
     for (auto& s : students) {
-        calculateFinalGrade(s, choice);
+        s.calculateFinalGrade(choice);
     }
 
     int sort_choice;
-    std::cout << "\nPasirinkite rūšiavimo kriterijų:\n"
-              << "1 - Pagal vardą\n"
-              << "2 - Pagal pavardę\n"
-              << "3 - Pagal galutinį balą\n"
+    std::cout << "\n=== Rūšiavimas ===\n"
+              << "Pasirinkite kriterijų:\n"
+              << "1 - Pagal vardą (a-z)\n"
+              << "2 - Pagal pavardę (a-z)\n"
+              << "3 - Pagal galutinį balą (didėjantis)\n"
               << "Jūsų pasirinkimas: ";
     std::cin >> sort_choice;
 
-    if (std::cin.fail() || sort_choice < 1 || sort_choice > 3) {
-        std::cout << "Neteisinga įvestis: tinka '1', '2' arba '3'.\n";
-        return 1;
-    }
-
-    int output_option;
-    std::cout << "\nPasirinkite kur pateikti rezultatai:\n"
-              << "1 - i terminala\n"
-              << "2 - i faila\n"
-              << "Jūsų pasirinkimas: ";
-    std::cin >> output_option;
-
-    if (std::cin.fail() || output_option < 1 ||  output_option > 3) {
-        std::cout << "Neteisinga įvestis: tinka '1' arba '2'\n";
+    if (sort_choice < 1 || sort_choice > 3) {
+        std::cout << "Neteisinga įvestis.\n";
         return 1;
     }
 
@@ -107,14 +103,59 @@ int main() {
         std::sort(students.begin(), students.end());
     } else if (sort_choice == 2) {
         std::sort(students.begin(), students.end(), Studentas::CompareByLastName());
-    } else { 
+    } else {
         std::sort(students.begin(), students.end(), Studentas::CompareByFinalGradeDesc());
     }
 
+    int output_option;
+    std::cout << "\n=== Rezultatų Išvestis ===\n"
+              << "Pasirinkite išvesties būdą:\n"
+              << "1 - Į ekraną (konsolė)\n"
+              << "2 - Į failą\n"
+              << "Jūsų pasirinkimas: ";
+    std::cin >> output_option;
+
+    if (output_option < 1 || output_option > 2) {
+        std::cout << "Neteisinga įvestis: tinka '1' arba '2'.\n";
+        return 1;
+    }
+
+    std::cout << "\n=== Rezultatai ===\n";
+    
     if (output_option == 1) {
-        displayResults(students, choice);
+        const int langelio_ilgis = 20;
+        std::string kategorija = (choice == "1") ? "Galutinis (Vid.)" : "Galutinis (Med.)";
+        
+        std::cout << std::left;
+        std::cout << std::setw(langelio_ilgis) << "Pavardė"
+                  << std::setw(langelio_ilgis) << "Vardas"
+                  << std::setw(langelio_ilgis) << kategorija << '\n';
+        std::cout << std::string(3 * langelio_ilgis, '-') << '\n';
+        
+        for (const auto& s : students) {
+            s.outputToConsole();
+        }
     } else {
-        writeResultsToAFile(students, choice, "output.txt");
+        std::string filename = "output.txt";
+        std::remove(filename.c_str());
+        
+        std::ofstream outFile(filename);
+        if (outFile.is_open()) {
+            const int langelio_ilgis = 20;
+            std::string kategorija = (choice == "1") ? "Galutinis (Vid.)" : "Galutinis (Med.)";
+            
+            outFile << std::left;
+            outFile << std::setw(langelio_ilgis) << "Pavardė"
+                    << std::setw(langelio_ilgis) << "Vardas"
+                    << std::setw(langelio_ilgis) << kategorija << '\n';
+            outFile << std::string(3 * langelio_ilgis, '-') << '\n';
+            outFile.close();
+            
+            for (const auto& s : students) {
+                s.outputToFile(filename);
+            }
+            std::cout << "Rezultatai įrašyti į failą: " << filename << "\n";
+        }
     }
 
     return 0;

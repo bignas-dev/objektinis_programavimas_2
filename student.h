@@ -46,7 +46,22 @@ public:
     Studentas(const std::string& firstName, const std::string& lastName)
         : vardas(firstName), pavarde(lastName), egz_rez(0), galutinis(-1.0f) {}
 
-    ~Studentas() = default;
+    ~Studentas() {
+        vardas.clear();
+        pavarde.clear();
+        tarp_rez.clear();
+        egz_rez = 0;
+        galutinis = -1.0f;
+    }
+
+    void inputManual();
+    void inputAuto();
+    bool inputFromFile(const std::string& filename);
+    
+    void outputToConsole() const;
+    void outputToFile(const std::string& filename) const;
+    
+    void clearData();
 
     Studentas(const Studentas& other)
         : vardas(other.vardas),
@@ -545,6 +560,94 @@ long long runPartitionBenchmark(const std::string& filename, int strategy) {
     
     auto part_end = std::chrono::high_resolution_clock::now();
     return std::chrono::duration_cast<std::chrono::milliseconds>(part_end - part_start).count();
+}
+
+void Studentas::clearData() {
+    vardas.clear();
+    pavarde.clear();
+    tarp_rez.clear();
+    egz_rez = 0;
+    galutinis = -1.0f;
+}
+
+void Studentas::inputManual() {
+    clearData();
+    std::cout << "Įveskite vardą: ";
+    std::cin >> vardas;
+    
+    std::cout << "Įveskite pavardę: ";
+    std::cin >> pavarde;
+    
+    std::cout << "Įveskite tarpinių pažymių skaičių: ";
+    int tarp_count;
+    std::cin >> tarp_count;
+    
+    for (int i = 0; i < tarp_count; ++i) {
+        std::cout << "Įveskite " << (i + 1) << "-ąjį pažymį: ";
+        int grade;
+        std::cin >> grade;
+        if (grade >= 0 && grade <= 10) {
+            tarp_rez.push_back(grade);
+        }
+    }
+    
+    std::cout << "Įveskite egzamino rezultatą (0-10): ";
+    std::cin >> egz_rez;
+}
+
+void Studentas::inputAuto() {
+    clearData();
+    generateRandomData(*this);
+}
+
+bool Studentas::inputFromFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) return false;
+    
+    clearData();
+    std::string line;
+    std::getline(file, line);
+    
+    if (std::getline(file, line) && !line.empty()) {
+        std::istringstream iss(line);
+        std::string firstName, lastName;
+        if (iss >> firstName >> lastName) {
+            vardas = firstName;
+            pavarde = lastName;
+            
+            int grade;
+            for (int i = 0; i < 5; ++i) {
+                if (iss >> grade) {
+                    tarp_rez.push_back(grade);
+                }
+            }
+            iss >> egz_rez;
+        }
+    }
+    file.close();
+    return !vardas.empty();
+}
+
+void Studentas::outputToConsole() const {
+    std::cout << std::left << std::setw(20) << pavarde
+              << std::setw(20) << vardas;
+    
+    if (galutinis >= 0.0f) {
+        std::cout << std::fixed << std::setprecision(2) << galutinis;
+    } else {
+        std::cout << "Nėra";
+    }
+    std::cout << std::endl;
+}
+
+void Studentas::outputToFile(const std::string& filename) const {
+    std::ofstream file(filename, std::ios::app);
+    if (file.is_open()) {
+        file << std::left << std::setw(20) << pavarde
+             << std::setw(20) << vardas
+             << std::fixed << std::setprecision(2) << galutinis << "\n";
+        file.close();
+    }
 }
 
 #endif

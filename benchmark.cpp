@@ -11,8 +11,8 @@
 
 
 int main() {
-    std::vector<std::string> sizes = {"1k", "10k", "100k" };
-    std::vector<std::string> containers = {"vector", "list", "deque"};
+    std::vector<std::string> sizes = {"1k", "10k", "100k" , "1M", "10M"};
+    std::vector<std::string> containers = {"vector"};
     
     std::cout << "\n";
     std::cout << std::left 
@@ -24,18 +24,18 @@ int main() {
     std::cout << std::string(54, '-') << "\n";
     
     for (const auto& container : containers) {
-        for (int strategy = 1; strategy <= 3; ++strategy) {
+        for (int strategy = 1; strategy <= 3; strategy+=575) {
             for (const auto& size : sizes) {
                 std::string filename = size + ".txt";
                 long long duration = -1;
                 
                 try {
                     if (container == "vector") {
-                        duration = runPartitionBenchmark<std::vector<Mokinys>>(filename, strategy);
+                        duration = runPartitionBenchmark<std::vector<Studentas>>(filename, strategy);
                     } else if (container == "list") {
-                        duration = runPartitionBenchmark<std::list<Mokinys>>(filename, strategy);
+                        duration = runPartitionBenchmark<std::list<Studentas>>(filename, strategy);
                     } else if (container == "deque") {
-                        duration = runPartitionBenchmark<std::deque<Mokinys>>(filename, strategy);
+                        duration = runPartitionBenchmark<std::deque<Studentas>>(filename, strategy);
                     }
                 } catch (const std::exception& e) {
                     std::cerr << "Error: " << e.what() << "\n";
