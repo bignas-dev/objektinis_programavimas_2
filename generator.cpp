@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
 	for (size_t i = 0; i < sizes.size(); ++i) {
 		std::cout << "\n" << size_names[i] << ":\n";
-		runGenerationTestT<std::vector<Mokinys>>(size_names[i] + ".txt", sizes[i]);
+		runGenerationTestT<std::vector<Studentas>>(size_names[i] + ".txt", sizes[i]);
 	}
 	for (const auto& container : containers) {
 		std::cout << "\n" << container << ":\n";
